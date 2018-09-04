@@ -97,7 +97,7 @@
             this.rdParedLadrilloDraw.Size = new System.Drawing.Size(193, 38);
             this.rdParedLadrilloDraw.TabIndex = 19;
             this.rdParedLadrilloDraw.TabStop = true;
-            this.rdParedLadrilloDraw.Text = "Textura Pared de Ladrillo \r\nDraw(O)";
+            this.rdParedLadrilloDraw.Text = "Textura Pared de Ladrillo \r\nDraw(P)";
             this.rdParedLadrilloDraw.UseVisualStyleBackColor = true;
             // 
             // rdParedLadrilloBits
@@ -116,10 +116,10 @@
             this.rdSegmentacionDraw.AutoSize = true;
             this.rdSegmentacionDraw.Location = new System.Drawing.Point(258, 236);
             this.rdSegmentacionDraw.Name = "rdSegmentacionDraw";
-            this.rdSegmentacionDraw.Size = new System.Drawing.Size(185, 21);
+            this.rdSegmentacionDraw.Size = new System.Drawing.Size(183, 21);
             this.rdSegmentacionDraw.TabIndex = 17;
             this.rdSegmentacionDraw.TabStop = true;
-            this.rdSegmentacionDraw.Text = "Segmentación - Draw(O)";
+            this.rdSegmentacionDraw.Text = "Segmentación - Draw(P)";
             this.rdSegmentacionDraw.UseVisualStyleBackColor = true;
             // 
             // rdSegmentacionBits
@@ -141,7 +141,7 @@
             this.rdCompPerdidaDraw.Size = new System.Drawing.Size(184, 38);
             this.rdCompPerdidaDraw.TabIndex = 15;
             this.rdCompPerdidaDraw.TabStop = true;
-            this.rdCompPerdidaDraw.Text = "Compresión con Pérdida\r\nDraw(O)";
+            this.rdCompPerdidaDraw.Text = "Compresión con Pérdida\r\nDraw(P)";
             this.rdCompPerdidaDraw.UseVisualStyleBackColor = true;
             // 
             // rdCompPerdidaBits
@@ -160,10 +160,10 @@
             this.rdAjusteBrilloDraw.AutoSize = true;
             this.rdAjusteBrilloDraw.Location = new System.Drawing.Point(258, 165);
             this.rdAjusteBrilloDraw.Name = "rdAjusteBrilloDraw";
-            this.rdAjusteBrilloDraw.Size = new System.Drawing.Size(169, 21);
+            this.rdAjusteBrilloDraw.Size = new System.Drawing.Size(167, 21);
             this.rdAjusteBrilloDraw.TabIndex = 13;
             this.rdAjusteBrilloDraw.TabStop = true;
-            this.rdAjusteBrilloDraw.Text = "Ajuste Brillo - Draw(O)";
+            this.rdAjusteBrilloDraw.Text = "Ajuste Brillo - Draw(P)";
             this.rdAjusteBrilloDraw.UseVisualStyleBackColor = true;
             // 
             // rdAjusteBrilloBits
@@ -182,10 +182,10 @@
             this.rdGaussinDraw.AutoSize = true;
             this.rdGaussinDraw.Location = new System.Drawing.Point(258, 138);
             this.rdGaussinDraw.Name = "rdGaussinDraw";
-            this.rdGaussinDraw.Size = new System.Drawing.Size(176, 21);
+            this.rdGaussinDraw.Size = new System.Drawing.Size(174, 21);
             this.rdGaussinDraw.TabIndex = 11;
             this.rdGaussinDraw.TabStop = true;
-            this.rdGaussinDraw.Text = "Gaussin Blur - Draw(O)";
+            this.rdGaussinDraw.Text = "Gaussin Blur - Draw(P)";
             this.rdGaussinDraw.UseVisualStyleBackColor = true;
             // 
             // rdGaussinBits
@@ -216,9 +216,9 @@
             this.rdSepiaDraw.Location = new System.Drawing.Point(258, 110);
             this.rdSepiaDraw.Margin = new System.Windows.Forms.Padding(4);
             this.rdSepiaDraw.Name = "rdSepiaDraw";
-            this.rdSepiaDraw.Size = new System.Drawing.Size(131, 21);
+            this.rdSepiaDraw.Size = new System.Drawing.Size(129, 21);
             this.rdSepiaDraw.TabIndex = 8;
-            this.rdSepiaDraw.Text = "Sepia - Draw(O)";
+            this.rdSepiaDraw.Text = "Sepia - Draw(P)";
             this.rdSepiaDraw.UseVisualStyleBackColor = true;
             // 
             // rdNegativeDraw
@@ -227,9 +227,9 @@
             this.rdNegativeDraw.Location = new System.Drawing.Point(258, 81);
             this.rdNegativeDraw.Margin = new System.Windows.Forms.Padding(4);
             this.rdNegativeDraw.Name = "rdNegativeDraw";
-            this.rdNegativeDraw.Size = new System.Drawing.Size(151, 21);
+            this.rdNegativeDraw.Size = new System.Drawing.Size(149, 21);
             this.rdNegativeDraw.TabIndex = 10;
-            this.rdNegativeDraw.Text = "Negativo - Draw(O)";
+            this.rdNegativeDraw.Text = "Negativo - Draw(P)";
             this.rdNegativeDraw.UseVisualStyleBackColor = true;
             // 
             // rdGrayscaleBits
@@ -251,9 +251,9 @@
             this.rdTransparencyDraw.Location = new System.Drawing.Point(258, 52);
             this.rdTransparencyDraw.Margin = new System.Windows.Forms.Padding(4);
             this.rdTransparencyDraw.Name = "rdTransparencyDraw";
-            this.rdTransparencyDraw.Size = new System.Drawing.Size(187, 21);
+            this.rdTransparencyDraw.Size = new System.Drawing.Size(185, 21);
             this.rdTransparencyDraw.TabIndex = 9;
-            this.rdTransparencyDraw.Text = "Transparencia - Draw(O)";
+            this.rdTransparencyDraw.Text = "Transparencia - Draw(P)";
             this.rdTransparencyDraw.UseVisualStyleBackColor = true;
             // 
             // rdGrayscaleDraw
@@ -262,9 +262,9 @@
             this.rdGrayscaleDraw.Location = new System.Drawing.Point(258, 23);
             this.rdGrayscaleDraw.Margin = new System.Windows.Forms.Padding(4);
             this.rdGrayscaleDraw.Name = "rdGrayscaleDraw";
-            this.rdGrayscaleDraw.Size = new System.Drawing.Size(182, 21);
+            this.rdGrayscaleDraw.Size = new System.Drawing.Size(180, 21);
             this.rdGrayscaleDraw.TabIndex = 7;
-            this.rdGrayscaleDraw.Text = "Escala Grises - Draw(O)";
+            this.rdGrayscaleDraw.Text = "Escala Grises - Draw(P)";
             this.rdGrayscaleDraw.UseVisualStyleBackColor = true;
             // 
             // rdNegativeBits
