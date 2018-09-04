@@ -12,7 +12,7 @@ namespace BitmapFilters
         public static void ApplyBrightness(ref Bitmap bmp, byte brightnessValue)
         {
             BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, bmp.Width, bmp.Height), ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
-
+            /*
             unsafe
             {
                 byte* ptr = (byte*)bmpData.Scan0.ToPointer();
@@ -40,7 +40,7 @@ namespace BitmapFilters
                     ptr += 3;
                 }
             }
-
+            */
             bmp.UnlockBits(bmpData);
         }
     }
