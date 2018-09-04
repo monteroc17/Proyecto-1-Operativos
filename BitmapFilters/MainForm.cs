@@ -98,26 +98,71 @@ namespace BitmapFilters
                     }
                     else if (rdTransparencyBits.Checked == true)
                     {
-
+                        bmp = ExtBitmap.CopyWithTransparency(i);
+                        Console.WriteLine(bmp);
+                        Image im = (Image)bmp;
+                        string carpeta = "\\outputimages\\";
+                        string c_path = path + carpeta + "result" + counta + ".jpg";
+                        Console.WriteLine(c_path);
+                        im.Save(c_path);
+                        counta++;
                     }
                     else if (rdTransparencyDraw.Checked == true)
                     {
+                        bmp = ExtBitmap.DrawWithTransparency(i);
+                        Console.WriteLine(bmp);
+                        Image im = (Image)bmp;
+                        string carpeta = "\\outputimages\\";
+                        string c_path = path + carpeta + "result" + counta + ".jpg";
+                        Console.WriteLine(c_path);
+                        im.Save(c_path);
+                        counta++;
 
                     }
                     else if (rdNegativeBits.Checked == true)
                     {
+                        bmp = ExtBitmap.CopyAsNegative(i);
+                        Console.WriteLine(bmp);
+                        Image im = (Image)bmp;
+                        string carpeta = "\\outputimages\\";
+                        string c_path = path + carpeta + "result" + counta + ".jpg";
+                        Console.WriteLine(c_path);
+                        im.Save(c_path);
+                        counta++;
 
                     }
                     else if (rdNegativeDraw.Checked == true)
                     {
-
+                        bmp = ExtBitmap.DrawAsNegative(i);
+                        Console.WriteLine(bmp);
+                        Image im = (Image)bmp;
+                        string carpeta = "\\outputimages\\";
+                        string c_path = path + carpeta + "result" + counta + ".jpg";
+                        Console.WriteLine(c_path);
+                        im.Save(c_path);
+                        counta++;
                     }
                     else if (rdSepiaBits.Checked == true)
                     {
-
+                        bmp = ExtBitmap.CopyAsSepiaTone(i);
+                        Console.WriteLine(bmp);
+                        Image im = (Image)bmp;
+                        string carpeta = "\\outputimages\\";
+                        string c_path = path + carpeta + "result" + counta + ".jpg";
+                        Console.WriteLine(c_path);
+                        im.Save(c_path);
+                        counta++;
                     }
                     else if (rdSepiaDraw.Checked == true)
                     {
+                        bmp = ExtBitmap.DrawAsSepiaTone(i);
+                        Console.WriteLine(bmp);
+                        Image im = (Image)bmp;
+                        string carpeta = "\\outputimages\\";
+                        string c_path = path + carpeta + "result" + counta + ".jpg";
+                        Console.WriteLine(c_path);
+                        im.Save(c_path);
+                        counta++;
 
                     }
                 }
