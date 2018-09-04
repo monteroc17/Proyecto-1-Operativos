@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtBitmap.cs" />
+    <Compile Include="GaussianBlur.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
