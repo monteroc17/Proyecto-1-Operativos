@@ -36,11 +36,29 @@ namespace BitmapFilters
 
                 //picSource.BackgroundImage = sourceBitmap;
 
-                OnCheckChangedEventHandler(sender, e);
+                //OnCheckChangedEventHandler(sender, e);
             }
         }
 
-        private void OnCheckChangedEventHandler(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            temporizador.Start();//starts the timer
+
+            for (int index = 0; index < Environment.ProcessorCount; index++)
+            {
+                cmbCores.Items.Add(index+1);
+            }
+            
+        }
+
+        int cont = 0;
+        private void temporizador_Tick(object sender, EventArgs e)
+        {
+            cont++;
+            lblTimeTaken.Text = cont.ToString();
+        }
+
+        private void btnStart_Click(object sender, EventArgs e)
         {
             //if (picSource.BackgroundImage != null)
             {
@@ -62,7 +80,7 @@ namespace BitmapFilters
                 }
                 else if (rdNegativeBits.Checked == true)
                 {
-                   // picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsNegative();
+                    // picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsNegative();
                 }
                 else if (rdNegativeDraw.Checked == true)
                 {
@@ -77,24 +95,6 @@ namespace BitmapFilters
                     //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsSepiaTone();
                 }
             }
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            temporizador.Start();//starts the timer
-
-            for (int index = 0; index < Environment.ProcessorCount; index++)
-            {
-                cmbCores.Items.Add(index+1);
-            }
-            
-        }
-
-        int cont = 0;
-        private void temporizador_Tick(object sender, EventArgs e)
-        {
-            cont++;
-            lblTimeTaken.Text = cont.ToString();
         }
     }
 }

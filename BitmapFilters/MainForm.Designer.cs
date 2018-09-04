@@ -209,7 +209,6 @@
             this.rdSepiaBits.TabIndex = 6;
             this.rdSepiaBits.Text = "Sepia - Bits(S)";
             this.rdSepiaBits.UseVisualStyleBackColor = true;
-            this.rdSepiaBits.CheckedChanged += new System.EventHandler(this.OnCheckChangedEventHandler);
             // 
             // rdSepiaDraw
             // 
@@ -221,7 +220,6 @@
             this.rdSepiaDraw.TabIndex = 8;
             this.rdSepiaDraw.Text = "Sepia - Draw(O)";
             this.rdSepiaDraw.UseVisualStyleBackColor = true;
-            this.rdSepiaDraw.CheckedChanged += new System.EventHandler(this.OnCheckChangedEventHandler);
             // 
             // rdNegativeDraw
             // 
@@ -233,7 +231,6 @@
             this.rdNegativeDraw.TabIndex = 10;
             this.rdNegativeDraw.Text = "Negativo - Draw(O)";
             this.rdNegativeDraw.UseVisualStyleBackColor = true;
-            this.rdNegativeDraw.CheckedChanged += new System.EventHandler(this.OnCheckChangedEventHandler);
             // 
             // rdGrayscaleBits
             // 
@@ -247,7 +244,6 @@
             this.rdGrayscaleBits.TabStop = true;
             this.rdGrayscaleBits.Text = "Escala Grises - Bits(S)";
             this.rdGrayscaleBits.UseVisualStyleBackColor = true;
-            this.rdGrayscaleBits.CheckedChanged += new System.EventHandler(this.OnCheckChangedEventHandler);
             // 
             // rdTransparencyDraw
             // 
@@ -259,7 +255,6 @@
             this.rdTransparencyDraw.TabIndex = 9;
             this.rdTransparencyDraw.Text = "Transparencia - Draw(O)";
             this.rdTransparencyDraw.UseVisualStyleBackColor = true;
-            this.rdTransparencyDraw.CheckedChanged += new System.EventHandler(this.OnCheckChangedEventHandler);
             // 
             // rdGrayscaleDraw
             // 
@@ -271,7 +266,6 @@
             this.rdGrayscaleDraw.TabIndex = 7;
             this.rdGrayscaleDraw.Text = "Escala Grises - Draw(O)";
             this.rdGrayscaleDraw.UseVisualStyleBackColor = true;
-            this.rdGrayscaleDraw.CheckedChanged += new System.EventHandler(this.OnCheckChangedEventHandler);
             // 
             // rdNegativeBits
             // 
@@ -283,7 +277,6 @@
             this.rdNegativeBits.TabIndex = 5;
             this.rdNegativeBits.Text = "Negativo - Bits(S)";
             this.rdNegativeBits.UseVisualStyleBackColor = true;
-            this.rdNegativeBits.CheckedChanged += new System.EventHandler(this.OnCheckChangedEventHandler);
             // 
             // rdTransparencyBits
             // 
@@ -295,7 +288,6 @@
             this.rdTransparencyBits.TabIndex = 4;
             this.rdTransparencyBits.Text = "Transparencia - Bits(S)";
             this.rdTransparencyBits.UseVisualStyleBackColor = true;
-            this.rdTransparencyBits.CheckedChanged += new System.EventHandler(this.OnCheckChangedEventHandler);
             // 
             // grbOutput
             // 
@@ -372,6 +364,7 @@
             this.btnStart.TabIndex = 6;
             this.btnStart.Text = "Iniciar";
             this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // MainForm
             // 
