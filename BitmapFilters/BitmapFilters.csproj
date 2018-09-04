@@ -51,6 +51,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
     <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -70,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtBitmap.cs" />
+    <Compile Include="GaussianBlur.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

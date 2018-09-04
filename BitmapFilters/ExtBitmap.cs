@@ -140,6 +140,7 @@ namespace BitmapFilters
 
         public static Bitmap CopyAsGrayscale(this Image sourceImage)
         {
+            System.Console.WriteLine("entro");
             Bitmap bmpNew = GetArgbCopy(sourceImage);
             BitmapData bmpData = bmpNew.LockBits(new Rectangle(0, 0, sourceImage.Width, sourceImage.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 
@@ -176,6 +177,7 @@ namespace BitmapFilters
 
         public static Bitmap DrawAsGrayscale(this Image sourceImage)
         {
+            System.Console.WriteLine("entro");
             ColorMatrix colorMatrix = new ColorMatrix(new float[][] 
                                                 {
                                                     new float[] {.3f, .3f, .3f, 0, 0},
@@ -237,6 +239,61 @@ namespace BitmapFilters
                                                 });
 
             return ApplyColorMatrix(sourceImage, colorMatrix);
+        }
+
+        public static Bitmap AdjustContrast(Bitmap Image, float Value)
+        {
+            Value = (100.0f + Value) / 100.0f;
+            Value *= Value;
+            Bitmap NewBitmap = (Bitmap)Image.Clone();
+            BitmapData data = NewBitmap.LockBits(
+                new Rectangle(0, 0, NewBitmap.Width, NewBitmap.Height),
+                ImageLockMode.ReadWrite,
+                NewBitmap.PixelFormat);
+            int Height = NewBitmap.Height;
+            int Width = NewBitmap.Width;
+
+            unsafe
+            {
+                for (int y = 0; y < Height; ++y)
+                {
+                    byte* row = (byte*)data.Scan0 + (y * data.Stride);
+                    int columnOffset = 0;
+                    for (int x = 0; x < Width; ++x)
+                    {
+                        byte B = row[columnOffset];
+                        byte G = row[columnOffset + 1];
+                        byte R = row[columnOffset + 2];
+
+                        float Red = R / 255.0f;
+                        float Green = G / 255.0f;
+                        float Blue = B / 255.0f;
+                        Red = (((Red - 0.5f) * Value) + 0.5f) * 255.0f;
+                        Green = (((Green - 0.5f) * Value) + 0.5f) * 255.0f;
+                        Blue = (((Blue - 0.5f) * Value) + 0.5f) * 255.0f;
+
+                        int iR = (int)Red;
+                        iR = iR > 255 ? 255 : iR;
+                        iR = iR < 0 ? 0 : iR;
+                        int iG = (int)Green;
+                        iG = iG > 255 ? 255 : iG;
+                        iG = iG < 0 ? 0 : iG;
+                        int iB = (int)Blue;
+                        iB = iB > 255 ? 255 : iB;
+                        iB = iB < 0 ? 0 : iB;
+
+                        row[columnOffset] = (byte)iB;
+                        row[columnOffset + 1] = (byte)iG;
+                        row[columnOffset + 2] = (byte)iR;
+
+                        columnOffset += 4;
+                    }
+                }
+            }
+
+            NewBitmap.UnlockBits(data);
+
+            return NewBitmap;
         }
     }
 }
