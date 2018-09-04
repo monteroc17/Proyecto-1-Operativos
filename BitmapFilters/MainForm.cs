@@ -20,11 +20,26 @@ namespace BitmapFilters
         {
             InitializeComponent();
         }
-        private void OnCheckChangedEventHandler(object sender, EventArgs e) { 
+        private void OnCheckChangedEventHandler(object sender, EventArgs e)
+        {
 
-                //OnCheckChangedEventHandler(sender, e);
+            //OnCheckChangedEventHandler(sender, e);
+        }
+
+
+        /// <summary>
+        /// Allows to detect which radiobutton was clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WhichRBWasClicked(Object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+            {
+                //RadioButton rb = (RadioButton)sender;
+                btnStart.Enabled = true;
             }
-        
+        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -32,9 +47,9 @@ namespace BitmapFilters
 
             for (int index = 0; index < Environment.ProcessorCount; index++)
             {
-                cmbCores.Items.Add(index+1);
+                cmbCores.Items.Add(index + 1);
             }
-            
+
         }
 
         int cont = 0;
@@ -43,55 +58,68 @@ namespace BitmapFilters
             cont++;
             lblTimeTaken.Text = cont.ToString();
         }
-
+        
         private void btnStart_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Entro a la funcion");
+
             string path = Directory.GetCurrentDirectory();
             string[] filePaths = Directory.GetFiles(path + "/images", "*.jpg");
             int counta = 0;
+            Console.WriteLine(filePaths.Length);
             foreach (var filename in filePaths)
             {
                 Bitmap bmp = null;
+                bmp = new Bitmap(filename);
+                Image i = (Image)bmp;
                 try
                 {
-                    bmp = new Bitmap(filename);
-                    Image i = (Image)bmp;
-                    if(rdGrayscaleBits.Checked == true)
+                    if (rdGrayscaleBits.Checked == true)
                     {
-                        Console.WriteLine("Entro a la rpadad");
-                        bmp =ExtBitmap.CopyAsGrayscale(i);
+                        Console.WriteLine("Entro a la funcion cccc");
+                        bmp = ExtBitmap.CopyAsGrayscale(i);
+                        Console.WriteLine(bmp);
+                        Image im = (Image)bmp;
+                        string carpeta= "\\outputimages\\";
+                        string c_path =path+carpeta +"result"+counta+".jpg";
+                        Console.WriteLine(c_path);
+                        im.Save(c_path);
+                        counta++;
                     }
-                    else if(rdGrayscaleDraw.Checked == true)
+                    else if (rdGrayscaleDraw.Checked == true)
                     {
-                        Console.WriteLine("Entro a la rpadad");
-                        bmp =ExtBitmap.DrawAsGrayscale(i);
+                        bmp = ExtBitmap.DrawAsGrayscale(i);
+                        Console.WriteLine(bmp);
+                        Image im = (Image)bmp;
+                        string carpeta = "\\outputimages\\";
+                        string c_path = path + carpeta + "result" + counta + ".jpg";
+                        Console.WriteLine(c_path);
+                        im.Save(c_path);
+                        counta++;
                     }
-                    else if(rdTransparencyBits.Checked == true)
+                    else if (rdTransparencyBits.Checked == true)
                     {
-                        
+
                     }
                     else if (rdTransparencyDraw.Checked == true)
                     {
-                        
+
                     }
                     else if (rdNegativeBits.Checked == true)
                     {
-                        
+
                     }
                     else if (rdNegativeDraw.Checked == true)
                     {
-                        
+
                     }
                     else if (rdSepiaBits.Checked == true)
                     {
-                        
+
                     }
                     else if (rdSepiaDraw.Checked == true)
                     {
-                        
+
                     }
-                    bmp.Save(path + "result" + counta + ".jpg");
                 }
                 catch (Exception ex)
                 {
@@ -100,12 +128,16 @@ namespace BitmapFilters
                     continue;
                 }
             }
-                
-        }
 
+        }
         private void rdGrayscaleBits_CheckedChanged(object sender, EventArgs e)
         {
 
         }
+
+
+
     }
 }
+
+        

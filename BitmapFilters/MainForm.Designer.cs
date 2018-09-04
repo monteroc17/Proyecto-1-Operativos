@@ -90,121 +90,131 @@
             // 
             this.rdParedLadrilloDraw.AutoSize = true;
             this.rdParedLadrilloDraw.Location = new System.Drawing.Point(194, 214);
-            this.rdParedLadrilloDraw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdParedLadrilloDraw.Margin = new System.Windows.Forms.Padding(2);
             this.rdParedLadrilloDraw.Name = "rdParedLadrilloDraw";
             this.rdParedLadrilloDraw.Size = new System.Drawing.Size(146, 30);
             this.rdParedLadrilloDraw.TabIndex = 19;
             this.rdParedLadrilloDraw.TabStop = true;
             this.rdParedLadrilloDraw.Text = "Textura Pared de Ladrillo \r\nDraw(P)";
             this.rdParedLadrilloDraw.UseVisualStyleBackColor = true;
+            this.rdParedLadrilloDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdParedLadrilloBits
             // 
             this.rdParedLadrilloBits.AutoSize = true;
             this.rdParedLadrilloBits.Location = new System.Drawing.Point(2, 214);
-            this.rdParedLadrilloBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdParedLadrilloBits.Margin = new System.Windows.Forms.Padding(2);
             this.rdParedLadrilloBits.Name = "rdParedLadrilloBits";
             this.rdParedLadrilloBits.Size = new System.Drawing.Size(146, 30);
             this.rdParedLadrilloBits.TabIndex = 18;
             this.rdParedLadrilloBits.TabStop = true;
             this.rdParedLadrilloBits.Text = "Textura Pared de Ladrillo \r\nBits(S)";
             this.rdParedLadrilloBits.UseVisualStyleBackColor = true;
+            this.rdParedLadrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdSegmentacionDraw
             // 
             this.rdSegmentacionDraw.AutoSize = true;
             this.rdSegmentacionDraw.Location = new System.Drawing.Point(194, 192);
-            this.rdSegmentacionDraw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdSegmentacionDraw.Margin = new System.Windows.Forms.Padding(2);
             this.rdSegmentacionDraw.Name = "rdSegmentacionDraw";
             this.rdSegmentacionDraw.Size = new System.Drawing.Size(140, 17);
             this.rdSegmentacionDraw.TabIndex = 17;
             this.rdSegmentacionDraw.TabStop = true;
             this.rdSegmentacionDraw.Text = "Segmentación - Draw(P)";
             this.rdSegmentacionDraw.UseVisualStyleBackColor = true;
+            this.rdSegmentacionDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdSegmentacionBits
             // 
             this.rdSegmentacionBits.AutoSize = true;
             this.rdSegmentacionBits.Location = new System.Drawing.Point(0, 192);
-            this.rdSegmentacionBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdSegmentacionBits.Margin = new System.Windows.Forms.Padding(2);
             this.rdSegmentacionBits.Name = "rdSegmentacionBits";
             this.rdSegmentacionBits.Size = new System.Drawing.Size(132, 17);
             this.rdSegmentacionBits.TabIndex = 16;
             this.rdSegmentacionBits.TabStop = true;
             this.rdSegmentacionBits.Text = "Segmentación - Bits(S)";
             this.rdSegmentacionBits.UseVisualStyleBackColor = true;
+            this.rdSegmentacionBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdCompPerdidaDraw
             // 
             this.rdCompPerdidaDraw.AutoSize = true;
             this.rdCompPerdidaDraw.Location = new System.Drawing.Point(194, 156);
-            this.rdCompPerdidaDraw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdCompPerdidaDraw.Margin = new System.Windows.Forms.Padding(2);
             this.rdCompPerdidaDraw.Name = "rdCompPerdidaDraw";
             this.rdCompPerdidaDraw.Size = new System.Drawing.Size(140, 30);
             this.rdCompPerdidaDraw.TabIndex = 15;
             this.rdCompPerdidaDraw.TabStop = true;
             this.rdCompPerdidaDraw.Text = "Compresión con Pérdida\r\nDraw(P)";
             this.rdCompPerdidaDraw.UseVisualStyleBackColor = true;
+            this.rdCompPerdidaDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdCompPerdidaBits
             // 
             this.rdCompPerdidaBits.AutoSize = true;
             this.rdCompPerdidaBits.Location = new System.Drawing.Point(0, 156);
-            this.rdCompPerdidaBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdCompPerdidaBits.Margin = new System.Windows.Forms.Padding(2);
             this.rdCompPerdidaBits.Name = "rdCompPerdidaBits";
             this.rdCompPerdidaBits.Size = new System.Drawing.Size(140, 30);
             this.rdCompPerdidaBits.TabIndex = 14;
             this.rdCompPerdidaBits.TabStop = true;
             this.rdCompPerdidaBits.Text = "Compresión con Pérdida\r\nBits(S)";
             this.rdCompPerdidaBits.UseVisualStyleBackColor = true;
+            this.rdCompPerdidaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdAjusteBrilloDraw
             // 
             this.rdAjusteBrilloDraw.AutoSize = true;
             this.rdAjusteBrilloDraw.Location = new System.Drawing.Point(194, 134);
-            this.rdAjusteBrilloDraw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdAjusteBrilloDraw.Margin = new System.Windows.Forms.Padding(2);
             this.rdAjusteBrilloDraw.Name = "rdAjusteBrilloDraw";
             this.rdAjusteBrilloDraw.Size = new System.Drawing.Size(126, 17);
             this.rdAjusteBrilloDraw.TabIndex = 13;
             this.rdAjusteBrilloDraw.TabStop = true;
             this.rdAjusteBrilloDraw.Text = "Ajuste Brillo - Draw(P)";
             this.rdAjusteBrilloDraw.UseVisualStyleBackColor = true;
+            this.rdAjusteBrilloDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdAjusteBrilloBits
             // 
             this.rdAjusteBrilloBits.AutoSize = true;
             this.rdAjusteBrilloBits.Location = new System.Drawing.Point(0, 134);
-            this.rdAjusteBrilloBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdAjusteBrilloBits.Margin = new System.Windows.Forms.Padding(2);
             this.rdAjusteBrilloBits.Name = "rdAjusteBrilloBits";
             this.rdAjusteBrilloBits.Size = new System.Drawing.Size(118, 17);
             this.rdAjusteBrilloBits.TabIndex = 12;
             this.rdAjusteBrilloBits.TabStop = true;
             this.rdAjusteBrilloBits.Text = "Ajuste Brillo - Bits(S)";
             this.rdAjusteBrilloBits.UseVisualStyleBackColor = true;
+            this.rdAjusteBrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGaussinDraw
             // 
             this.rdGaussinDraw.AutoSize = true;
             this.rdGaussinDraw.Location = new System.Drawing.Point(194, 112);
-            this.rdGaussinDraw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdGaussinDraw.Margin = new System.Windows.Forms.Padding(2);
             this.rdGaussinDraw.Name = "rdGaussinDraw";
             this.rdGaussinDraw.Size = new System.Drawing.Size(131, 17);
             this.rdGaussinDraw.TabIndex = 11;
             this.rdGaussinDraw.TabStop = true;
             this.rdGaussinDraw.Text = "Gaussin Blur - Draw(P)";
             this.rdGaussinDraw.UseVisualStyleBackColor = true;
+            this.rdGaussinDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGaussinBits
             // 
             this.rdGaussinBits.AutoSize = true;
             this.rdGaussinBits.Location = new System.Drawing.Point(0, 112);
-            this.rdGaussinBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdGaussinBits.Margin = new System.Windows.Forms.Padding(2);
             this.rdGaussinBits.Name = "rdGaussinBits";
             this.rdGaussinBits.Size = new System.Drawing.Size(123, 17);
             this.rdGaussinBits.TabIndex = 3;
             this.rdGaussinBits.TabStop = true;
             this.rdGaussinBits.Text = "Gaussin Blur - Bits(S)";
             this.rdGaussinBits.UseVisualStyleBackColor = true;
+            this.rdGaussinBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdSepiaBits
             // 
@@ -215,6 +225,7 @@
             this.rdSepiaBits.TabIndex = 6;
             this.rdSepiaBits.Text = "Sepia - Bits(S)";
             this.rdSepiaBits.UseVisualStyleBackColor = true;
+            this.rdSepiaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdSepiaDraw
             // 
@@ -225,6 +236,7 @@
             this.rdSepiaDraw.TabIndex = 8;
             this.rdSepiaDraw.Text = "Sepia - Draw(P)";
             this.rdSepiaDraw.UseVisualStyleBackColor = true;
+            this.rdSepiaDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdNegativeDraw
             // 
@@ -235,6 +247,7 @@
             this.rdNegativeDraw.TabIndex = 10;
             this.rdNegativeDraw.Text = "Negativo - Draw(P)";
             this.rdNegativeDraw.UseVisualStyleBackColor = true;
+            this.rdNegativeDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGrayscaleBits
             // 
@@ -247,7 +260,8 @@
             this.rdGrayscaleBits.TabStop = true;
             this.rdGrayscaleBits.Text = "Escala Grises - Bits(S)";
             this.rdGrayscaleBits.UseVisualStyleBackColor = true;
-            this.rdGrayscaleBits.CheckedChanged += new System.EventHandler(this.rdGrayscaleBits_CheckedChanged);
+            this.rdGrayscaleBits.CheckedChanged += new System.EventHandler(this.WhichRBWasClicked);
+            this.rdGrayscaleBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdTransparencyDraw
             // 
@@ -258,6 +272,7 @@
             this.rdTransparencyDraw.TabIndex = 9;
             this.rdTransparencyDraw.Text = "Transparencia - Draw(P)";
             this.rdTransparencyDraw.UseVisualStyleBackColor = true;
+            this.rdTransparencyDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGrayscaleDraw
             // 
@@ -268,6 +283,7 @@
             this.rdGrayscaleDraw.TabIndex = 7;
             this.rdGrayscaleDraw.Text = "Escala Grises - Draw(P)";
             this.rdGrayscaleDraw.UseVisualStyleBackColor = true;
+            this.rdGrayscaleDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdNegativeBits
             // 
@@ -278,6 +294,7 @@
             this.rdNegativeBits.TabIndex = 5;
             this.rdNegativeBits.Text = "Negativo - Bits(S)";
             this.rdNegativeBits.UseVisualStyleBackColor = true;
+            this.rdNegativeBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdTransparencyBits
             // 
@@ -288,6 +305,7 @@
             this.rdTransparencyBits.TabIndex = 4;
             this.rdTransparencyBits.Text = "Transparencia - Bits(S)";
             this.rdTransparencyBits.UseVisualStyleBackColor = true;
+            this.rdTransparencyBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // grbOutput
             // 
@@ -330,7 +348,7 @@
             // 
             this.cmbCores.FormattingEnabled = true;
             this.cmbCores.Location = new System.Drawing.Point(228, 298);
-            this.cmbCores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cmbCores.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCores.Name = "cmbCores";
             this.cmbCores.Size = new System.Drawing.Size(77, 21);
             this.cmbCores.TabIndex = 3;
@@ -349,7 +367,7 @@
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Location = new System.Drawing.Point(358, 298);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(215, 39);
             this.btnStart.TabIndex = 6;
