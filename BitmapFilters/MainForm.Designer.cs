@@ -99,6 +99,7 @@
             this.rdParedLadrilloDraw.TabStop = true;
             this.rdParedLadrilloDraw.Text = "Textura Pared de Ladrillo \r\nDraw(P)";
             this.rdParedLadrilloDraw.UseVisualStyleBackColor = true;
+            this.rdParedLadrilloDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdParedLadrilloBits
             // 
@@ -110,6 +111,7 @@
             this.rdParedLadrilloBits.TabStop = true;
             this.rdParedLadrilloBits.Text = "Textura Pared de Ladrillo \r\nBits(S)";
             this.rdParedLadrilloBits.UseVisualStyleBackColor = true;
+            this.rdParedLadrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdSegmentacionDraw
             // 
@@ -121,6 +123,7 @@
             this.rdSegmentacionDraw.TabStop = true;
             this.rdSegmentacionDraw.Text = "Segmentación - Draw(P)";
             this.rdSegmentacionDraw.UseVisualStyleBackColor = true;
+            this.rdSegmentacionDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdSegmentacionBits
             // 
@@ -132,6 +135,7 @@
             this.rdSegmentacionBits.TabStop = true;
             this.rdSegmentacionBits.Text = "Segmentación - Bits(S)";
             this.rdSegmentacionBits.UseVisualStyleBackColor = true;
+            this.rdSegmentacionBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdCompPerdidaDraw
             // 
@@ -143,6 +147,7 @@
             this.rdCompPerdidaDraw.TabStop = true;
             this.rdCompPerdidaDraw.Text = "Compresión con Pérdida\r\nDraw(P)";
             this.rdCompPerdidaDraw.UseVisualStyleBackColor = true;
+            this.rdCompPerdidaDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdCompPerdidaBits
             // 
@@ -154,6 +159,7 @@
             this.rdCompPerdidaBits.TabStop = true;
             this.rdCompPerdidaBits.Text = "Compresión con Pérdida\r\nBits(S)";
             this.rdCompPerdidaBits.UseVisualStyleBackColor = true;
+            this.rdCompPerdidaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdAjusteBrilloDraw
             // 
@@ -165,6 +171,7 @@
             this.rdAjusteBrilloDraw.TabStop = true;
             this.rdAjusteBrilloDraw.Text = "Ajuste Brillo - Draw(P)";
             this.rdAjusteBrilloDraw.UseVisualStyleBackColor = true;
+            this.rdAjusteBrilloDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdAjusteBrilloBits
             // 
@@ -176,6 +183,7 @@
             this.rdAjusteBrilloBits.TabStop = true;
             this.rdAjusteBrilloBits.Text = "Ajuste Brillo - Bits(S)";
             this.rdAjusteBrilloBits.UseVisualStyleBackColor = true;
+            this.rdAjusteBrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGaussinDraw
             // 
@@ -187,6 +195,7 @@
             this.rdGaussinDraw.TabStop = true;
             this.rdGaussinDraw.Text = "Gaussin Blur - Draw(P)";
             this.rdGaussinDraw.UseVisualStyleBackColor = true;
+            this.rdGaussinDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGaussinBits
             // 
@@ -198,6 +207,7 @@
             this.rdGaussinBits.TabStop = true;
             this.rdGaussinBits.Text = "Gaussin Blur - Bits(S)";
             this.rdGaussinBits.UseVisualStyleBackColor = true;
+            this.rdGaussinBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdSepiaBits
             // 
@@ -209,6 +219,7 @@
             this.rdSepiaBits.TabIndex = 6;
             this.rdSepiaBits.Text = "Sepia - Bits(S)";
             this.rdSepiaBits.UseVisualStyleBackColor = true;
+            this.rdSepiaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdSepiaDraw
             // 
@@ -220,6 +231,7 @@
             this.rdSepiaDraw.TabIndex = 8;
             this.rdSepiaDraw.Text = "Sepia - Draw(P)";
             this.rdSepiaDraw.UseVisualStyleBackColor = true;
+            this.rdSepiaDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdNegativeDraw
             // 
@@ -231,6 +243,7 @@
             this.rdNegativeDraw.TabIndex = 10;
             this.rdNegativeDraw.Text = "Negativo - Draw(P)";
             this.rdNegativeDraw.UseVisualStyleBackColor = true;
+            this.rdNegativeDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGrayscaleBits
             // 
@@ -244,6 +257,7 @@
             this.rdGrayscaleBits.TabStop = true;
             this.rdGrayscaleBits.Text = "Escala Grises - Bits(S)";
             this.rdGrayscaleBits.UseVisualStyleBackColor = true;
+            this.rdGrayscaleBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdTransparencyDraw
             // 
@@ -255,6 +269,7 @@
             this.rdTransparencyDraw.TabIndex = 9;
             this.rdTransparencyDraw.Text = "Transparencia - Draw(P)";
             this.rdTransparencyDraw.UseVisualStyleBackColor = true;
+            this.rdTransparencyDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGrayscaleDraw
             // 
@@ -266,6 +281,7 @@
             this.rdGrayscaleDraw.TabIndex = 7;
             this.rdGrayscaleDraw.Text = "Escala Grises - Draw(P)";
             this.rdGrayscaleDraw.UseVisualStyleBackColor = true;
+            this.rdGrayscaleDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdNegativeBits
             // 
@@ -277,6 +293,7 @@
             this.rdNegativeBits.TabIndex = 5;
             this.rdNegativeBits.Text = "Negativo - Bits(S)";
             this.rdNegativeBits.UseVisualStyleBackColor = true;
+            this.rdNegativeBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdTransparencyBits
             // 
@@ -288,6 +305,7 @@
             this.rdTransparencyBits.TabIndex = 4;
             this.rdTransparencyBits.Text = "Transparencia - Bits(S)";
             this.rdTransparencyBits.UseVisualStyleBackColor = true;
+            this.rdTransparencyBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // grbOutput
             // 
