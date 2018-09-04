@@ -34,7 +34,7 @@ namespace BitmapFilters
                 Bitmap sourceBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
                 streamReader.Close();
 
-                picSource.BackgroundImage = sourceBitmap;
+                //picSource.BackgroundImage = sourceBitmap;
 
                 OnCheckChangedEventHandler(sender, e);
             }
@@ -42,41 +42,59 @@ namespace BitmapFilters
 
         private void OnCheckChangedEventHandler(object sender, EventArgs e)
         {
-            if (picSource.BackgroundImage != null)
+            //if (picSource.BackgroundImage != null)
             {
                 if (rdGrayscaleBits.Checked == true)
                 {
-                    picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsGrayscale();
+                    //picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsGrayscale();
                 }
                 else if (rdGrayscaleDraw.Checked == true)
                 {
-                    picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsGrayscale();
+                    //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsGrayscale();
                 }
                 else if (rdTransparencyBits.Checked == true)
                 {
-                    picOutput.BackgroundImage = picSource.BackgroundImage.CopyWithTransparency();
+                    //picOutput.BackgroundImage = picSource.BackgroundImage.CopyWithTransparency();
                 }
                 else if (rdTransparencyDraw.Checked == true)
                 {
-                    picOutput.BackgroundImage = picSource.BackgroundImage.DrawWithTransparency();
+                    //picOutput.BackgroundImage = picSource.BackgroundImage.DrawWithTransparency();
                 }
                 else if (rdNegativeBits.Checked == true)
                 {
-                    picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsNegative();
+                   // picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsNegative();
                 }
                 else if (rdNegativeDraw.Checked == true)
                 {
-                    picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsNegative();
+                    //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsNegative();
                 }
                 else if (rdSepiaBits.Checked == true)
                 {
-                    picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsSepiaTone();
+                    //picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsSepiaTone();
                 }
                 else if (rdSepiaDraw.Checked == true)
                 {
-                    picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsSepiaTone();
+                    //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsSepiaTone();
                 }
             }
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            temporizador.Start();//starts the timer
+
+            for (int index = 0; index < Environment.ProcessorCount; index++)
+            {
+                cmbCores.Items.Add(index+1);
+            }
+            
+        }
+
+        int cont = 0;
+        private void temporizador_Tick(object sender, EventArgs e)
+        {
+            cont++;
+            lblTimeTaken.Text = cont.ToString();
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
+using System.Timers;
 
 namespace BitmapFilters
 {
