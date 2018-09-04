@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Collections;
 namespace BitmapFilters
 {
     public partial class MainForm : Form
@@ -63,13 +64,23 @@ namespace BitmapFilters
         {
 
             string path = Directory.GetCurrentDirectory();
-            string[] filePaths = Directory.GetFiles(path + "/images", "*.jpg");
+            String[] exts = { "*.png","*.bmp","*.jpg" };
+            ArrayList files = new ArrayList();
+            foreach (string ext in exts)
+            {
+                string[] filePaths1 = Directory.GetFiles(path + "/images", ext);
+                foreach(var fn in filePaths1)
+                {
+                    files.Add(fn);
+                }
+                
+            }
+            string[] filePaths = (string[])files.ToArray(typeof(string));
             int counta = 0;
-            Console.WriteLine(filePaths.Length);
             foreach (var filename in filePaths)
             {
                 Bitmap bmp = null;
-                bmp = new Bitmap(filename);
+                bmp = new Bitmap(filename.ToString());
                 Image i = (Image)bmp;
                 try
                 {
