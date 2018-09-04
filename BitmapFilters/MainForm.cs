@@ -40,6 +40,20 @@ namespace BitmapFilters
             }
         }
 
+        /// <summary>
+        /// Allows to detect which radiobutton was clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WhichRBWasClicked(Object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+            {
+                //RadioButton rb = (RadioButton)sender;
+                btnStart.Enabled = true;
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
             temporizador.Start();//starts the timer
@@ -59,42 +73,74 @@ namespace BitmapFilters
         }
 
         private void btnStart_Click(object sender, EventArgs e)
-        {
-            //if (picSource.BackgroundImage != null)
+        {            
+            if (rdGrayscaleBits.Checked == true)
             {
-                if (rdGrayscaleBits.Checked == true)
-                {
-                    //picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsGrayscale();
-                }
-                else if (rdGrayscaleDraw.Checked == true)
-                {
-                    //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsGrayscale();
-                }
-                else if (rdTransparencyBits.Checked == true)
-                {
-                    //picOutput.BackgroundImage = picSource.BackgroundImage.CopyWithTransparency();
-                }
-                else if (rdTransparencyDraw.Checked == true)
-                {
-                    //picOutput.BackgroundImage = picSource.BackgroundImage.DrawWithTransparency();
-                }
-                else if (rdNegativeBits.Checked == true)
-                {
-                    // picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsNegative();
-                }
-                else if (rdNegativeDraw.Checked == true)
-                {
-                    //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsNegative();
-                }
-                else if (rdSepiaBits.Checked == true)
-                {
-                    //picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsSepiaTone();
-                }
-                else if (rdSepiaDraw.Checked == true)
-                {
-                    //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsSepiaTone();
-                }
+                btnStart.Enabled = true;
+                //picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsGrayscale();
+            }
+            else if (rdGrayscaleDraw.Checked == true)
+            {
+                //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsGrayscale();
+            }
+            else if (rdTransparencyBits.Checked == true)
+            {
+                //picOutput.BackgroundImage = picSource.BackgroundImage.CopyWithTransparency();
+            }
+            else if (rdTransparencyDraw.Checked == true)
+            {
+                //picOutput.BackgroundImage = picSource.BackgroundImage.DrawWithTransparency();
+            }
+            else if (rdNegativeBits.Checked == true)
+            {
+                // picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsNegative();
+            }
+            else if (rdNegativeDraw.Checked == true)
+            {
+                //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsNegative();
+            }
+            else if (rdSepiaBits.Checked == true)
+            {
+                //picOutput.BackgroundImage = picSource.BackgroundImage.CopyAsSepiaTone();
+            }
+            else if (rdSepiaDraw.Checked == true)
+            {
+                //picOutput.BackgroundImage = picSource.BackgroundImage.DrawAsSepiaTone();
+            }      
+            else if (rdAjusteBrilloBits.Checked)
+            {
+
+            }
+            else if (rdAjusteBrilloDraw.Checked)
+            {
+
+            }
+            else if (rdCompPerdidaBits.Checked)
+            {
+
+            }
+            else if (rdCompPerdidaDraw.Checked)
+            {
+
+            }
+            else if (rdGaussinBits.Checked)
+            {
+
+            }
+            else if (rdGaussinDraw.Checked)
+            {
+
+            }
+            else if (rdParedLadrilloBits.Checked)
+            {
+
+            }
+            else if (rdParedLadrilloDraw.Checked)
+            {
+
             }
         }
+
+       
     }
 }
