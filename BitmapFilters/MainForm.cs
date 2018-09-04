@@ -12,7 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-
 namespace BitmapFilters
 {
     public partial class MainForm : Form
@@ -24,7 +23,7 @@ namespace BitmapFilters
 
         private void btnLoadSource_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            /*OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Select an image file.";
             ofd.Filter = "Png files (*.png)|*.png|Bitmap files (*.bmp)|*.bmp|Jpeg files (*.jpg)|*.jpg";
 
@@ -33,13 +32,13 @@ namespace BitmapFilters
                 StreamReader streamReader = new StreamReader(ofd.FileName);
                 Bitmap sourceBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
                 streamReader.Close();
-
                 //picSource.BackgroundImage = sourceBitmap;
-
                 OnCheckChangedEventHandler(sender, e);
-            }
+            }*/
+            string path = Directory.GetCurrentDirectory();
+            System.Console.WriteLine(path+"no mames guey");
+            //string[] filePaths = Directory.GetFiles(path,"*.jpg");
         }
-
         private void OnCheckChangedEventHandler(object sender, EventArgs e)
         {
             //if (picSource.BackgroundImage != null)
