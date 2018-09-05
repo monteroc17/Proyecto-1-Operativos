@@ -65,68 +65,54 @@ namespace BitmapFilters
 
             string path = Directory.GetCurrentDirectory();
             String[] exts = { "*.png","*.bmp","*.jpg" };
-            ArrayList files = new ArrayList();
+            List<Img> files = new List<Img>();
             foreach (string ext in exts)
             {
                 string[] filePaths1 = Directory.GetFiles(path + "/images", ext);
                 foreach(var fn in filePaths1)
                 {
-                    files.Add(fn);
+                    Img img = new Img();
+                    img.path = fn;
+                    img.format = ext;
+                    files.Add(img);
                 }
                 
             }
-            string[] filePaths = (string[])files.ToArray(typeof(string));
+            
             int counta = 0;
-            foreach (var filename in filePaths)
+            foreach (var filename in files)
             {
                 Bitmap bmp = null;
-                bmp = new Bitmap(filename.ToString());
+                bmp = new Bitmap(filename.path.ToString());
                 Image i = (Image)bmp;
                 try
                 {
                     if (rdGrayscaleBits.Checked == true)
                     {
-                        Console.WriteLine("Entro a la funcion cccc");
                         bmp = ExtBitmap.CopyAsGrayscale(i);
                         Console.WriteLine(bmp);
-                        Image im = (Image)bmp;
-                        string carpeta= "\\outputimages\\";
-                        string c_path =path+carpeta +"result"+counta+".jpg";
-                        Console.WriteLine(c_path);
-                        im.Save(c_path);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
                     else if (rdGrayscaleDraw.Checked == true)
                     {
                         bmp = ExtBitmap.DrawAsGrayscale(i);
                         Console.WriteLine(bmp);
-                        Image im = (Image)bmp;
-                        string carpeta = "\\outputimages\\";
-                        string c_path = path + carpeta + "result" + counta + ".jpg";
-                        Console.WriteLine(c_path);
-                        im.Save(c_path);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
                     else if (rdTransparencyBits.Checked == true)
                     {
                         bmp = ExtBitmap.CopyWithTransparency(i);
                         Console.WriteLine(bmp);
-                        Image im = (Image)bmp;
-                        string carpeta = "\\outputimages\\";
-                        string c_path = path + carpeta + "result" + counta + ".jpg";
-                        Console.WriteLine(c_path);
-                        im.Save(c_path);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
                     else if (rdTransparencyDraw.Checked == true)
                     {
                         bmp = ExtBitmap.DrawWithTransparency(i);
                         Console.WriteLine(bmp);
-                        Image im = (Image)bmp;
-                        string carpeta = "\\outputimages\\";
-                        string c_path = path + carpeta + "result" + counta + ".jpg";
-                        Console.WriteLine(c_path);
-                        im.Save(c_path);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
 
                     }
@@ -134,11 +120,7 @@ namespace BitmapFilters
                     {
                         bmp = ExtBitmap.CopyAsNegative(i);
                         Console.WriteLine(bmp);
-                        Image im = (Image)bmp;
-                        string carpeta = "\\outputimages\\";
-                        string c_path = path + carpeta + "result" + counta + ".jpg";
-                        Console.WriteLine(c_path);
-                        im.Save(c_path);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
 
                     }
@@ -146,33 +128,21 @@ namespace BitmapFilters
                     {
                         bmp = ExtBitmap.DrawAsNegative(i);
                         Console.WriteLine(bmp);
-                        Image im = (Image)bmp;
-                        string carpeta = "\\outputimages\\";
-                        string c_path = path + carpeta + "result" + counta + ".jpg";
-                        Console.WriteLine(c_path);
-                        im.Save(c_path);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
                     else if (rdSepiaBits.Checked == true)
                     {
                         bmp = ExtBitmap.CopyAsSepiaTone(i);
                         Console.WriteLine(bmp);
-                        Image im = (Image)bmp;
-                        string carpeta = "\\outputimages\\";
-                        string c_path = path + carpeta + "result" + counta + ".jpg";
-                        Console.WriteLine(c_path);
-                        im.Save(c_path);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
                     else if (rdSepiaDraw.Checked == true)
                     {
                         bmp = ExtBitmap.DrawAsSepiaTone(i);
                         Console.WriteLine(bmp);
-                        Image im = (Image)bmp;
-                        string carpeta = "\\outputimages\\";
-                        string c_path = path + carpeta + "result" + counta + ".jpg";
-                        Console.WriteLine(c_path);
-                        im.Save(c_path);
+                        saveImage(bmp,path, filename.format,counta);
                         counta++;
 
                     }
@@ -184,6 +154,17 @@ namespace BitmapFilters
                     continue;
                 }
             }
+
+        }
+        public void saveImage(Bitmap bmp,string path,string format,int counta)
+        {
+            Console.WriteLine(bmp);
+            Image im = (Image)bmp;
+            string carpeta = "\\outputimages\\";
+            int len = format.Length - 1;
+            string c_path = path + carpeta + "result" + counta +format.Substring(1, len);
+            Console.WriteLine(c_path);
+            im.Save(c_path);
 
         }
         private void rdGrayscaleBits_CheckedChanged(object sender, EventArgs e)

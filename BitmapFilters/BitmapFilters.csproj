@@ -74,6 +74,7 @@
     <Compile Include="Compression.cs" />
     <Compile Include="ExtBitmap.cs" />
     <Compile Include="GaussianBlur.cs" />
+    <Compile Include="Image.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

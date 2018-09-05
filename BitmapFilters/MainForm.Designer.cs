@@ -1,4 +1,5 @@
-﻿namespace BitmapFilters
+﻿
+namespace BitmapFilters
 {
     partial class MainForm
     {
