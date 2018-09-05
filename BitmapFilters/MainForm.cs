@@ -24,9 +24,13 @@ namespace BitmapFilters
         private void OnCheckChangedEventHandler(object sender, EventArgs e)
         {
 
-            //OnCheckChangedEventHandler(sender, e);
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                StreamReader streamReader = new StreamReader(ofd.FileName);
+                Bitmap sourceBitmap = (Bitmap)Bitmap.FromStream(streamReader.BaseStream);
+                streamReader.Close();
+            }
         }
-
 
         /// <summary>
         /// Allows to detect which radiobutton was clicked
