@@ -24,9 +24,8 @@ namespace BitmapFilters
         private void OnCheckChangedEventHandler(object sender, EventArgs e)
         {
 
-            //OnCheckChangedEventHandler(sender, e);
+            
         }
-
 
         /// <summary>
         /// Allows to detect which radiobutton was clicked
@@ -44,7 +43,7 @@ namespace BitmapFilters
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            temporizador.Start();//starts the timer
+            
 
             for (int index = 0; index < Environment.ProcessorCount; index++)
             {
@@ -62,7 +61,6 @@ namespace BitmapFilters
         
         private void btnStart_Click(object sender, EventArgs e)
         {
-
             string path = Directory.GetCurrentDirectory();
             String[] exts = { "*.png","*.bmp","*.jpg" };
             List<Img> files = new List<Img>();
@@ -80,6 +78,7 @@ namespace BitmapFilters
             }
             
             int counta = 0;
+            temporizador.Start();//starts the timer
             foreach (var filename in files)
             {
                 Bitmap bmp = null;
@@ -154,7 +153,8 @@ namespace BitmapFilters
                     continue;
                 }
             }
-
+            lblTimeTaken.Text = "Proceso terminado.\nTiempo de ejecución: " + cont +"ms";
+            temporizador.Stop();
         }
         public void saveImage(Bitmap bmp,string path,string format,int counta)
         {
@@ -172,8 +172,15 @@ namespace BitmapFilters
 
         }
 
+        private void lblTiempoTitle_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void lblTimeTaken_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

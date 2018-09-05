@@ -323,12 +323,13 @@ namespace BitmapFilters
             // 
             this.lblTimeTaken.AutoSize = true;
             this.lblTimeTaken.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTimeTaken.Location = new System.Drawing.Point(112, 42);
+            this.lblTimeTaken.Location = new System.Drawing.Point(6, 86);
             this.lblTimeTaken.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTimeTaken.Name = "lblTimeTaken";
             this.lblTimeTaken.Size = new System.Drawing.Size(31, 20);
             this.lblTimeTaken.TabIndex = 1;
             this.lblTimeTaken.Text = "0.0";
+            this.lblTimeTaken.Click += new System.EventHandler(this.lblTimeTaken_Click);
             // 
             // lblTiempoTitle
             // 
@@ -340,6 +341,7 @@ namespace BitmapFilters
             this.lblTiempoTitle.Size = new System.Drawing.Size(65, 20);
             this.lblTiempoTitle.TabIndex = 0;
             this.lblTiempoTitle.Text = "Tiempo:";
+            this.lblTiempoTitle.Click += new System.EventHandler(this.lblTiempoTitle_Click);
             // 
             // temporizador
             // 
