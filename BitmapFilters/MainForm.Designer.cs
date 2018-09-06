@@ -31,22 +31,13 @@ namespace BitmapFilters
         {
             this.components = new System.ComponentModel.Container();
             this.grbInput = new System.Windows.Forms.GroupBox();
-            this.rdParedLadrilloDraw = new System.Windows.Forms.RadioButton();
             this.rdParedLadrilloBits = new System.Windows.Forms.RadioButton();
-            this.rdSegmentacionDraw = new System.Windows.Forms.RadioButton();
             this.rdSegmentacionBits = new System.Windows.Forms.RadioButton();
-            this.rdCompPerdidaDraw = new System.Windows.Forms.RadioButton();
             this.rdCompPerdidaBits = new System.Windows.Forms.RadioButton();
-            this.rdAjusteBrilloDraw = new System.Windows.Forms.RadioButton();
             this.rdAjusteBrilloBits = new System.Windows.Forms.RadioButton();
-            this.rdGaussinDraw = new System.Windows.Forms.RadioButton();
             this.rdGaussinBits = new System.Windows.Forms.RadioButton();
             this.rdSepiaBits = new System.Windows.Forms.RadioButton();
-            this.rdSepiaDraw = new System.Windows.Forms.RadioButton();
-            this.rdNegativeDraw = new System.Windows.Forms.RadioButton();
             this.rdGrayscaleBits = new System.Windows.Forms.RadioButton();
-            this.rdTransparencyDraw = new System.Windows.Forms.RadioButton();
-            this.rdGrayscaleDraw = new System.Windows.Forms.RadioButton();
             this.rdNegativeBits = new System.Windows.Forms.RadioButton();
             this.rdTransparencyBits = new System.Windows.Forms.RadioButton();
             this.grbOutput = new System.Windows.Forms.GroupBox();
@@ -56,28 +47,27 @@ namespace BitmapFilters
             this.cmbCores = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
+            this.rdMotionBlur = new System.Windows.Forms.RadioButton();
+            this.rdGausianBlur = new System.Windows.Forms.RadioButton();
+            this.rdEmboss = new System.Windows.Forms.RadioButton();
+            this.rdFindEdges = new System.Windows.Forms.RadioButton();
             this.grbInput.SuspendLayout();
             this.grbOutput.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbInput
             // 
-            this.grbInput.Controls.Add(this.rdParedLadrilloDraw);
             this.grbInput.Controls.Add(this.rdParedLadrilloBits);
-            this.grbInput.Controls.Add(this.rdSegmentacionDraw);
             this.grbInput.Controls.Add(this.rdSegmentacionBits);
-            this.grbInput.Controls.Add(this.rdCompPerdidaDraw);
             this.grbInput.Controls.Add(this.rdCompPerdidaBits);
-            this.grbInput.Controls.Add(this.rdAjusteBrilloDraw);
             this.grbInput.Controls.Add(this.rdAjusteBrilloBits);
-            this.grbInput.Controls.Add(this.rdGaussinDraw);
             this.grbInput.Controls.Add(this.rdGaussinBits);
             this.grbInput.Controls.Add(this.rdSepiaBits);
-            this.grbInput.Controls.Add(this.rdSepiaDraw);
-            this.grbInput.Controls.Add(this.rdNegativeDraw);
+            this.grbInput.Controls.Add(this.rdMotionBlur);
+            this.grbInput.Controls.Add(this.rdGausianBlur);
             this.grbInput.Controls.Add(this.rdGrayscaleBits);
-            this.grbInput.Controls.Add(this.rdTransparencyDraw);
-            this.grbInput.Controls.Add(this.rdGrayscaleDraw);
+            this.grbInput.Controls.Add(this.rdEmboss);
+            this.grbInput.Controls.Add(this.rdFindEdges);
             this.grbInput.Controls.Add(this.rdNegativeBits);
             this.grbInput.Controls.Add(this.rdTransparencyBits);
             this.grbInput.Location = new System.Drawing.Point(12, 12);
@@ -86,19 +76,6 @@ namespace BitmapFilters
             this.grbInput.TabIndex = 0;
             this.grbInput.TabStop = false;
             this.grbInput.Text = "Opciones de Filtros";
-            // 
-            // rdParedLadrilloDraw
-            // 
-            this.rdParedLadrilloDraw.AutoSize = true;
-            this.rdParedLadrilloDraw.Location = new System.Drawing.Point(194, 214);
-            this.rdParedLadrilloDraw.Margin = new System.Windows.Forms.Padding(2);
-            this.rdParedLadrilloDraw.Name = "rdParedLadrilloDraw";
-            this.rdParedLadrilloDraw.Size = new System.Drawing.Size(146, 30);
-            this.rdParedLadrilloDraw.TabIndex = 19;
-            this.rdParedLadrilloDraw.TabStop = true;
-            this.rdParedLadrilloDraw.Text = "Textura Pared de Ladrillo \r\nDraw(P)";
-            this.rdParedLadrilloDraw.UseVisualStyleBackColor = true;
-            this.rdParedLadrilloDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdParedLadrilloBits
             // 
@@ -113,19 +90,6 @@ namespace BitmapFilters
             this.rdParedLadrilloBits.UseVisualStyleBackColor = true;
             this.rdParedLadrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
-            // rdSegmentacionDraw
-            // 
-            this.rdSegmentacionDraw.AutoSize = true;
-            this.rdSegmentacionDraw.Location = new System.Drawing.Point(194, 192);
-            this.rdSegmentacionDraw.Margin = new System.Windows.Forms.Padding(2);
-            this.rdSegmentacionDraw.Name = "rdSegmentacionDraw";
-            this.rdSegmentacionDraw.Size = new System.Drawing.Size(140, 17);
-            this.rdSegmentacionDraw.TabIndex = 17;
-            this.rdSegmentacionDraw.TabStop = true;
-            this.rdSegmentacionDraw.Text = "Segmentación - Draw(P)";
-            this.rdSegmentacionDraw.UseVisualStyleBackColor = true;
-            this.rdSegmentacionDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
             // rdSegmentacionBits
             // 
             this.rdSegmentacionBits.AutoSize = true;
@@ -138,19 +102,6 @@ namespace BitmapFilters
             this.rdSegmentacionBits.Text = "Segmentación - Bits(S)";
             this.rdSegmentacionBits.UseVisualStyleBackColor = true;
             this.rdSegmentacionBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdCompPerdidaDraw
-            // 
-            this.rdCompPerdidaDraw.AutoSize = true;
-            this.rdCompPerdidaDraw.Location = new System.Drawing.Point(194, 156);
-            this.rdCompPerdidaDraw.Margin = new System.Windows.Forms.Padding(2);
-            this.rdCompPerdidaDraw.Name = "rdCompPerdidaDraw";
-            this.rdCompPerdidaDraw.Size = new System.Drawing.Size(140, 30);
-            this.rdCompPerdidaDraw.TabIndex = 15;
-            this.rdCompPerdidaDraw.TabStop = true;
-            this.rdCompPerdidaDraw.Text = "Compresión con Pérdida\r\nDraw(P)";
-            this.rdCompPerdidaDraw.UseVisualStyleBackColor = true;
-            this.rdCompPerdidaDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdCompPerdidaBits
             // 
@@ -165,19 +116,6 @@ namespace BitmapFilters
             this.rdCompPerdidaBits.UseVisualStyleBackColor = true;
             this.rdCompPerdidaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
-            // rdAjusteBrilloDraw
-            // 
-            this.rdAjusteBrilloDraw.AutoSize = true;
-            this.rdAjusteBrilloDraw.Location = new System.Drawing.Point(194, 134);
-            this.rdAjusteBrilloDraw.Margin = new System.Windows.Forms.Padding(2);
-            this.rdAjusteBrilloDraw.Name = "rdAjusteBrilloDraw";
-            this.rdAjusteBrilloDraw.Size = new System.Drawing.Size(126, 17);
-            this.rdAjusteBrilloDraw.TabIndex = 13;
-            this.rdAjusteBrilloDraw.TabStop = true;
-            this.rdAjusteBrilloDraw.Text = "Ajuste Brillo - Draw(P)";
-            this.rdAjusteBrilloDraw.UseVisualStyleBackColor = true;
-            this.rdAjusteBrilloDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
             // rdAjusteBrilloBits
             // 
             this.rdAjusteBrilloBits.AutoSize = true;
@@ -190,19 +128,6 @@ namespace BitmapFilters
             this.rdAjusteBrilloBits.Text = "Ajuste Brillo - Bits(S)";
             this.rdAjusteBrilloBits.UseVisualStyleBackColor = true;
             this.rdAjusteBrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdGaussinDraw
-            // 
-            this.rdGaussinDraw.AutoSize = true;
-            this.rdGaussinDraw.Location = new System.Drawing.Point(194, 112);
-            this.rdGaussinDraw.Margin = new System.Windows.Forms.Padding(2);
-            this.rdGaussinDraw.Name = "rdGaussinDraw";
-            this.rdGaussinDraw.Size = new System.Drawing.Size(131, 17);
-            this.rdGaussinDraw.TabIndex = 11;
-            this.rdGaussinDraw.TabStop = true;
-            this.rdGaussinDraw.Text = "Gaussin Blur - Draw(P)";
-            this.rdGaussinDraw.UseVisualStyleBackColor = true;
-            this.rdGaussinDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGaussinBits
             // 
@@ -228,28 +153,6 @@ namespace BitmapFilters
             this.rdSepiaBits.UseVisualStyleBackColor = true;
             this.rdSepiaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
-            // rdSepiaDraw
-            // 
-            this.rdSepiaDraw.AutoSize = true;
-            this.rdSepiaDraw.Location = new System.Drawing.Point(194, 89);
-            this.rdSepiaDraw.Name = "rdSepiaDraw";
-            this.rdSepiaDraw.Size = new System.Drawing.Size(99, 17);
-            this.rdSepiaDraw.TabIndex = 8;
-            this.rdSepiaDraw.Text = "Sepia - Draw(P)";
-            this.rdSepiaDraw.UseVisualStyleBackColor = true;
-            this.rdSepiaDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdNegativeDraw
-            // 
-            this.rdNegativeDraw.AutoSize = true;
-            this.rdNegativeDraw.Location = new System.Drawing.Point(194, 66);
-            this.rdNegativeDraw.Name = "rdNegativeDraw";
-            this.rdNegativeDraw.Size = new System.Drawing.Size(115, 17);
-            this.rdNegativeDraw.TabIndex = 10;
-            this.rdNegativeDraw.Text = "Negativo - Draw(P)";
-            this.rdNegativeDraw.UseVisualStyleBackColor = true;
-            this.rdNegativeDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
             // rdGrayscaleBits
             // 
             this.rdGrayscaleBits.AutoSize = true;
@@ -263,28 +166,6 @@ namespace BitmapFilters
             this.rdGrayscaleBits.UseVisualStyleBackColor = true;
             this.rdGrayscaleBits.CheckedChanged += new System.EventHandler(this.WhichRBWasClicked);
             this.rdGrayscaleBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdTransparencyDraw
-            // 
-            this.rdTransparencyDraw.AutoSize = true;
-            this.rdTransparencyDraw.Location = new System.Drawing.Point(194, 42);
-            this.rdTransparencyDraw.Name = "rdTransparencyDraw";
-            this.rdTransparencyDraw.Size = new System.Drawing.Size(140, 17);
-            this.rdTransparencyDraw.TabIndex = 9;
-            this.rdTransparencyDraw.Text = "Transparencia - Draw(P)";
-            this.rdTransparencyDraw.UseVisualStyleBackColor = true;
-            this.rdTransparencyDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdGrayscaleDraw
-            // 
-            this.rdGrayscaleDraw.AutoSize = true;
-            this.rdGrayscaleDraw.Location = new System.Drawing.Point(194, 19);
-            this.rdGrayscaleDraw.Name = "rdGrayscaleDraw";
-            this.rdGrayscaleDraw.Size = new System.Drawing.Size(136, 17);
-            this.rdGrayscaleDraw.TabIndex = 7;
-            this.rdGrayscaleDraw.Text = "Escala Grises - Draw(P)";
-            this.rdGrayscaleDraw.UseVisualStyleBackColor = true;
-            this.rdGrayscaleDraw.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdNegativeBits
             // 
@@ -378,6 +259,50 @@ namespace BitmapFilters
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // rdMotionBlur
+            // 
+            this.rdMotionBlur.AutoSize = true;
+            this.rdMotionBlur.Location = new System.Drawing.Point(194, 89);
+            this.rdMotionBlur.Name = "rdMotionBlur";
+            this.rdMotionBlur.Size = new System.Drawing.Size(75, 17);
+            this.rdMotionBlur.TabIndex = 8;
+            this.rdMotionBlur.Text = "MotionBlur";
+            this.rdMotionBlur.UseVisualStyleBackColor = true;
+            this.rdMotionBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdGausianBlur
+            // 
+            this.rdGausianBlur.AutoSize = true;
+            this.rdGausianBlur.Location = new System.Drawing.Point(194, 66);
+            this.rdGausianBlur.Name = "rdGausianBlur";
+            this.rdGausianBlur.Size = new System.Drawing.Size(82, 17);
+            this.rdGausianBlur.TabIndex = 10;
+            this.rdGausianBlur.Text = "GausianBlur";
+            this.rdGausianBlur.UseVisualStyleBackColor = true;
+            this.rdGausianBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdEmboss
+            // 
+            this.rdEmboss.AutoSize = true;
+            this.rdEmboss.Location = new System.Drawing.Point(194, 42);
+            this.rdEmboss.Name = "rdEmboss";
+            this.rdEmboss.Size = new System.Drawing.Size(62, 17);
+            this.rdEmboss.TabIndex = 9;
+            this.rdEmboss.Text = "Emboss";
+            this.rdEmboss.UseVisualStyleBackColor = true;
+            this.rdEmboss.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdFindEdges
+            // 
+            this.rdFindEdges.AutoSize = true;
+            this.rdFindEdges.Location = new System.Drawing.Point(194, 19);
+            this.rdFindEdges.Name = "rdFindEdges";
+            this.rdFindEdges.Size = new System.Drawing.Size(78, 17);
+            this.rdFindEdges.TabIndex = 7;
+            this.rdFindEdges.Text = "Find Edges";
+            this.rdFindEdges.UseVisualStyleBackColor = true;
+            this.rdFindEdges.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,19 +337,10 @@ namespace BitmapFilters
         private System.Windows.Forms.RadioButton rdTransparencyBits;
         private System.Windows.Forms.RadioButton rdSepiaBits;
         private System.Windows.Forms.RadioButton rdNegativeBits;
-        private System.Windows.Forms.RadioButton rdGrayscaleDraw;
-        private System.Windows.Forms.RadioButton rdSepiaDraw;
-        private System.Windows.Forms.RadioButton rdTransparencyDraw;
-        private System.Windows.Forms.RadioButton rdNegativeDraw;
-        private System.Windows.Forms.RadioButton rdParedLadrilloDraw;
         private System.Windows.Forms.RadioButton rdParedLadrilloBits;
-        private System.Windows.Forms.RadioButton rdSegmentacionDraw;
         private System.Windows.Forms.RadioButton rdSegmentacionBits;
-        private System.Windows.Forms.RadioButton rdCompPerdidaDraw;
         private System.Windows.Forms.RadioButton rdCompPerdidaBits;
-        private System.Windows.Forms.RadioButton rdAjusteBrilloDraw;
         private System.Windows.Forms.RadioButton rdAjusteBrilloBits;
-        private System.Windows.Forms.RadioButton rdGaussinDraw;
         private System.Windows.Forms.RadioButton rdGaussinBits;
         private System.Windows.Forms.ComboBox cmbCores;
         private System.Windows.Forms.Label label1;
@@ -432,6 +348,10 @@ namespace BitmapFilters
         private System.Windows.Forms.Label lblTiempoTitle;
         private System.Windows.Forms.Button btnStart;
         public System.Windows.Forms.Timer temporizador;
+        private System.Windows.Forms.RadioButton rdMotionBlur;
+        private System.Windows.Forms.RadioButton rdGausianBlur;
+        private System.Windows.Forms.RadioButton rdEmboss;
+        private System.Windows.Forms.RadioButton rdFindEdges;
     }
 }
 

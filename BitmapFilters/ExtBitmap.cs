@@ -39,14 +39,11 @@ namespace BitmapFilters
             {
                 ImageAttributes bmpAttributes = new ImageAttributes();
                 bmpAttributes.SetColorMatrix(colorMatrix);
-
                 graphics.DrawImage(bmp32BppSource, new Rectangle(0, 0, bmp32BppSource.Width, bmp32BppSource.Height),
                                  0, 0, bmp32BppSource.Width, bmp32BppSource.Height, GraphicsUnit.Pixel, bmpAttributes);
 
             }
-
             bmp32BppSource.Dispose();
-
             return bmp32BppDest;
         }
 
@@ -140,7 +137,6 @@ namespace BitmapFilters
 
         public static Bitmap CopyAsGrayscale(this Image sourceImage)
         {
-            System.Console.WriteLine("entro");
             Bitmap bmpNew = GetArgbCopy(sourceImage);
             BitmapData bmpData = bmpNew.LockBits(new Rectangle(0, 0, sourceImage.Width, sourceImage.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 
@@ -291,7 +287,6 @@ namespace BitmapFilters
             }
 
             NewBitmap.UnlockBits(data);
-
             return NewBitmap;
         }
 
@@ -360,9 +355,7 @@ namespace BitmapFilters
             //Avoid division by 0 
             if (fmat.Factor == 0)
                 return null;
-
             Bitmap srcImage = (Bitmap)image.Clone();
-
             int x, y, filterx, filtery;
             int s = fmat.Size / 2;
             int r, g, b;
@@ -405,5 +398,6 @@ namespace BitmapFilters
             }
             return newImage;
         }
+
     }
 }

@@ -89,10 +89,16 @@ namespace BitmapFilters
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
-                    else if (rdGrayscaleDraw.Checked == true)
+                    else if (rdFindEdges.Checked == true)
                     {
-                        bmp = ExtBitmap.DrawAsGrayscale(i);
+                        bmp = ExtBitmap.FindEdges(bmp);
                         Console.WriteLine(bmp);
+                        saveImage(bmp, path, filename.format, counta);
+                        counta++;
+                    }
+                    else if (rdGausianBlur.Checked == true)
+                    {
+                        bmp = ExtBitmap.GausianBlur(bmp);
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
@@ -103,10 +109,9 @@ namespace BitmapFilters
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
-                    else if (rdTransparencyDraw.Checked == true)
+                    else if (rdEmboss.Checked == true)
                     {
-                        bmp = ExtBitmap.DrawWithTransparency(i);
-                        Console.WriteLine(bmp);
+                        bmp = ExtBitmap.Emboss(bmp);
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
 
@@ -119,13 +124,6 @@ namespace BitmapFilters
                         counta++;
 
                     }
-                    else if (rdNegativeDraw.Checked == true)
-                    {
-                        bmp = ExtBitmap.DrawAsNegative(i);
-                        Console.WriteLine(bmp);
-                        saveImage(bmp, path, filename.format, counta);
-                        counta++;
-                    }
                     else if (rdSepiaBits.Checked == true)
                     {
                         bmp = ExtBitmap.CopyAsSepiaTone(i);
@@ -133,23 +131,12 @@ namespace BitmapFilters
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
-                    else if (rdSepiaDraw.Checked == true)
+                    else if (rdMotionBlur.Checked == true)
                     {
-                        bmp = ExtBitmap.DrawAsSepiaTone(i);
-                        Console.WriteLine(bmp);
+                        bmp = ExtBitmap.MotionBlur(bmp);
                         saveImage(bmp,path, filename.format,counta);
                         counta++;
 
-                    }
-                    else if (rdGaussinDraw.Checked==true)
-                    {
-                        //bmp = ExtBitmap.FindEdges(bmp);
-                        //bmp = ExtBitmap.Emboss(bmp);
-                        //bmp = ExtBitmap.GausianBlur(bmp);
-                        //bmp = ExtBitmap.MotionBlur(bmp);
-                        Console.WriteLine(bmp);
-                        saveImage(bmp, path, filename.format, counta);
-                        counta++;
                     }
                 }
                 catch (Exception ex)
