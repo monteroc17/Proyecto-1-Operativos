@@ -21,7 +21,11 @@ namespace BitmapFilters
         {
             InitializeComponent();
         }
-        
+        private void OnCheckChangedEventHandler(object sender, EventArgs e)
+        {
+
+            
+        }
 
         /// <summary>
         /// Allows to detect which radiobutton was clicked
