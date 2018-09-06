@@ -78,7 +78,7 @@ namespace BitmapFilters
 
         public static Bitmap DrawWithTransparency(this Image sourceImage)
         {
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][] 
+            ColorMatrix colorMatrix = new ColorMatrix(new float[][]
                                                 {
                                                     new float[] {1, 0, 0, 0, 0},
                                                     new float[] {0, 1, 0, 0, 0},
@@ -86,7 +86,7 @@ namespace BitmapFilters
                                                     new float[] {0, 0, 0, 0.3f, 0},
                                                     new float[] {0, 0, 0, 0, 1}
                                                 });
-            
+
             return ApplyColorMatrix(sourceImage, colorMatrix);
         }
 
@@ -126,7 +126,7 @@ namespace BitmapFilters
 
         public static Bitmap DrawAsNegative(this Image sourceImage)
         {
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][] 
+            ColorMatrix colorMatrix = new ColorMatrix(new float[][]
                                                 {
                                                     new float[] {-1, 0, 0, 0, 0},
                                                     new float[] {0, -1, 0, 0, 0},
@@ -155,8 +155,8 @@ namespace BitmapFilters
             for (int k = 0; k < byteBuffer.Length; k += 4)
             {
                 rgb = byteBuffer[k] * 0.11f;
-                rgb += byteBuffer[k+1] * 0.59f;
-                rgb += byteBuffer[k+2] * 0.3f;
+                rgb += byteBuffer[k + 1] * 0.59f;
+                rgb += byteBuffer[k + 2] * 0.3f;
 
                 byteBuffer[k] = (byte)rgb;
                 byteBuffer[k + 1] = byteBuffer[k];
@@ -178,7 +178,7 @@ namespace BitmapFilters
         public static Bitmap DrawAsGrayscale(this Image sourceImage)
         {
             System.Console.WriteLine("entro");
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][] 
+            ColorMatrix colorMatrix = new ColorMatrix(new float[][]
                                                 {
                                                     new float[] {.3f, .3f, .3f, 0, 0},
                                                     new float[] {.59f, .59f, .59f, 0, 0},
@@ -212,7 +212,7 @@ namespace BitmapFilters
                 g = byteBuffer[k] * 0.168f + byteBuffer[k + 1] * 0.686f + byteBuffer[k + 2] * 0.349f;
                 b = byteBuffer[k] * 0.131f + byteBuffer[k + 1] * 0.534f + byteBuffer[k + 2] * 0.272f;
 
-                byteBuffer[k+2] = (r > maxValue ? maxValue : (byte)r);
+                byteBuffer[k + 2] = (r > maxValue ? maxValue : (byte)r);
                 byteBuffer[k + 1] = (g > maxValue ? maxValue : (byte)g);
                 byteBuffer[k] = (b > maxValue ? maxValue : (byte)b);
             }
@@ -229,7 +229,7 @@ namespace BitmapFilters
 
         public static Bitmap DrawAsSepiaTone(this Image sourceImage)
         {
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][] 
+            ColorMatrix colorMatrix = new ColorMatrix(new float[][]
                                                 {
                                                     new float[] {.393f, .349f, .272f, 0, 0},
                                                     new float[] {.769f, .686f, .534f, 0, 0},
