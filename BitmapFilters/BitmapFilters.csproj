@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Brightness.cs" />
     <Compile Include="Compression.cs" />
+    <Compile Include="ConvMatrix.cs" />
     <Compile Include="ExtBitmap.cs" />
     <Compile Include="GaussianBlur.cs" />
     <Compile Include="Image.cs" />

@@ -240,7 +240,6 @@ namespace BitmapFilters
 
             return ApplyColorMatrix(sourceImage, colorMatrix);
         }
-
         public static Bitmap AdjustContrast(Bitmap Image, float Value)
         {
             Value = (100.0f + Value) / 100.0f;
@@ -294,6 +293,117 @@ namespace BitmapFilters
             NewBitmap.UnlockBits(data);
 
             return NewBitmap;
+        }
+
+        public static  Bitmap  FindEdges(Bitmap image)
+        {
+            ConvMatrix matr = new ConvMatrix();
+            matr.Size = 5;
+            matr.Matrix = new int[5, 5] {
+                                    { 0,  0, -1,  0,  0},
+                                    {   0,  0, -1,  0,  0},
+                                    { 0,  0,  4,  0,  0 },
+                                     { 0,  0,  -1,  0,  0},
+                                      { 0,  0,  -1,  0,  0 }
+                                };
+            return SafeImageConvolution(image, matr);
+
+        }
+        public static Bitmap Emboss(Bitmap image)
+        {
+            ConvMatrix matr = new ConvMatrix();
+            matr.Size = 5;
+            matr.Matrix = new int[5, 5] {
+                                    { -1, -1, -1, -1,  0},
+                                    { -1, -1, -1,  0,  1},
+                                    { -1, -1,  0,  1,  1},
+                                     { -1,  0,  1,  1,  1},
+                                      {  0,  1,  1,  1,  1}
+                                };
+            return SafeImageConvolution(image, matr);
+
+        }
+        public static Bitmap GausianBlur(Bitmap image)
+        {
+            ConvMatrix matr = new ConvMatrix();
+            matr.Size = 5;
+            matr.Matrix = new int[5, 5] {
+                                    { 1,  4,  6,  4,  1},
+                                    {4, 16, 24, 16,  4},
+                                    {  6, 24, 36, 24,  6},
+                                     { 4, 16, 24, 16,  41},
+                                      {  1,  4,  6,  4,  1}
+                                };
+            return SafeImageConvolution(image, matr);
+
+        }
+        public static Bitmap MotionBlur(Bitmap image)
+        {
+            ConvMatrix matr = new ConvMatrix();
+            matr.Size = 81;
+            matr.Matrix = new int[9, 9] {
+                                    { 1, 0, 0, 0, 0, 0, 0, 0, 0},
+                                    {0, 1, 0, 0, 0, 0, 0, 0, 0},
+                                    {  0, 0, 1, 0, 0, 0, 0, 0, 0},
+                                     { 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                                      {  0, 0, 0, 0, 1, 0, 0, 0, 0},
+                                      { 0, 0, 0, 0, 0, 1, 0, 0, 0},
+                                      { 0, 0, 0, 0, 0, 0, 1, 0, 0},
+                                      { 0, 0, 0, 0, 0, 0, 0, 1, 0},
+                                      { 0, 0, 0, 0, 0, 0, 0, 0, 1}
+                                };
+            return SafeImageConvolution(image, matr);
+
+        }
+        public static  Bitmap SafeImageConvolution(Bitmap image, ConvMatrix fmat)
+        {
+            //Avoid division by 0 
+            if (fmat.Factor == 0)
+                return null;
+
+            Bitmap srcImage = (Bitmap)image.Clone();
+
+            int x, y, filterx, filtery;
+            int s = fmat.Size / 2;
+            int r, g, b;
+            Color tempPix;
+            Bitmap newImage = new Bitmap(image.Width, image.Height);
+            for (y = s; y < srcImage.Height - s; y++)
+            {
+                for (x = s; x < srcImage.Width - s; x++)
+                {
+                    r = g = b = 0;
+
+                    // Convolution 
+                    for (filtery = 0; filtery < fmat.Size; filtery++)
+                    {
+                        for (filterx = 0; filterx < fmat.Size; filterx++)
+                        {
+
+                            tempPix = srcImage.GetPixel(x + filterx - s, y + filtery - s);
+
+                            r += fmat.Matrix[filtery, filterx] * tempPix.R;
+                            g += fmat.Matrix[filtery, filterx] * tempPix.G;
+                            b += fmat.Matrix[filtery, filterx] * tempPix.B;
+                        }
+                    }
+
+                    r = Math.Min(Math.Max((r / fmat.Factor) + fmat.Offset, 0), 255);
+                    g = Math.Min(Math.Max((g / fmat.Factor) + fmat.Offset, 0), 255);
+                    b = Math.Min(Math.Max((b / fmat.Factor) + fmat.Offset, 0), 255);
+
+                    
+                    /*using (Graphics graphics = Graphics.FromImage(newImage))
+                    {
+                        graphics.DrawImage(image, 0, 0);
+                    }*/
+
+                    newImage.SetPixel(x, y, Color.FromArgb(r, g, b));
+
+                }
+
+            }
+            return newImage;
         }
     }
 }

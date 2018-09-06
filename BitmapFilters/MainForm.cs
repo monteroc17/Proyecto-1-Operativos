@@ -145,6 +145,16 @@ namespace BitmapFilters
                         counta++;
 
                     }
+                    else if (rdGaussinDraw.Checked==true)
+                    {
+                        //bmp = ExtBitmap.FindEdges(bmp);
+                        //bmp = ExtBitmap.Emboss(bmp);
+                        //bmp = ExtBitmap.GausianBlur(bmp);
+                        //bmp = ExtBitmap.MotionBlur(bmp);
+                        Console.WriteLine(bmp);
+                        saveImage(bmp, path, filename.format, counta);
+                        counta++;
+                    }
                 }
                 catch (Exception ex)
                 {
