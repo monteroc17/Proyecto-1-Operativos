@@ -138,13 +138,19 @@ namespace BitmapFilters
                     else if (rdMotionBlur.Checked == true)
                     {
                         bmp = ExtBitmap.MotionBlur(bmp);
-                        saveImage(bmp,path, filename.format,counta);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
 
                     }
                     else if (rdSolarise.Checked == true)
                     {
-                        bmp = ExtBitmap.Solarise(bmp,150,50,250);
+                        bmp = ExtBitmap.Solarise(bmp, 150, 50, 250);
+                        saveImage(bmp, path, filename.format, counta);
+                        counta++;
+                    }
+                    else if (rdDilatacion.Checked == true)
+                    {
+                        bmp = ExtBitmap.Dilate(bmp,17, false, true, true);
                         saveImage(bmp,path,filename.format,counta);
                         counta++;
                     }

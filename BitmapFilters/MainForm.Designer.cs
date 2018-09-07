@@ -52,12 +52,14 @@ namespace BitmapFilters
             this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.rdSolarise = new System.Windows.Forms.RadioButton();
+            this.rdDilatacion = new System.Windows.Forms.RadioButton();
             this.grbInput.SuspendLayout();
             this.grbOutput.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbInput
             // 
+            this.grbInput.Controls.Add(this.rdDilatacion);
             this.grbInput.Controls.Add(this.rdSolarise);
             this.grbInput.Controls.Add(this.rdParedLadrilloBits);
             this.grbInput.Controls.Add(this.rdSegmentacionBits);
@@ -325,6 +327,17 @@ namespace BitmapFilters
             this.rdSolarise.Text = "Solarise";
             this.rdSolarise.UseVisualStyleBackColor = true;
             // 
+            // rdDilatacion
+            // 
+            this.rdDilatacion.AutoSize = true;
+            this.rdDilatacion.Location = new System.Drawing.Point(258, 168);
+            this.rdDilatacion.Margin = new System.Windows.Forms.Padding(4);
+            this.rdDilatacion.Name = "rdDilatacion";
+            this.rdDilatacion.Size = new System.Drawing.Size(91, 21);
+            this.rdDilatacion.TabIndex = 20;
+            this.rdDilatacion.Text = "Dilatación";
+            this.rdDilatacion.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -376,6 +389,7 @@ namespace BitmapFilters
         private System.Windows.Forms.RadioButton rdEmboss;
         private System.Windows.Forms.RadioButton rdFindEdges;
         private System.Windows.Forms.RadioButton rdSolarise;
+        private System.Windows.Forms.RadioButton rdDilatacion;
     }
 }
 
