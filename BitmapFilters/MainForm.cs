@@ -1,15 +1,11 @@
-﻿/*
- * The Following Code was developed by Dewald Esterhuizen
- * View Documentation at: http://softwarebydefault.com
- * Licensed under Ms-PL 
-*/
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections;
@@ -26,7 +22,22 @@ namespace BitmapFilters
 
             
         }
-
+        delegate void StringArgReturningVoidDelegate(string text);
+        private void SetText(string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.lblTimeTaken.InvokeRequired)
+            {
+                StringArgReturningVoidDelegate d = new StringArgReturningVoidDelegate(SetText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.lblTimeTaken.Text = text;
+            }
+        }
         /// <summary>
         /// Allows to detect which radiobutton was clicked
         /// </summary>
@@ -51,16 +62,19 @@ namespace BitmapFilters
             }
 
         }
-
         int cont = 0;
         private void temporizador_Tick(object sender, EventArgs e)
         {
             cont++;
-            lblTimeTaken.Text = cont.ToString();
+            //lblTimeTaken.Text = cont.ToString();
+            this.SetText(cont.ToString());
         }
         
         private void btnStart_Click(object sender, EventArgs e)
         {
+            lblTiempoTitle.Text = "Ejecutando...";
+            System.Timers.Timer timer = new System.Timers.Timer(1);
+            btnStart.Enabled = false;
             string path = Directory.GetCurrentDirectory();
             String[] exts = { "*.png","*.bmp","*.jpg" };
             List<Img> files = new List<Img>();
@@ -78,7 +92,8 @@ namespace BitmapFilters
             }
             
             int counta = 0;
-            temporizador.Start();//starts the timer
+            timer.Elapsed += temporizador_Tick;//starts the timer
+            timer.Enabled = true;
             foreach (var filename in files)
             {
                 Bitmap bmp = null;
@@ -150,8 +165,9 @@ namespace BitmapFilters
                     continue;
                 }
             }
-            lblTimeTaken.Text = "Proceso terminado.\nTiempo de ejecución: " + cont +"ms";
-            temporizador.Stop();
+            lblTiempoTitle.Text = "Proceso terminado.\nTiempo de ejecución: " + cont +"ms";
+            timer.Enabled = false;
+            btnStart.Enabled = true;
         }
         public void saveImage(Bitmap bmp,string path,string format,int counta)
         {
