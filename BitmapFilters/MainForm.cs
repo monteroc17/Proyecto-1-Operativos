@@ -124,7 +124,6 @@ namespace BitmapFilters
                     else if (rdTransparencyBits.Checked == true)
                     {
                         bmp = ExtBitmap.CopyWithTransparency(i);
-                        Console.WriteLine(bmp);
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
@@ -134,6 +133,12 @@ namespace BitmapFilters
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
 
+                    }
+                    else if (rdAjusteBrilloBits.Checked == true)
+                    {
+                        bmp = ExtBitmap.Contrast(bmp, valueBar.Value);
+                        saveImage(bmp,path,filename.format,counta);
+                        counta++;
                     }
                     else if (rdNegativeBits.Checked == true)
                     {
@@ -153,13 +158,19 @@ namespace BitmapFilters
                     else if (rdMotionBlur.Checked == true)
                     {
                         bmp = ExtBitmap.MotionBlur(bmp);
-                        saveImage(bmp,path, filename.format,counta);
+                        saveImage(bmp, path, filename.format, counta);
                         counta++;
 
                     }
                     else if (rdSolarise.Checked == true)
                     {
-                        bmp = ExtBitmap.Solarise(bmp,150,50,250);
+                        bmp = ExtBitmap.Solarise(bmp, 150, 50, 250);
+                        saveImage(bmp, path, filename.format, counta);
+                        counta++;
+                    }
+                    else if (rdDilatacion.Checked == true)
+                    {
+                        bmp = ExtBitmap.Dilate(bmp,17, false, true, true);
                         saveImage(bmp,path,filename.format,counta);
                         counta++;
                     }
@@ -199,6 +210,17 @@ namespace BitmapFilters
         private void lblTimeTaken_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void turnBarOn(object sender, EventArgs e)
+        {
+            valueBar.Visible = true;
+            lblBarValue.Visible = true;
+        }
+
+        private void valueBar_Scroll(object sender, EventArgs e)
+        {
+            lblBarValue.Text = valueBar.Value.ToString();
         }
     }
 }

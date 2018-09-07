@@ -236,7 +236,7 @@ namespace BitmapFilters
 
             return ApplyColorMatrix(sourceImage, colorMatrix);
         }
-        public static Bitmap AdjustContrast(Bitmap Image, float Value)
+        public static Bitmap Contrast(Bitmap Image, float Value)
         {
             Value = (100.0f + Value) / 100.0f;
             Value *= Value;
@@ -290,7 +290,7 @@ namespace BitmapFilters
             return NewBitmap;
         }
 
-        public static  Bitmap  FindEdges(Bitmap image)
+        public static Bitmap FindEdges(Bitmap image)
         {
             ConvMatrix matr = new ConvMatrix();
             matr.Size = 5;
@@ -318,6 +318,68 @@ namespace BitmapFilters
             return SafeImageConvolution(image, matr);
 
         }
+
+        public static Bitmap Contrast(this Bitmap sourceBitmap, int threshold)
+        {
+            BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
+                                        sourceBitmap.Width, sourceBitmap.Height),
+                                        ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+
+            byte[] pixelBuffer = new byte[sourceData.Stride * sourceData.Height];
+
+            Marshal.Copy(sourceData.Scan0, pixelBuffer, 0, pixelBuffer.Length);
+
+            sourceBitmap.UnlockBits(sourceData);
+
+            double contrastLevel = Math.Pow((100.0 + threshold) / 100.0, 2);
+
+            double blue = 0;
+            double green = 0;
+            double red = 0;
+
+            for (int k = 0; k + 4 < pixelBuffer.Length; k += 4)
+            {
+                blue = ((((pixelBuffer[k] / 255.0) - 0.5) *
+                           contrastLevel) + 0.5) * 255.0;
+
+                green = ((((pixelBuffer[k + 1] / 255.0) - 0.5) *
+                            contrastLevel) + 0.5) * 255.0;
+
+                red = ((((pixelBuffer[k + 2] / 255.0) - 0.5) *
+                           contrastLevel) + 0.5) * 255.0;
+
+                if (blue > 255)
+                { blue = 255; }
+                else if (blue < 0)
+                { blue = 0; }
+
+                if (green > 255)
+                { green = 255; }
+                else if (green < 0)
+                { green = 0; }
+
+                if (red > 255)
+                { red = 255; }
+                else if (red < 0)
+                { red = 0; }
+
+                pixelBuffer[k] = (byte)blue;
+                pixelBuffer[k + 1] = (byte)green;
+                pixelBuffer[k + 2] = (byte)red;
+            }
+
+            Bitmap resultBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
+
+            BitmapData resultData = resultBitmap.LockBits(new Rectangle(0, 0,
+                                        resultBitmap.Width, resultBitmap.Height),
+                                        ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+
+            Marshal.Copy(pixelBuffer, 0, resultData.Scan0, pixelBuffer.Length);
+            resultBitmap.UnlockBits(resultData);
+
+            return resultBitmap;
+        }
+
         public static Bitmap GausianBlur(Bitmap image)
         {
             ConvMatrix matr = new ConvMatrix();
@@ -350,7 +412,7 @@ namespace BitmapFilters
             return SafeImageConvolution(image, matr);
 
         }
-        public static  Bitmap SafeImageConvolution(Bitmap image, ConvMatrix fmat)
+        public static Bitmap SafeImageConvolution(Bitmap image, ConvMatrix fmat)
         {
             //Avoid division by 0 
             if (fmat.Factor == 0)
@@ -375,9 +437,9 @@ namespace BitmapFilters
 
                             tempPix = srcImage.GetPixel(x + filterx - s, y + filtery - s);
 
-                            r += fmat.Matrix[filtery, filterx] * tempPix.R+5;
-                            g += fmat.Matrix[filtery, filterx] * tempPix.G+5;
-                            b += fmat.Matrix[filtery, filterx] * tempPix.B+5;
+                            r += fmat.Matrix[filtery, filterx] * tempPix.R + 5;
+                            g += fmat.Matrix[filtery, filterx] * tempPix.G + 5;
+                            b += fmat.Matrix[filtery, filterx] * tempPix.B + 5;
                         }
                     }
 
@@ -385,7 +447,7 @@ namespace BitmapFilters
                     g = Math.Min(Math.Max((g / fmat.Factor) + fmat.Offset, 0), 255);
                     b = Math.Min(Math.Max((b / fmat.Factor) + fmat.Offset, 0), 255);
 
-                    
+
                     /*using (Graphics graphics = Graphics.FromImage(newImage))
                     {
                         graphics.DrawImage(image, 0, 0);
@@ -444,5 +506,123 @@ namespace BitmapFilters
             return resultBitmap;
         }
 
+
+
+        public static Bitmap Dilate(this Bitmap sourceBitmap,
+                                                int matrixSize,
+                                                bool applyBlue = true,
+                                                bool applyGreen = true,
+                                                bool applyRed = true)
+        {
+            BitmapData sourceData =
+                       sourceBitmap.LockBits(new Rectangle(0, 0,
+                       sourceBitmap.Width, sourceBitmap.Height),
+                       ImageLockMode.ReadOnly,
+                       PixelFormat.Format32bppArgb);
+
+            byte[] pixelBuffer = new byte[sourceData.Stride *
+                                          sourceData.Height];
+
+            byte[] resultBuffer = new byte[sourceData.Stride *
+                                           sourceData.Height];
+
+            Marshal.Copy(sourceData.Scan0, pixelBuffer, 0,
+                                       pixelBuffer.Length);
+
+            sourceBitmap.UnlockBits(sourceData);
+
+            int filterOffset = (matrixSize - 1) / 2;
+            int calcOffset = 0;
+
+            int byteOffset = 0;
+
+            byte blue = 0;
+            byte green = 0;
+            byte red = 0;
+
+            byte morphResetValue = 0;
+
+            for (int offsetY = filterOffset; offsetY <
+                sourceBitmap.Height - filterOffset; offsetY++)
+            {
+                for (int offsetX = filterOffset; offsetX <
+                    sourceBitmap.Width - filterOffset; offsetX++)
+                {
+                    byteOffset = offsetY *
+                                 sourceData.Stride +
+                                 offsetX * 4;
+
+                    blue = morphResetValue;
+                    green = morphResetValue;
+                    red = morphResetValue;
+
+
+                    for (int filterY = -filterOffset;
+                        filterY <= filterOffset; filterY++)
+                    {
+                        for (int filterX = -filterOffset;
+                            filterX <= filterOffset; filterX++)
+                        {
+                            calcOffset = byteOffset +
+                                         (filterX * 4) +
+                            (filterY * sourceData.Stride);
+
+                            if (pixelBuffer[calcOffset] > blue)
+                            {
+                                blue = pixelBuffer[calcOffset];
+                            }
+
+                            if (pixelBuffer[calcOffset + 1] > green)
+                            {
+                                green = pixelBuffer[calcOffset + 1];
+                            }
+
+                            if (pixelBuffer[calcOffset + 2] > red)
+                            {
+                                red = pixelBuffer[calcOffset + 2];
+                            }
+                        }
+                    }
+
+
+
+                    if (applyBlue == false)
+                    {
+                        blue = pixelBuffer[byteOffset];
+                    }
+
+                    if (applyGreen == false)
+                    {
+                        green = pixelBuffer[byteOffset + 1];
+                    }
+
+                    if (applyRed == false)
+                    {
+                        red = pixelBuffer[byteOffset + 2];
+                    }
+
+                    resultBuffer[byteOffset] = blue;
+                    resultBuffer[byteOffset + 1] = green;
+                    resultBuffer[byteOffset + 2] = red;
+                    resultBuffer[byteOffset + 3] = 255;
+                }
+            }
+
+            Bitmap resultBitmap = new Bitmap(sourceBitmap.Width,
+                                             sourceBitmap.Height);
+
+            BitmapData resultData =
+                       resultBitmap.LockBits(new Rectangle(0, 0,
+                       resultBitmap.Width, resultBitmap.Height),
+                       ImageLockMode.WriteOnly,
+                       PixelFormat.Format32bppArgb);
+
+            Marshal.Copy(resultBuffer, 0, resultData.Scan0,
+                                       resultBuffer.Length);
+
+            resultBitmap.UnlockBits(resultData);
+
+            return resultBitmap;
+        }
     }
 }
