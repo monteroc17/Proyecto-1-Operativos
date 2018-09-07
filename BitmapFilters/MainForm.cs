@@ -120,6 +120,12 @@ namespace BitmapFilters
                         counta++;
 
                     }
+                    else if (rdAjusteBrilloBits.Checked == true)
+                    {
+                        bmp = ExtBitmap.Contrast(bmp, valueBar.Value);
+                        saveImage(bmp,path,filename.format,counta);
+                        counta++;
+                    }
                     else if (rdNegativeBits.Checked == true)
                     {
                         bmp = ExtBitmap.CopyAsNegative(i);
@@ -189,6 +195,17 @@ namespace BitmapFilters
         private void lblTimeTaken_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void turnBarOn(object sender, EventArgs e)
+        {
+            valueBar.Visible = true;
+            lblBarValue.Visible = true;
+        }
+
+        private void valueBar_Scroll(object sender, EventArgs e)
+        {
+            lblBarValue.Text = valueBar.Value.ToString();
         }
     }
 }

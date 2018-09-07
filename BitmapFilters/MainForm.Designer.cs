@@ -38,7 +38,6 @@ namespace BitmapFilters
             this.rdGaussinBits = new System.Windows.Forms.RadioButton();
             this.rdSepiaBits = new System.Windows.Forms.RadioButton();
             this.rdMotionBlur = new System.Windows.Forms.RadioButton();
-            this.rdGausianBlur = new System.Windows.Forms.RadioButton();
             this.rdGrayscaleBits = new System.Windows.Forms.RadioButton();
             this.rdEmboss = new System.Windows.Forms.RadioButton();
             this.rdFindEdges = new System.Windows.Forms.RadioButton();
@@ -53,8 +52,12 @@ namespace BitmapFilters
             this.btnStart = new System.Windows.Forms.Button();
             this.rdSolarise = new System.Windows.Forms.RadioButton();
             this.rdDilatacion = new System.Windows.Forms.RadioButton();
+            this.rdGausianBlur = new System.Windows.Forms.RadioButton();
+            this.valueBar = new System.Windows.Forms.TrackBar();
+            this.lblBarValue = new System.Windows.Forms.Label();
             this.grbInput.SuspendLayout();
             this.grbOutput.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.valueBar)).BeginInit();
             this.SuspendLayout();
             // 
             // grbInput
@@ -78,7 +81,7 @@ namespace BitmapFilters
             this.grbInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grbInput.Name = "grbInput";
             this.grbInput.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grbInput.Size = new System.Drawing.Size(453, 345);
+            this.grbInput.Size = new System.Drawing.Size(453, 441);
             this.grbInput.TabIndex = 0;
             this.grbInput.TabStop = false;
             this.grbInput.Text = "Opciones de Filtros";
@@ -133,6 +136,7 @@ namespace BitmapFilters
             this.rdAjusteBrilloBits.TabStop = true;
             this.rdAjusteBrilloBits.Text = "Ajuste Brillo - Bits(S)";
             this.rdAjusteBrilloBits.UseVisualStyleBackColor = true;
+            this.rdAjusteBrilloBits.CheckedChanged += new System.EventHandler(this.turnBarOn);
             this.rdAjusteBrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGaussinBits
@@ -171,18 +175,6 @@ namespace BitmapFilters
             this.rdMotionBlur.Text = "MotionBlur";
             this.rdMotionBlur.UseVisualStyleBackColor = true;
             this.rdMotionBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdGausianBlur
-            // 
-            this.rdGausianBlur.AutoSize = true;
-            this.rdGausianBlur.Location = new System.Drawing.Point(259, 81);
-            this.rdGausianBlur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.rdGausianBlur.Name = "rdGausianBlur";
-            this.rdGausianBlur.Size = new System.Drawing.Size(107, 21);
-            this.rdGausianBlur.TabIndex = 10;
-            this.rdGausianBlur.Text = "GausianBlur";
-            this.rdGausianBlur.UseVisualStyleBackColor = true;
-            this.rdGausianBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdGrayscaleBits
             // 
@@ -255,7 +247,7 @@ namespace BitmapFilters
             this.grbOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grbOutput.Name = "grbOutput";
             this.grbOutput.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grbOutput.Size = new System.Drawing.Size(287, 345);
+            this.grbOutput.Size = new System.Drawing.Size(287, 186);
             this.grbOutput.TabIndex = 1;
             this.grbOutput.TabStop = false;
             this.grbOutput.Text = "Duración";
@@ -289,7 +281,7 @@ namespace BitmapFilters
             // cmbCores
             // 
             this.cmbCores.FormattingEnabled = true;
-            this.cmbCores.Location = new System.Drawing.Point(304, 367);
+            this.cmbCores.Location = new System.Drawing.Point(303, 473);
             this.cmbCores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbCores.Name = "cmbCores";
             this.cmbCores.Size = new System.Drawing.Size(101, 24);
@@ -298,7 +290,7 @@ namespace BitmapFilters
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(208, 367);
+            this.label1.Location = new System.Drawing.Point(207, 473);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 34);
             this.label1.TabIndex = 5;
@@ -307,7 +299,7 @@ namespace BitmapFilters
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(477, 367);
+            this.btnStart.Location = new System.Drawing.Point(476, 473);
             this.btnStart.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(287, 48);
@@ -338,11 +330,49 @@ namespace BitmapFilters
             this.rdDilatacion.Text = "Dilatación";
             this.rdDilatacion.UseVisualStyleBackColor = true;
             // 
+            // rdGausianBlur
+            // 
+            this.rdGausianBlur.AutoSize = true;
+            this.rdGausianBlur.Location = new System.Drawing.Point(259, 81);
+            this.rdGausianBlur.Margin = new System.Windows.Forms.Padding(4);
+            this.rdGausianBlur.Name = "rdGausianBlur";
+            this.rdGausianBlur.Size = new System.Drawing.Size(107, 21);
+            this.rdGausianBlur.TabIndex = 10;
+            this.rdGausianBlur.Text = "GausianBlur";
+            this.rdGausianBlur.UseVisualStyleBackColor = true;
+            this.rdGausianBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // valueBar
+            // 
+            this.valueBar.Location = new System.Drawing.Point(477, 207);
+            this.valueBar.Maximum = 100;
+            this.valueBar.Minimum = -100;
+            this.valueBar.Name = "valueBar";
+            this.valueBar.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.valueBar.Size = new System.Drawing.Size(56, 217);
+            this.valueBar.TabIndex = 21;
+            this.valueBar.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.valueBar.Visible = false;
+            this.valueBar.Scroll += new System.EventHandler(this.valueBar_Scroll);
+            // 
+            // lblBarValue
+            // 
+            this.lblBarValue.AutoSize = true;
+            this.lblBarValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBarValue.Location = new System.Drawing.Point(476, 431);
+            this.lblBarValue.Name = "lblBarValue";
+            this.lblBarValue.Size = new System.Drawing.Size(23, 25);
+            this.lblBarValue.TabIndex = 22;
+            this.lblBarValue.Text = "0";
+            this.lblBarValue.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(785, 457);
+            this.ClientSize = new System.Drawing.Size(785, 547);
+            this.Controls.Add(this.lblBarValue);
+            this.Controls.Add(this.valueBar);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbCores);
@@ -360,6 +390,7 @@ namespace BitmapFilters
             this.grbInput.PerformLayout();
             this.grbOutput.ResumeLayout(false);
             this.grbOutput.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.valueBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,11 +416,13 @@ namespace BitmapFilters
         private System.Windows.Forms.Button btnStart;
         public System.Windows.Forms.Timer temporizador;
         private System.Windows.Forms.RadioButton rdMotionBlur;
-        private System.Windows.Forms.RadioButton rdGausianBlur;
         private System.Windows.Forms.RadioButton rdEmboss;
         private System.Windows.Forms.RadioButton rdFindEdges;
         private System.Windows.Forms.RadioButton rdSolarise;
         private System.Windows.Forms.RadioButton rdDilatacion;
+        private System.Windows.Forms.RadioButton rdGausianBlur;
+        private System.Windows.Forms.TrackBar valueBar;
+        private System.Windows.Forms.Label lblBarValue;
     }
 }
 
