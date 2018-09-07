@@ -50,6 +50,7 @@ namespace BitmapFilters
             this.cmbCores = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
+            this.rdSolarise = new System.Windows.Forms.RadioButton();
             this.grbInput.SuspendLayout();
             this.grbOutput.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.temporizador)).BeginInit();
@@ -57,6 +58,7 @@ namespace BitmapFilters
             // 
             // grbInput
             // 
+            this.grbInput.Controls.Add(this.rdSolarise);
             this.grbInput.Controls.Add(this.rdParedLadrilloBits);
             this.grbInput.Controls.Add(this.rdSegmentacionBits);
             this.grbInput.Controls.Add(this.rdCompPerdidaBits);
@@ -71,9 +73,9 @@ namespace BitmapFilters
             this.grbInput.Controls.Add(this.rdNegativeBits);
             this.grbInput.Controls.Add(this.rdTransparencyBits);
             this.grbInput.Location = new System.Drawing.Point(16, 15);
-            this.grbInput.Margin = new System.Windows.Forms.Padding(4);
+            this.grbInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grbInput.Name = "grbInput";
-            this.grbInput.Padding = new System.Windows.Forms.Padding(4);
+            this.grbInput.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grbInput.Size = new System.Drawing.Size(453, 345);
             this.grbInput.TabIndex = 0;
             this.grbInput.TabStop = false;
@@ -148,7 +150,7 @@ namespace BitmapFilters
             // 
             this.rdSepiaBits.AutoSize = true;
             this.rdSepiaBits.Location = new System.Drawing.Point(0, 110);
-            this.rdSepiaBits.Margin = new System.Windows.Forms.Padding(4);
+            this.rdSepiaBits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdSepiaBits.Name = "rdSepiaBits";
             this.rdSepiaBits.Size = new System.Drawing.Size(120, 21);
             this.rdSepiaBits.TabIndex = 6;
@@ -160,7 +162,7 @@ namespace BitmapFilters
             // 
             this.rdMotionBlur.AutoSize = true;
             this.rdMotionBlur.Location = new System.Drawing.Point(259, 110);
-            this.rdMotionBlur.Margin = new System.Windows.Forms.Padding(4);
+            this.rdMotionBlur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdMotionBlur.Name = "rdMotionBlur";
             this.rdMotionBlur.Size = new System.Drawing.Size(96, 21);
             this.rdMotionBlur.TabIndex = 8;
@@ -172,7 +174,7 @@ namespace BitmapFilters
             // 
             this.rdGausianBlur.AutoSize = true;
             this.rdGausianBlur.Location = new System.Drawing.Point(259, 81);
-            this.rdGausianBlur.Margin = new System.Windows.Forms.Padding(4);
+            this.rdGausianBlur.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdGausianBlur.Name = "rdGausianBlur";
             this.rdGausianBlur.Size = new System.Drawing.Size(107, 21);
             this.rdGausianBlur.TabIndex = 10;
@@ -185,7 +187,7 @@ namespace BitmapFilters
             this.rdGrayscaleBits.AutoSize = true;
             this.rdGrayscaleBits.Checked = true;
             this.rdGrayscaleBits.Location = new System.Drawing.Point(0, 23);
-            this.rdGrayscaleBits.Margin = new System.Windows.Forms.Padding(4);
+            this.rdGrayscaleBits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdGrayscaleBits.Name = "rdGrayscaleBits";
             this.rdGrayscaleBits.Size = new System.Drawing.Size(171, 21);
             this.rdGrayscaleBits.TabIndex = 3;
@@ -199,7 +201,7 @@ namespace BitmapFilters
             // 
             this.rdEmboss.AutoSize = true;
             this.rdEmboss.Location = new System.Drawing.Point(259, 52);
-            this.rdEmboss.Margin = new System.Windows.Forms.Padding(4);
+            this.rdEmboss.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdEmboss.Name = "rdEmboss";
             this.rdEmboss.Size = new System.Drawing.Size(79, 21);
             this.rdEmboss.TabIndex = 9;
@@ -211,7 +213,7 @@ namespace BitmapFilters
             // 
             this.rdFindEdges.AutoSize = true;
             this.rdFindEdges.Location = new System.Drawing.Point(259, 23);
-            this.rdFindEdges.Margin = new System.Windows.Forms.Padding(4);
+            this.rdFindEdges.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdFindEdges.Name = "rdFindEdges";
             this.rdFindEdges.Size = new System.Drawing.Size(100, 21);
             this.rdFindEdges.TabIndex = 7;
@@ -223,7 +225,7 @@ namespace BitmapFilters
             // 
             this.rdNegativeBits.AutoSize = true;
             this.rdNegativeBits.Location = new System.Drawing.Point(0, 81);
-            this.rdNegativeBits.Margin = new System.Windows.Forms.Padding(4);
+            this.rdNegativeBits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdNegativeBits.Name = "rdNegativeBits";
             this.rdNegativeBits.Size = new System.Drawing.Size(140, 21);
             this.rdNegativeBits.TabIndex = 5;
@@ -235,7 +237,7 @@ namespace BitmapFilters
             // 
             this.rdTransparencyBits.AutoSize = true;
             this.rdTransparencyBits.Location = new System.Drawing.Point(0, 52);
-            this.rdTransparencyBits.Margin = new System.Windows.Forms.Padding(4);
+            this.rdTransparencyBits.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rdTransparencyBits.Name = "rdTransparencyBits";
             this.rdTransparencyBits.Size = new System.Drawing.Size(176, 21);
             this.rdTransparencyBits.TabIndex = 4;
@@ -248,9 +250,9 @@ namespace BitmapFilters
             this.grbOutput.Controls.Add(this.lblTimeTaken);
             this.grbOutput.Controls.Add(this.lblTiempoTitle);
             this.grbOutput.Location = new System.Drawing.Point(477, 15);
-            this.grbOutput.Margin = new System.Windows.Forms.Padding(4);
+            this.grbOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grbOutput.Name = "grbOutput";
-            this.grbOutput.Padding = new System.Windows.Forms.Padding(4);
+            this.grbOutput.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grbOutput.Size = new System.Drawing.Size(287, 345);
             this.grbOutput.TabIndex = 1;
             this.grbOutput.TabStop = false;
@@ -312,6 +314,17 @@ namespace BitmapFilters
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
+            // rdSolarise
+            // 
+            this.rdSolarise.AutoSize = true;
+            this.rdSolarise.Location = new System.Drawing.Point(259, 139);
+            this.rdSolarise.Margin = new System.Windows.Forms.Padding(4);
+            this.rdSolarise.Name = "rdSolarise";
+            this.rdSolarise.Size = new System.Drawing.Size(80, 21);
+            this.rdSolarise.TabIndex = 19;
+            this.rdSolarise.Text = "Solarise";
+            this.rdSolarise.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -324,7 +337,7 @@ namespace BitmapFilters
             this.Controls.Add(this.grbInput);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -363,6 +376,7 @@ namespace BitmapFilters
         private System.Windows.Forms.RadioButton rdGausianBlur;
         private System.Windows.Forms.RadioButton rdEmboss;
         private System.Windows.Forms.RadioButton rdFindEdges;
+        private System.Windows.Forms.RadioButton rdSolarise;
     }
 }
 

@@ -157,6 +157,12 @@ namespace BitmapFilters
                         counta++;
 
                     }
+                    else if (rdSolarise.Checked == true)
+                    {
+                        bmp = ExtBitmap.Solarise(bmp,150,50,250);
+                        saveImage(bmp,path,filename.format,counta);
+                        counta++;
+                    }
                 }
                 catch (Exception ex)
                 {
