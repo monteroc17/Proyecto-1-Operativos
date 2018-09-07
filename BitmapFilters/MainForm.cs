@@ -101,7 +101,7 @@ namespace BitmapFilters
                 Image i = (Image)bmp;
                 try
                 {
-                    if (rdGrayscaleBits.Checked == true)
+                    if (rdGrayscale.Checked == true)
                     {
                         bmp = ExtBitmap.CopyAsGrayscale(i);
                         Console.WriteLine(bmp);
@@ -121,7 +121,7 @@ namespace BitmapFilters
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }
-                    else if (rdTransparencyBits.Checked == true)
+                    else if (rdTransparency.Checked == true)
                     {
                         bmp = ExtBitmap.CopyWithTransparency(i);
                         saveImage(bmp, path, filename.format, counta);
@@ -134,13 +134,13 @@ namespace BitmapFilters
                         counta++;
 
                     }
-                    else if (rdAjusteBrilloBits.Checked == true)
+                    else if (rdAjusteBrillo.Checked == true)
                     {
                         bmp = ExtBitmap.Contrast(bmp, valueBar.Value);
                         saveImage(bmp,path,filename.format,counta);
                         counta++;
                     }
-                    else if (rdNegativeBits.Checked == true)
+                    else if (rdNegative.Checked == true)
                     {
                         bmp = ExtBitmap.CopyAsNegative(i);
                         Console.WriteLine(bmp);
@@ -148,7 +148,7 @@ namespace BitmapFilters
                         counta++;
 
                     }
-                    else if (rdSepiaBits.Checked == true)
+                    else if (rdSepia.Checked == true)
                     {
                         bmp = ExtBitmap.CopyAsSepiaTone(i);
                         Console.WriteLine(bmp);
@@ -222,6 +222,7 @@ namespace BitmapFilters
         {
             lblBarValue.Text = valueBar.Value.ToString();
         }
+
     }
 }
 
