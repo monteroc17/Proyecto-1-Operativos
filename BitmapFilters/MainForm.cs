@@ -109,7 +109,6 @@ namespace BitmapFilters
                     else if (rdTransparencyBits.Checked == true)
                     {
                         bmp = ExtBitmap.CopyWithTransparency(i);
-                        Console.WriteLine(bmp);
                         saveImage(bmp, path, filename.format, counta);
                         counta++;
                     }

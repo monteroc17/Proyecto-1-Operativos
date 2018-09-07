@@ -507,6 +507,7 @@ namespace BitmapFilters
         }
 
 
+
         public static Bitmap Dilate(this Bitmap sourceBitmap,
                                                 int matrixSize,
                                                 bool applyBlue = true,
