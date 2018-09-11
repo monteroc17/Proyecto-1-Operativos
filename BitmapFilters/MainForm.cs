@@ -9,6 +9,8 @@ using System.Timers;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections;
+using System.Diagnostics;
+
 namespace BitmapFilters
 {
     public partial class MainForm : Form
@@ -63,12 +65,6 @@ namespace BitmapFilters
 
         }
         int cont = 0;
-        private void temporizador_Tick(object sender, EventArgs e)
-        {
-            cont++;
-            //lblTimeTaken.Text = cont.ToString();
-            this.SetText(cont.ToString());
-        }
         
         private void btnStart_Click(object sender, EventArgs e)
         {
@@ -78,7 +74,6 @@ namespace BitmapFilters
                 return;
             }
             lblTiempoTitle.Text = "Ejecutando...";
-            System.Timers.Timer timer = new System.Timers.Timer(1);
             btnStart.Enabled = false;
             string path = Directory.GetCurrentDirectory();
             String[] exts = { "*.png","*.bmp","*.jpg" };
@@ -97,8 +92,7 @@ namespace BitmapFilters
             }
             
             int counta = 0;
-            timer.Elapsed += temporizador_Tick;//starts the timer
-            timer.Enabled = true;
+            Stopwatch timer = Stopwatch.StartNew();
             foreach (var filename in files)
             {
                 Bitmap bmp = null;
@@ -231,8 +225,7 @@ namespace BitmapFilters
                     continue;
                 }
             }
-            lblTiempoTitle.Text = "Proceso terminado.\nTiempo de ejecución: " + cont +"ms";
-            timer.Enabled = false;
+            lblTiempoTitle.Text = "Proceso terminado.\nTiempo de ejecución: " + timer.ElapsedMilliseconds +"ms";
             btnStart.Enabled = true;
         }
         public void saveImage(Bitmap bmp,string path,string format,int counta)
