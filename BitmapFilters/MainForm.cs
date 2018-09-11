@@ -140,6 +140,12 @@ namespace BitmapFilters
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.Transparency(i);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
                             
                     }
                     else if (rdEmboss.Checked == true)
@@ -168,6 +174,12 @@ namespace BitmapFilters
                         {
                             bmp = ExtBitmap.CopyAsNegative(i);
                             Console.WriteLine(bmp);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.Negative(i);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
