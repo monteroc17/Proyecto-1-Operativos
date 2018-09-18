@@ -269,7 +269,7 @@ namespace BitmapFilters
             this.grbOutput.Margin = new System.Windows.Forms.Padding(4);
             this.grbOutput.Name = "grbOutput";
             this.grbOutput.Padding = new System.Windows.Forms.Padding(4);
-            this.grbOutput.Size = new System.Drawing.Size(287, 186);
+            this.grbOutput.Size = new System.Drawing.Size(391, 186);
             this.grbOutput.TabIndex = 1;
             this.grbOutput.TabStop = false;
             this.grbOutput.Text = "Estado";
@@ -340,7 +340,6 @@ namespace BitmapFilters
             this.valueBar.Size = new System.Drawing.Size(56, 217);
             this.valueBar.TabIndex = 21;
             this.valueBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.valueBar.Visible = false;
             this.valueBar.Scroll += new System.EventHandler(this.valueBar_Scroll);
             // 
             // lblBarValue
@@ -378,7 +377,7 @@ namespace BitmapFilters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(785, 547);
+            this.ClientSize = new System.Drawing.Size(881, 547);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbMetodo);
             this.Controls.Add(this.lblBarValue);

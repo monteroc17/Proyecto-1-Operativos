@@ -104,39 +104,59 @@ namespace BitmapFilters
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.CopyAsGrayscale(i);
+                            bmp = SequentialFilters.Grayscale(i);
                             Console.WriteLine(bmp);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
-                        
+                        if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.Grayscale(i);
+                            Console.WriteLine(bmp);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
+
                     }
                     else if (rdFindEdges.Checked == true)
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.FindEdges(bmp);
+                            bmp = SequentialFilters.FindEdges(bmp);
                             Console.WriteLine(bmp);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
-                            
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.FindEdges(bmp);
+                            Console.WriteLine(bmp);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
+
                     }
                     else if (rdGausianBlur.Checked == true)
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.GausianBlur(bmp);
+                            bmp = SequentialFilters.GausianBlur(bmp);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
-                            
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.GausianBlur(bmp);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
+
                     }
                     else if (rdTransparency.Checked == true)
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.CopyWithTransparency(i);
+                            bmp = SequentialFilters.Transparency(i);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
@@ -152,18 +172,29 @@ namespace BitmapFilters
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.Emboss(bmp);
+                            bmp = SequentialFilters.Emboss(bmp);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
-                            
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.Emboss(bmp);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
 
                     }
                     else if (rdAjusteBrillo.Checked == true)
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.Contrast(bmp, valueBar.Value);
+                            bmp = SequentialFilters.Contrast(bmp, valueBar.Value);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.Contrast(bmp, valueBar.Value);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
@@ -172,7 +203,7 @@ namespace BitmapFilters
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.CopyAsNegative(i);
+                            bmp = SequentialFilters.Negative(i);
                             Console.WriteLine(bmp);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
@@ -188,22 +219,34 @@ namespace BitmapFilters
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.CopyAsSepiaTone(i);
+                            bmp = SequentialFilters.Sepia(i);
                             Console.WriteLine(bmp);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
-                            
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.Sepia(i);
+                            Console.WriteLine(bmp);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
+
                     }
                     else if (rdMotionBlur.Checked == true)
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.MotionBlur(bmp);
+                            bmp = SequentialFilters.MotionBlur(bmp);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
-                            
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.MotionBlur(bmp);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
 
                     }
                     else if(rdCompPerdida.Checked == true)
@@ -215,7 +258,13 @@ namespace BitmapFilters
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.Solarise(bmp, 150, 50, 250);
+                            bmp = SequentialFilters.Solarise(bmp, 150, 50, 250);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.Solarise(bmp, 150, 50, 250);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
@@ -224,7 +273,13 @@ namespace BitmapFilters
                     {
                         if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            bmp = ExtBitmap.Dilate(bmp, 17, false, true, true);
+                            bmp = SequentialFilters.Dilate(bmp, 17, false, true, true);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
+                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        {
+                            bmp = ParallelFilters.Dilate(bmp, 17, false, true, true);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
