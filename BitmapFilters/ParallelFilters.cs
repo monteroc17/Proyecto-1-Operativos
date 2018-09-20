@@ -239,41 +239,55 @@ namespace BitmapFilters
             int r, g, b;
             Color tempPix;
             Bitmap newImage = new Bitmap(image.Width, image.Height);
-            Parallel.For(s, srcImage.Height - s, y =>
-           {
-               Parallel.For(s, srcImage.Width - s, x =>
-              {
-                  r = g = b = 0;
-
-                  // Convolution 
-                  Parallel.For(0, fmat.Size, filtery =>
+            for (int y = s; y < srcImage.Height - s; y++)
+            {
+                for (int x = s; x < srcImage.Width - s; x++)
                 {
-                    Parallel.For (0, fmat.Size, filterx =>
+                    r = g = b = 0;
+
+                    // Convolution 
+                    for (int filtery = 0; filtery < fmat.Size; filtery++)
                     {
+                        for (int filterx = 0; filterx < fmat.Size; filterx++)
+                        {
 
-                        tempPix = srcImage.GetPixel(x + filterx - s, y + filtery - s);
+                            tempPix = srcImage.GetPixel(x + filterx - s, y + filtery - s);
 
-                        r += fmat.Matrix[filtery, filterx] * tempPix.R + 5;
-                        g += fmat.Matrix[filtery, filterx] * tempPix.G + 5;
-                        b += fmat.Matrix[filtery, filterx] * tempPix.B + 5;
-                    });
-                });
+                            Parallel.Invoke(
+                                () =>
+                                {
+                                    r += fmat.Matrix[filtery, filterx] * tempPix.R + 5;
+                                },
+                                () =>
+                                {
+                                    g += fmat.Matrix[filtery, filterx] * tempPix.G + 5;
+                                },
+                                () =>
+                                {
+                                    b += fmat.Matrix[filtery, filterx] * tempPix.B + 5;
+                                }
+                            );
+                            
+                            
+                            
+                        }
+                    }
 
-                  r = Math.Min(Math.Max((r / fmat.Factor) + fmat.Offset, 0), 255);
-                  g = Math.Min(Math.Max((g / fmat.Factor) + fmat.Offset, 0), 255);
-                  b = Math.Min(Math.Max((b / fmat.Factor) + fmat.Offset, 0), 255);
+                    r = Math.Min(Math.Max((r / fmat.Factor) + fmat.Offset, 0), 255);
+                    g = Math.Min(Math.Max((g / fmat.Factor) + fmat.Offset, 0), 255);
+                    b = Math.Min(Math.Max((b / fmat.Factor) + fmat.Offset, 0), 255);
 
 
-                   /*using (Graphics graphics = Graphics.FromImage(newImage))
-                   {
-                       graphics.DrawImage(image, 0, 0);
-                   }*/
+                    /*using (Graphics graphics = Graphics.FromImage(newImage))
+                    {
+                        graphics.DrawImage(image, 0, 0);
+                    }*/
 
-                  newImage.SetPixel(x, y, Color.FromArgb(r, g, b));
+                    newImage.SetPixel(x, y, Color.FromArgb(r, g, b));
 
-              });
+                }
 
-           });
+            }
             return newImage;
         }
         //FindEdges
