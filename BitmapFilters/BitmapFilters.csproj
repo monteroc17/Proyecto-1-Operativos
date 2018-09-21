@@ -73,7 +73,7 @@
     <Compile Include="Brightness.cs" />
     <Compile Include="Compression.cs" />
     <Compile Include="ConvMatrix.cs" />
-    <Compile Include="ExtBitmap.cs" />
+    <Compile Include="SequentialFilters.cs" />
     <Compile Include="GaussianBlur.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="MainForm.cs">
@@ -83,6 +83,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Opacity.cs" />
+    <Compile Include="ParallelFilters.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainForm.resx">
