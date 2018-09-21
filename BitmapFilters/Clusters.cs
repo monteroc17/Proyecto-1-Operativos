@@ -111,22 +111,6 @@ namespace BitmapFilters
             StreamReader sr = new StreamReader(response.GetResponseStream());
             return sr.ReadToEnd();
         }
-        public static string Post()
-        {
-             private static readonly HttpClient client = new HttpClient();
-             var values = new Dictionary<string, string>
-                        {
-                           { "thing1", "hello" },
-                           { "thing2", "world" }
-                        };
-
-            var content = new FormUrlEncodedContent(values);
-
-            var response = await client.PostAsync("http://www.example.com/recepticle.aspx", content);
-
-            var responseString = await response.Content.ReadAsStringAsync();
-                return responseString;
-        }
     }
 
 }

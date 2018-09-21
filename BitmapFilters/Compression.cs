@@ -11,7 +11,7 @@ namespace BitmapFilters
 {
     class Compression
     {
-        private void SaveJpg(Image image, string file_name, long compression)
+        public void SaveJpg(Image image, string file_name, long compression)
         {
             try
             {
@@ -21,7 +21,7 @@ namespace BitmapFilters
 
                 ImageCodecInfo image_codec_info =
                     GetEncoderInfo("image/jpeg");
-                File.Delete(file_name);
+                //File.Delete(file_name);
                 image.Save(file_name, image_codec_info, encoder_params);
             }
             catch (Exception ex)

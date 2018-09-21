@@ -29,26 +29,26 @@ namespace BitmapFilters
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.grbInput = new System.Windows.Forms.GroupBox();
             this.rdtexture = new System.Windows.Forms.RadioButton();
-            this.rdParedLadrilloBits = new System.Windows.Forms.RadioButton();
-            this.rdSegmentacionBits = new System.Windows.Forms.RadioButton();
-            this.rdCompPerdidaBits = new System.Windows.Forms.RadioButton();
-            this.rdAjusteBrilloBits = new System.Windows.Forms.RadioButton();
-            this.rdGaussinBits = new System.Windows.Forms.RadioButton();
-            this.rdSepiaBits = new System.Windows.Forms.RadioButton();
             this.rdMotionBlur = new System.Windows.Forms.RadioButton();
+            this.rdParedLadrillo = new System.Windows.Forms.RadioButton();
+            this.rdSegmentacion = new System.Windows.Forms.RadioButton();
+            this.rdCompPerdida = new System.Windows.Forms.RadioButton();
+            this.rdAjusteBrillo = new System.Windows.Forms.RadioButton();
             this.rdGausianBlur = new System.Windows.Forms.RadioButton();
-            this.rdGrayscaleBits = new System.Windows.Forms.RadioButton();
+            this.rdSepia = new System.Windows.Forms.RadioButton();
+            this.rdGrayscale = new System.Windows.Forms.RadioButton();
             this.rdEmboss = new System.Windows.Forms.RadioButton();
             this.rdFindEdges = new System.Windows.Forms.RadioButton();
-            this.rdNegativeBits = new System.Windows.Forms.RadioButton();
-            this.rdTransparencyBits = new System.Windows.Forms.RadioButton();
+            this.rdNegative = new System.Windows.Forms.RadioButton();
+            this.rdTransparency = new System.Windows.Forms.RadioButton();
+            this.rdDilatacion = new System.Windows.Forms.RadioButton();
+            this.rdSolarise = new System.Windows.Forms.RadioButton();
             this.grbOutput = new System.Windows.Forms.GroupBox();
             this.lblTimeTaken = new System.Windows.Forms.Label();
             this.lblTiempoTitle = new System.Windows.Forms.Label();
-            this.temporizador = new System.Windows.Forms.Timer(this.components);
+            this.temporizador = new System.Timers.Timer();
             this.cmbCores = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
@@ -56,27 +56,27 @@ namespace BitmapFilters
             this.cmbMethods = new System.Windows.Forms.ComboBox();
             this.grbInput.SuspendLayout();
             this.grbOutput.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.temporizador)).BeginInit();
             this.SuspendLayout();
             // 
             // grbInput
             // 
             this.grbInput.Controls.Add(this.rdtexture);
-            this.grbInput.Controls.Add(this.rdParedLadrilloBits);
-            this.grbInput.Controls.Add(this.rdSegmentacionBits);
-            this.grbInput.Controls.Add(this.rdCompPerdidaBits);
-            this.grbInput.Controls.Add(this.rdAjusteBrilloBits);
-            this.grbInput.Controls.Add(this.rdGaussinBits);
-            this.grbInput.Controls.Add(this.rdSepiaBits);
-            this.grbInput.Controls.Add(this.rdMotionBlur);
+            this.grbInput.Controls.Add(this.rdParedLadrillo);
+            this.grbInput.Controls.Add(this.rdSegmentacion);
+            this.grbInput.Controls.Add(this.rdCompPerdida);
+            this.grbInput.Controls.Add(this.rdAjusteBrillo);
             this.grbInput.Controls.Add(this.rdGausianBlur);
-            this.grbInput.Controls.Add(this.rdGrayscaleBits);
+            this.grbInput.Controls.Add(this.rdSepia);
+            this.grbInput.Controls.Add(this.rdMotionBlur);
+            this.grbInput.Controls.Add(this.rdGrayscale);
             this.grbInput.Controls.Add(this.rdEmboss);
             this.grbInput.Controls.Add(this.rdFindEdges);
-            this.grbInput.Controls.Add(this.rdNegativeBits);
-            this.grbInput.Controls.Add(this.rdTransparencyBits);
+            this.grbInput.Controls.Add(this.rdNegative);
+            this.grbInput.Controls.Add(this.rdTransparency);
             this.grbInput.Location = new System.Drawing.Point(12, 12);
             this.grbInput.Name = "grbInput";
-            this.grbInput.Size = new System.Drawing.Size(340, 280);
+            this.grbInput.Size = new System.Drawing.Size(340, 294);
             this.grbInput.TabIndex = 0;
             this.grbInput.TabStop = false;
             this.grbInput.Text = "Opciones de Filtros";
@@ -84,93 +84,18 @@ namespace BitmapFilters
             // rdtexture
             // 
             this.rdtexture.AutoSize = true;
-            this.rdtexture.Location = new System.Drawing.Point(194, 112);
+            this.rdtexture.Location = new System.Drawing.Point(177, 98);
+            this.rdtexture.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rdtexture.Name = "rdtexture";
             this.rdtexture.Size = new System.Drawing.Size(57, 17);
             this.rdtexture.TabIndex = 19;
             this.rdtexture.Text = "texture";
             this.rdtexture.UseVisualStyleBackColor = true;
             // 
-            // rdParedLadrilloBits
-            // 
-            this.rdParedLadrilloBits.AutoSize = true;
-            this.rdParedLadrilloBits.Location = new System.Drawing.Point(2, 214);
-            this.rdParedLadrilloBits.Margin = new System.Windows.Forms.Padding(2);
-            this.rdParedLadrilloBits.Name = "rdParedLadrilloBits";
-            this.rdParedLadrilloBits.Size = new System.Drawing.Size(146, 30);
-            this.rdParedLadrilloBits.TabIndex = 18;
-            this.rdParedLadrilloBits.TabStop = true;
-            this.rdParedLadrilloBits.Text = "Textura Pared de Ladrillo \r\nBits(S)";
-            this.rdParedLadrilloBits.UseVisualStyleBackColor = true;
-            this.rdParedLadrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdSegmentacionBits
-            // 
-            this.rdSegmentacionBits.AutoSize = true;
-            this.rdSegmentacionBits.Location = new System.Drawing.Point(0, 192);
-            this.rdSegmentacionBits.Margin = new System.Windows.Forms.Padding(2);
-            this.rdSegmentacionBits.Name = "rdSegmentacionBits";
-            this.rdSegmentacionBits.Size = new System.Drawing.Size(132, 17);
-            this.rdSegmentacionBits.TabIndex = 16;
-            this.rdSegmentacionBits.TabStop = true;
-            this.rdSegmentacionBits.Text = "Segmentación - Bits(S)";
-            this.rdSegmentacionBits.UseVisualStyleBackColor = true;
-            this.rdSegmentacionBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdCompPerdidaBits
-            // 
-            this.rdCompPerdidaBits.AutoSize = true;
-            this.rdCompPerdidaBits.Location = new System.Drawing.Point(0, 156);
-            this.rdCompPerdidaBits.Margin = new System.Windows.Forms.Padding(2);
-            this.rdCompPerdidaBits.Name = "rdCompPerdidaBits";
-            this.rdCompPerdidaBits.Size = new System.Drawing.Size(140, 30);
-            this.rdCompPerdidaBits.TabIndex = 14;
-            this.rdCompPerdidaBits.TabStop = true;
-            this.rdCompPerdidaBits.Text = "Compresión con Pérdida\r\nBits(S)";
-            this.rdCompPerdidaBits.UseVisualStyleBackColor = true;
-            this.rdCompPerdidaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdAjusteBrilloBits
-            // 
-            this.rdAjusteBrilloBits.AutoSize = true;
-            this.rdAjusteBrilloBits.Location = new System.Drawing.Point(0, 134);
-            this.rdAjusteBrilloBits.Margin = new System.Windows.Forms.Padding(2);
-            this.rdAjusteBrilloBits.Name = "rdAjusteBrilloBits";
-            this.rdAjusteBrilloBits.Size = new System.Drawing.Size(118, 17);
-            this.rdAjusteBrilloBits.TabIndex = 12;
-            this.rdAjusteBrilloBits.TabStop = true;
-            this.rdAjusteBrilloBits.Text = "Ajuste Brillo - Bits(S)";
-            this.rdAjusteBrilloBits.UseVisualStyleBackColor = true;
-            this.rdAjusteBrilloBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdGaussinBits
-            // 
-            this.rdGaussinBits.AutoSize = true;
-            this.rdGaussinBits.Location = new System.Drawing.Point(0, 112);
-            this.rdGaussinBits.Margin = new System.Windows.Forms.Padding(2);
-            this.rdGaussinBits.Name = "rdGaussinBits";
-            this.rdGaussinBits.Size = new System.Drawing.Size(123, 17);
-            this.rdGaussinBits.TabIndex = 3;
-            this.rdGaussinBits.TabStop = true;
-            this.rdGaussinBits.Text = "Gaussin Blur - Bits(S)";
-            this.rdGaussinBits.UseVisualStyleBackColor = true;
-            this.rdGaussinBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdSepiaBits
-            // 
-            this.rdSepiaBits.AutoSize = true;
-            this.rdSepiaBits.Location = new System.Drawing.Point(0, 89);
-            this.rdSepiaBits.Name = "rdSepiaBits";
-            this.rdSepiaBits.Size = new System.Drawing.Size(91, 17);
-            this.rdSepiaBits.TabIndex = 6;
-            this.rdSepiaBits.Text = "Sepia - Bits(S)";
-            this.rdSepiaBits.UseVisualStyleBackColor = true;
-            this.rdSepiaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
             // rdMotionBlur
             // 
             this.rdMotionBlur.AutoSize = true;
-            this.rdMotionBlur.Location = new System.Drawing.Point(194, 89);
+            this.rdMotionBlur.Location = new System.Drawing.Point(177, 76);
             this.rdMotionBlur.Name = "rdMotionBlur";
             this.rdMotionBlur.Size = new System.Drawing.Size(75, 17);
             this.rdMotionBlur.TabIndex = 8;
@@ -178,35 +103,100 @@ namespace BitmapFilters
             this.rdMotionBlur.UseVisualStyleBackColor = true;
             this.rdMotionBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
+            // rdParedLadrillo
+            // 
+            this.rdParedLadrillo.AutoSize = true;
+            this.rdParedLadrillo.Location = new System.Drawing.Point(2, 198);
+            this.rdParedLadrillo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdParedLadrillo.Name = "rdParedLadrillo";
+            this.rdParedLadrillo.Size = new System.Drawing.Size(143, 17);
+            this.rdParedLadrillo.TabIndex = 18;
+            this.rdParedLadrillo.TabStop = true;
+            this.rdParedLadrillo.Text = "Textura Pared de Ladrillo";
+            this.rdParedLadrillo.UseVisualStyleBackColor = true;
+            this.rdParedLadrillo.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdSegmentacion
+            // 
+            this.rdSegmentacion.AutoSize = true;
+            this.rdSegmentacion.Location = new System.Drawing.Point(0, 176);
+            this.rdSegmentacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdSegmentacion.Name = "rdSegmentacion";
+            this.rdSegmentacion.Size = new System.Drawing.Size(93, 17);
+            this.rdSegmentacion.TabIndex = 16;
+            this.rdSegmentacion.TabStop = true;
+            this.rdSegmentacion.Text = "Segmentación";
+            this.rdSegmentacion.UseVisualStyleBackColor = true;
+            this.rdSegmentacion.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdCompPerdida
+            // 
+            this.rdCompPerdida.AutoSize = true;
+            this.rdCompPerdida.Location = new System.Drawing.Point(0, 156);
+            this.rdCompPerdida.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdCompPerdida.Name = "rdCompPerdida";
+            this.rdCompPerdida.Size = new System.Drawing.Size(140, 17);
+            this.rdCompPerdida.TabIndex = 14;
+            this.rdCompPerdida.TabStop = true;
+            this.rdCompPerdida.Text = "Compresión con Pérdida";
+            this.rdCompPerdida.UseVisualStyleBackColor = true;
+            this.rdCompPerdida.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdAjusteBrillo
+            // 
+            this.rdAjusteBrillo.AutoSize = true;
+            this.rdAjusteBrillo.Location = new System.Drawing.Point(0, 134);
+            this.rdAjusteBrillo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdAjusteBrillo.Name = "rdAjusteBrillo";
+            this.rdAjusteBrillo.Size = new System.Drawing.Size(79, 17);
+            this.rdAjusteBrillo.TabIndex = 12;
+            this.rdAjusteBrillo.TabStop = true;
+            this.rdAjusteBrillo.Text = "Ajuste Brillo";
+            this.rdAjusteBrillo.UseVisualStyleBackColor = true;
+            this.rdAjusteBrillo.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
             // rdGausianBlur
             // 
             this.rdGausianBlur.AutoSize = true;
-            this.rdGausianBlur.Location = new System.Drawing.Point(194, 66);
+            this.rdGausianBlur.Location = new System.Drawing.Point(178, 54);
+            this.rdGausianBlur.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rdGausianBlur.Name = "rdGausianBlur";
             this.rdGausianBlur.Size = new System.Drawing.Size(82, 17);
             this.rdGausianBlur.TabIndex = 10;
+            this.rdGausianBlur.TabStop = true;
             this.rdGausianBlur.Text = "GausianBlur";
             this.rdGausianBlur.UseVisualStyleBackColor = true;
             this.rdGausianBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
-            // rdGrayscaleBits
+            // rdSepia
             // 
-            this.rdGrayscaleBits.AutoSize = true;
-            this.rdGrayscaleBits.Checked = true;
-            this.rdGrayscaleBits.Location = new System.Drawing.Point(0, 19);
-            this.rdGrayscaleBits.Name = "rdGrayscaleBits";
-            this.rdGrayscaleBits.Size = new System.Drawing.Size(128, 17);
-            this.rdGrayscaleBits.TabIndex = 3;
-            this.rdGrayscaleBits.TabStop = true;
-            this.rdGrayscaleBits.Text = "Escala Grises - Bits(S)";
-            this.rdGrayscaleBits.UseVisualStyleBackColor = true;
-            this.rdGrayscaleBits.CheckedChanged += new System.EventHandler(this.WhichRBWasClicked);
-            this.rdGrayscaleBits.Click += new System.EventHandler(this.WhichRBWasClicked);
+            this.rdSepia.AutoSize = true;
+            this.rdSepia.Location = new System.Drawing.Point(0, 89);
+            this.rdSepia.Name = "rdSepia";
+            this.rdSepia.Size = new System.Drawing.Size(52, 17);
+            this.rdSepia.TabIndex = 6;
+            this.rdSepia.Text = "Sepia";
+            this.rdSepia.UseVisualStyleBackColor = true;
+            this.rdSepia.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdGrayscale
+            // 
+            this.rdGrayscale.AutoSize = true;
+            this.rdGrayscale.Checked = true;
+            this.rdGrayscale.Location = new System.Drawing.Point(0, 19);
+            this.rdGrayscale.Name = "rdGrayscale";
+            this.rdGrayscale.Size = new System.Drawing.Size(89, 17);
+            this.rdGrayscale.TabIndex = 3;
+            this.rdGrayscale.TabStop = true;
+            this.rdGrayscale.Text = "Escala Grises";
+            this.rdGrayscale.UseVisualStyleBackColor = true;
+            this.rdGrayscale.CheckedChanged += new System.EventHandler(this.WhichRBWasClicked);
+            this.rdGrayscale.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdEmboss
             // 
             this.rdEmboss.AutoSize = true;
-            this.rdEmboss.Location = new System.Drawing.Point(194, 42);
+            this.rdEmboss.Location = new System.Drawing.Point(178, 32);
             this.rdEmboss.Name = "rdEmboss";
             this.rdEmboss.Size = new System.Drawing.Size(62, 17);
             this.rdEmboss.TabIndex = 9;
@@ -217,7 +207,7 @@ namespace BitmapFilters
             // rdFindEdges
             // 
             this.rdFindEdges.AutoSize = true;
-            this.rdFindEdges.Location = new System.Drawing.Point(194, 19);
+            this.rdFindEdges.Location = new System.Drawing.Point(178, 10);
             this.rdFindEdges.Name = "rdFindEdges";
             this.rdFindEdges.Size = new System.Drawing.Size(78, 17);
             this.rdFindEdges.TabIndex = 7;
@@ -225,27 +215,41 @@ namespace BitmapFilters
             this.rdFindEdges.UseVisualStyleBackColor = true;
             this.rdFindEdges.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
-            // rdNegativeBits
+            // rdNegative
             // 
-            this.rdNegativeBits.AutoSize = true;
-            this.rdNegativeBits.Location = new System.Drawing.Point(0, 66);
-            this.rdNegativeBits.Name = "rdNegativeBits";
-            this.rdNegativeBits.Size = new System.Drawing.Size(107, 17);
-            this.rdNegativeBits.TabIndex = 5;
-            this.rdNegativeBits.Text = "Negativo - Bits(S)";
-            this.rdNegativeBits.UseVisualStyleBackColor = true;
-            this.rdNegativeBits.Click += new System.EventHandler(this.WhichRBWasClicked);
+            this.rdNegative.AutoSize = true;
+            this.rdNegative.Location = new System.Drawing.Point(0, 66);
+            this.rdNegative.Name = "rdNegative";
+            this.rdNegative.Size = new System.Drawing.Size(68, 17);
+            this.rdNegative.TabIndex = 5;
+            this.rdNegative.Text = "Negativo";
+            this.rdNegative.UseVisualStyleBackColor = true;
+            this.rdNegative.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
-            // rdTransparencyBits
+            // rdTransparency
             // 
-            this.rdTransparencyBits.AutoSize = true;
-            this.rdTransparencyBits.Location = new System.Drawing.Point(0, 42);
-            this.rdTransparencyBits.Name = "rdTransparencyBits";
-            this.rdTransparencyBits.Size = new System.Drawing.Size(132, 17);
-            this.rdTransparencyBits.TabIndex = 4;
-            this.rdTransparencyBits.Text = "Transparencia - Bits(S)";
-            this.rdTransparencyBits.UseVisualStyleBackColor = true;
-            this.rdTransparencyBits.Click += new System.EventHandler(this.WhichRBWasClicked);
+            this.rdTransparency.AutoSize = true;
+            this.rdTransparency.Location = new System.Drawing.Point(0, 42);
+            this.rdTransparency.Name = "rdTransparency";
+            this.rdTransparency.Size = new System.Drawing.Size(93, 17);
+            this.rdTransparency.TabIndex = 4;
+            this.rdTransparency.Text = "Transparencia";
+            this.rdTransparency.UseVisualStyleBackColor = true;
+            this.rdTransparency.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdDilatacion
+            // 
+            this.rdDilatacion.Location = new System.Drawing.Point(0, 0);
+            this.rdDilatacion.Name = "rdDilatacion";
+            this.rdDilatacion.Size = new System.Drawing.Size(104, 24);
+            this.rdDilatacion.TabIndex = 0;
+            // 
+            // rdSolarise
+            // 
+            this.rdSolarise.Location = new System.Drawing.Point(0, 0);
+            this.rdSolarise.Name = "rdSolarise";
+            this.rdSolarise.Size = new System.Drawing.Size(104, 24);
+            this.rdSolarise.TabIndex = 0;
             // 
             // grbOutput
             // 
@@ -253,10 +257,10 @@ namespace BitmapFilters
             this.grbOutput.Controls.Add(this.lblTiempoTitle);
             this.grbOutput.Location = new System.Drawing.Point(358, 12);
             this.grbOutput.Name = "grbOutput";
-            this.grbOutput.Size = new System.Drawing.Size(215, 280);
+            this.grbOutput.Size = new System.Drawing.Size(293, 151);
             this.grbOutput.TabIndex = 1;
             this.grbOutput.TabStop = false;
-            this.grbOutput.Text = "Duración";
+            this.grbOutput.Text = "Estado";
             // 
             // lblTimeTaken
             // 
@@ -265,9 +269,8 @@ namespace BitmapFilters
             this.lblTimeTaken.Location = new System.Drawing.Point(6, 86);
             this.lblTimeTaken.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTimeTaken.Name = "lblTimeTaken";
-            this.lblTimeTaken.Size = new System.Drawing.Size(31, 20);
+            this.lblTimeTaken.Size = new System.Drawing.Size(0, 20);
             this.lblTimeTaken.TabIndex = 1;
-            this.lblTimeTaken.Text = "0.0";
             this.lblTimeTaken.Click += new System.EventHandler(this.lblTimeTaken_Click);
             // 
             // lblTiempoTitle
@@ -277,20 +280,21 @@ namespace BitmapFilters
             this.lblTiempoTitle.Location = new System.Drawing.Point(6, 42);
             this.lblTiempoTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblTiempoTitle.Name = "lblTiempoTitle";
-            this.lblTiempoTitle.Size = new System.Drawing.Size(65, 20);
+            this.lblTiempoTitle.Size = new System.Drawing.Size(0, 20);
             this.lblTiempoTitle.TabIndex = 0;
-            this.lblTiempoTitle.Text = "Tiempo:";
             this.lblTiempoTitle.Click += new System.EventHandler(this.lblTiempoTitle_Click);
             // 
             // temporizador
             // 
-            this.temporizador.Tick += new System.EventHandler(this.temporizador_Tick);
+            this.temporizador.Enabled = true;
+            this.temporizador.Interval = 1D;
+            this.temporizador.SynchronizingObject = this;
             // 
             // cmbCores
             // 
             this.cmbCores.FormattingEnabled = true;
-            this.cmbCores.Location = new System.Drawing.Point(83, 298);
-            this.cmbCores.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbCores.Location = new System.Drawing.Point(239, 358);
+            this.cmbCores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbCores.Name = "cmbCores";
             this.cmbCores.Size = new System.Drawing.Size(77, 21);
             this.cmbCores.TabIndex = 3;
@@ -298,7 +302,7 @@ namespace BitmapFilters
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 298);
+            this.label1.Location = new System.Drawing.Point(174, 353);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 26);
@@ -308,8 +312,8 @@ namespace BitmapFilters
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(358, 298);
-            this.btnStart.Margin = new System.Windows.Forms.Padding(2);
+            this.btnStart.Location = new System.Drawing.Point(394, 347);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(215, 39);
             this.btnStart.TabIndex = 6;
@@ -320,21 +324,21 @@ namespace BitmapFilters
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(169, 298);
+            this.label2.Location = new System.Drawing.Point(11, 361);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Tipo de metodo";
+            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Método";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // cmbMethods
             // 
             this.cmbMethods.FormattingEnabled = true;
-            this.cmbMethods.Location = new System.Drawing.Point(254, 298);
+            this.cmbMethods.Location = new System.Drawing.Point(71, 361);
             this.cmbMethods.Margin = new System.Windows.Forms.Padding(2);
             this.cmbMethods.Name = "cmbMethods";
-            this.cmbMethods.Size = new System.Drawing.Size(77, 21);
+            this.cmbMethods.Size = new System.Drawing.Size(59, 21);
             this.cmbMethods.TabIndex = 7;
             this.cmbMethods.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -342,7 +346,7 @@ namespace BitmapFilters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(589, 371);
+            this.ClientSize = new System.Drawing.Size(661, 444);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbMethods);
             this.Controls.Add(this.btnStart);
@@ -361,6 +365,7 @@ namespace BitmapFilters
             this.grbInput.PerformLayout();
             this.grbOutput.ResumeLayout(false);
             this.grbOutput.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.temporizador)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,28 +375,32 @@ namespace BitmapFilters
 
         private System.Windows.Forms.GroupBox grbInput;
         private System.Windows.Forms.GroupBox grbOutput;
-        private System.Windows.Forms.RadioButton rdGrayscaleBits;
-        private System.Windows.Forms.RadioButton rdTransparencyBits;
-        private System.Windows.Forms.RadioButton rdSepiaBits;
-        private System.Windows.Forms.RadioButton rdNegativeBits;
-        private System.Windows.Forms.RadioButton rdParedLadrilloBits;
-        private System.Windows.Forms.RadioButton rdSegmentacionBits;
-        private System.Windows.Forms.RadioButton rdCompPerdidaBits;
-        private System.Windows.Forms.RadioButton rdAjusteBrilloBits;
-        private System.Windows.Forms.RadioButton rdGaussinBits;
+        private System.Windows.Forms.RadioButton rdGrayscale;
+        private System.Windows.Forms.RadioButton rdTransparency;
+        private System.Windows.Forms.RadioButton rdSepia;
+        private System.Windows.Forms.RadioButton rdNegative;
+        private System.Windows.Forms.RadioButton rdParedLadrillo;
+        private System.Windows.Forms.RadioButton rdSegmentacion;
+        private System.Windows.Forms.RadioButton rdCompPerdida;
+        private System.Windows.Forms.RadioButton rdAjusteBrillo;
+        private System.Windows.Forms.RadioButton rdGausianBlur;
         private System.Windows.Forms.ComboBox cmbCores;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTimeTaken;
         private System.Windows.Forms.Label lblTiempoTitle;
         private System.Windows.Forms.Button btnStart;
-        public System.Windows.Forms.Timer temporizador;
+        public System.Timers.Timer temporizador;
         private System.Windows.Forms.RadioButton rdMotionBlur;
-        private System.Windows.Forms.RadioButton rdGausianBlur;
         private System.Windows.Forms.RadioButton rdEmboss;
         private System.Windows.Forms.RadioButton rdFindEdges;
         private System.Windows.Forms.RadioButton rdtexture;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cmbMethods;
+        private System.Windows.Forms.RadioButton rdSolarise;
+        private System.Windows.Forms.RadioButton rdDilatacion;
+        private System.Windows.Forms.TrackBar valueBar;
+        private System.Windows.Forms.Label lblBarValue;
+        private System.Windows.Forms.ComboBox cmbMetodo;
     }
 }
 
