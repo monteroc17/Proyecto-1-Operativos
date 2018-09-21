@@ -49,6 +49,9 @@ namespace BitmapFilters
             {
                 cmbCores.Items.Add(index + 1);
             }
+            cmbMethods.Items.Add("Secuencial");
+            cmbMethods.Items.Add("Paralelo");
+            cmbMethods.Items.Add("Clusters");
 
         }
 
@@ -79,6 +82,7 @@ namespace BitmapFilters
             
             int counta = 0;
             temporizador.Start();//starts the timer
+            Boolean bandera = true;
             foreach (var filename in files)
             {
                 Bitmap bmp = null;
@@ -88,10 +92,40 @@ namespace BitmapFilters
                 {
                     if (rdGrayscaleBits.Checked == true)
                     {
-                        bmp = ExtBitmap.CopyAsGrayscale(i);
-                        Console.WriteLine(bmp);
-                        saveImage(bmp, path, filename.format, counta);
-                        counta++;
+                        if (cmbMethods.SelectedItem.ToString() == "Secuencial")
+                        {
+                            bmp = ExtBitmap.CopyAsGrayscale(i);
+                        }
+                        if(cmbMethods.SelectedItem.ToString() == "Paralelo")
+                        {
+                            if(bandera)
+                            {
+                                Console.WriteLine(files[0].path.ToString());
+                                Console.WriteLine(files[1].path.ToString());
+                                Bitmap primeraImagen = null;
+                                primeraImagen = new Bitmap(files[0].path.ToString());
+                                Bitmap segundaImagen = null;
+                                segundaImagen = new Bitmap(files[1].path.ToString());
+                                Bitmap respuesta =Clusters.UnirImagen(primeraImagen,segundaImagen);
+                                saveImage(respuesta, path, filename.format, counta);
+                                counta++;
+                                bandera=false;
+                            }
+                        }
+                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        {
+                            Bitmap[] lista=Clusters.trocearImagen(bmp);
+                            for(int x = 0; x < lista.Length; x++)
+                            {
+                                saveImage(lista[x], path, filename.format,counta);
+                                counta++;
+                            }
+                        }
+                        if(cmbMethods.SelectedItem.ToString() != "Clusters")
+                        {
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
+                        }
                     }
                     else if (rdFindEdges.Checked == true)
                     {
@@ -142,6 +176,13 @@ namespace BitmapFilters
                         counta++;
 
                     }
+                    else if (rdtexture.Checked == true)
+                    {
+                        bmp = ExtBitmap.texture(bmp);
+                        saveImage(bmp, path, filename.format, counta);
+                        counta++;
+
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -175,6 +216,16 @@ namespace BitmapFilters
         }
 
         private void lblTimeTaken_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

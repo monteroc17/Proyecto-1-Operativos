@@ -31,13 +31,18 @@ namespace BitmapFilters
         {
             this.components = new System.ComponentModel.Container();
             this.grbInput = new System.Windows.Forms.GroupBox();
+            this.rdtexture = new System.Windows.Forms.RadioButton();
             this.rdParedLadrilloBits = new System.Windows.Forms.RadioButton();
             this.rdSegmentacionBits = new System.Windows.Forms.RadioButton();
             this.rdCompPerdidaBits = new System.Windows.Forms.RadioButton();
             this.rdAjusteBrilloBits = new System.Windows.Forms.RadioButton();
             this.rdGaussinBits = new System.Windows.Forms.RadioButton();
             this.rdSepiaBits = new System.Windows.Forms.RadioButton();
+            this.rdMotionBlur = new System.Windows.Forms.RadioButton();
+            this.rdGausianBlur = new System.Windows.Forms.RadioButton();
             this.rdGrayscaleBits = new System.Windows.Forms.RadioButton();
+            this.rdEmboss = new System.Windows.Forms.RadioButton();
+            this.rdFindEdges = new System.Windows.Forms.RadioButton();
             this.rdNegativeBits = new System.Windows.Forms.RadioButton();
             this.rdTransparencyBits = new System.Windows.Forms.RadioButton();
             this.grbOutput = new System.Windows.Forms.GroupBox();
@@ -47,16 +52,15 @@ namespace BitmapFilters
             this.cmbCores = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
-            this.rdMotionBlur = new System.Windows.Forms.RadioButton();
-            this.rdGausianBlur = new System.Windows.Forms.RadioButton();
-            this.rdEmboss = new System.Windows.Forms.RadioButton();
-            this.rdFindEdges = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbMethods = new System.Windows.Forms.ComboBox();
             this.grbInput.SuspendLayout();
             this.grbOutput.SuspendLayout();
             this.SuspendLayout();
             // 
             // grbInput
             // 
+            this.grbInput.Controls.Add(this.rdtexture);
             this.grbInput.Controls.Add(this.rdParedLadrilloBits);
             this.grbInput.Controls.Add(this.rdSegmentacionBits);
             this.grbInput.Controls.Add(this.rdCompPerdidaBits);
@@ -76,6 +80,16 @@ namespace BitmapFilters
             this.grbInput.TabIndex = 0;
             this.grbInput.TabStop = false;
             this.grbInput.Text = "Opciones de Filtros";
+            // 
+            // rdtexture
+            // 
+            this.rdtexture.AutoSize = true;
+            this.rdtexture.Location = new System.Drawing.Point(194, 112);
+            this.rdtexture.Name = "rdtexture";
+            this.rdtexture.Size = new System.Drawing.Size(57, 17);
+            this.rdtexture.TabIndex = 19;
+            this.rdtexture.Text = "texture";
+            this.rdtexture.UseVisualStyleBackColor = true;
             // 
             // rdParedLadrilloBits
             // 
@@ -153,6 +167,28 @@ namespace BitmapFilters
             this.rdSepiaBits.UseVisualStyleBackColor = true;
             this.rdSepiaBits.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
+            // rdMotionBlur
+            // 
+            this.rdMotionBlur.AutoSize = true;
+            this.rdMotionBlur.Location = new System.Drawing.Point(194, 89);
+            this.rdMotionBlur.Name = "rdMotionBlur";
+            this.rdMotionBlur.Size = new System.Drawing.Size(75, 17);
+            this.rdMotionBlur.TabIndex = 8;
+            this.rdMotionBlur.Text = "MotionBlur";
+            this.rdMotionBlur.UseVisualStyleBackColor = true;
+            this.rdMotionBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdGausianBlur
+            // 
+            this.rdGausianBlur.AutoSize = true;
+            this.rdGausianBlur.Location = new System.Drawing.Point(194, 66);
+            this.rdGausianBlur.Name = "rdGausianBlur";
+            this.rdGausianBlur.Size = new System.Drawing.Size(82, 17);
+            this.rdGausianBlur.TabIndex = 10;
+            this.rdGausianBlur.Text = "GausianBlur";
+            this.rdGausianBlur.UseVisualStyleBackColor = true;
+            this.rdGausianBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
             // rdGrayscaleBits
             // 
             this.rdGrayscaleBits.AutoSize = true;
@@ -166,6 +202,28 @@ namespace BitmapFilters
             this.rdGrayscaleBits.UseVisualStyleBackColor = true;
             this.rdGrayscaleBits.CheckedChanged += new System.EventHandler(this.WhichRBWasClicked);
             this.rdGrayscaleBits.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdEmboss
+            // 
+            this.rdEmboss.AutoSize = true;
+            this.rdEmboss.Location = new System.Drawing.Point(194, 42);
+            this.rdEmboss.Name = "rdEmboss";
+            this.rdEmboss.Size = new System.Drawing.Size(62, 17);
+            this.rdEmboss.TabIndex = 9;
+            this.rdEmboss.Text = "Emboss";
+            this.rdEmboss.UseVisualStyleBackColor = true;
+            this.rdEmboss.Click += new System.EventHandler(this.WhichRBWasClicked);
+            // 
+            // rdFindEdges
+            // 
+            this.rdFindEdges.AutoSize = true;
+            this.rdFindEdges.Location = new System.Drawing.Point(194, 19);
+            this.rdFindEdges.Name = "rdFindEdges";
+            this.rdFindEdges.Size = new System.Drawing.Size(78, 17);
+            this.rdFindEdges.TabIndex = 7;
+            this.rdFindEdges.Text = "Find Edges";
+            this.rdFindEdges.UseVisualStyleBackColor = true;
+            this.rdFindEdges.Click += new System.EventHandler(this.WhichRBWasClicked);
             // 
             // rdNegativeBits
             // 
@@ -231,7 +289,7 @@ namespace BitmapFilters
             // cmbCores
             // 
             this.cmbCores.FormattingEnabled = true;
-            this.cmbCores.Location = new System.Drawing.Point(228, 298);
+            this.cmbCores.Location = new System.Drawing.Point(83, 298);
             this.cmbCores.Margin = new System.Windows.Forms.Padding(2);
             this.cmbCores.Name = "cmbCores";
             this.cmbCores.Size = new System.Drawing.Size(77, 21);
@@ -240,7 +298,7 @@ namespace BitmapFilters
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(156, 298);
+            this.label1.Location = new System.Drawing.Point(11, 298);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 26);
@@ -259,55 +317,34 @@ namespace BitmapFilters
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // rdMotionBlur
+            // label2
             // 
-            this.rdMotionBlur.AutoSize = true;
-            this.rdMotionBlur.Location = new System.Drawing.Point(194, 89);
-            this.rdMotionBlur.Name = "rdMotionBlur";
-            this.rdMotionBlur.Size = new System.Drawing.Size(75, 17);
-            this.rdMotionBlur.TabIndex = 8;
-            this.rdMotionBlur.Text = "MotionBlur";
-            this.rdMotionBlur.UseVisualStyleBackColor = true;
-            this.rdMotionBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(169, 298);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Tipo de metodo";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // rdGausianBlur
+            // cmbMethods
             // 
-            this.rdGausianBlur.AutoSize = true;
-            this.rdGausianBlur.Location = new System.Drawing.Point(194, 66);
-            this.rdGausianBlur.Name = "rdGausianBlur";
-            this.rdGausianBlur.Size = new System.Drawing.Size(82, 17);
-            this.rdGausianBlur.TabIndex = 10;
-            this.rdGausianBlur.Text = "GausianBlur";
-            this.rdGausianBlur.UseVisualStyleBackColor = true;
-            this.rdGausianBlur.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdEmboss
-            // 
-            this.rdEmboss.AutoSize = true;
-            this.rdEmboss.Location = new System.Drawing.Point(194, 42);
-            this.rdEmboss.Name = "rdEmboss";
-            this.rdEmboss.Size = new System.Drawing.Size(62, 17);
-            this.rdEmboss.TabIndex = 9;
-            this.rdEmboss.Text = "Emboss";
-            this.rdEmboss.UseVisualStyleBackColor = true;
-            this.rdEmboss.Click += new System.EventHandler(this.WhichRBWasClicked);
-            // 
-            // rdFindEdges
-            // 
-            this.rdFindEdges.AutoSize = true;
-            this.rdFindEdges.Location = new System.Drawing.Point(194, 19);
-            this.rdFindEdges.Name = "rdFindEdges";
-            this.rdFindEdges.Size = new System.Drawing.Size(78, 17);
-            this.rdFindEdges.TabIndex = 7;
-            this.rdFindEdges.Text = "Find Edges";
-            this.rdFindEdges.UseVisualStyleBackColor = true;
-            this.rdFindEdges.Click += new System.EventHandler(this.WhichRBWasClicked);
+            this.cmbMethods.FormattingEnabled = true;
+            this.cmbMethods.Location = new System.Drawing.Point(254, 298);
+            this.cmbMethods.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbMethods.Name = "cmbMethods";
+            this.cmbMethods.Size = new System.Drawing.Size(77, 21);
+            this.cmbMethods.TabIndex = 7;
+            this.cmbMethods.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(589, 371);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cmbMethods);
             this.Controls.Add(this.btnStart);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbCores);
@@ -352,6 +389,9 @@ namespace BitmapFilters
         private System.Windows.Forms.RadioButton rdGausianBlur;
         private System.Windows.Forms.RadioButton rdEmboss;
         private System.Windows.Forms.RadioButton rdFindEdges;
+        private System.Windows.Forms.RadioButton rdtexture;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cmbMethods;
     }
 }
 

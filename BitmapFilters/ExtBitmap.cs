@@ -29,7 +29,6 @@ namespace BitmapFilters
 
             return bmpNew;
         }
-
         private static Bitmap ApplyColorMatrix(Image sourceImage, ColorMatrix colorMatrix)
         {
             Bitmap bmp32BppSource = GetArgbCopy(sourceImage);
@@ -328,6 +327,20 @@ namespace BitmapFilters
                                     {  6, 24, 36, 24,  6},
                                      { 4, 16, 24, 16,  41},
                                       {  1,  4,  6,  4,  1}
+                                };
+            return SafeImageConvolution(image, matr);
+
+        }
+        public static Bitmap texture(Bitmap image)
+        {
+            ConvMatrix matr = new ConvMatrix();
+            matr.Size = 5;
+            matr.Matrix = new int[5, 5] {
+                                    { 21,  22,  23,  24,25},
+                                    {16, 17, 18, 19,  20},
+                                    {  11, 12, 13, 14,  15},
+                                     { 6, 7, 8, 9,  10},
+                                      {  1,  2,  3,  4,  5}
                                 };
             return SafeImageConvolution(image, matr);
 
