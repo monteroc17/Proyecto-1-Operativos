@@ -47,7 +47,7 @@ namespace BitmapFilters
             return bmp32BppDest;
         }
 
-        public static Bitmap CopyWithTransparency(this Image sourceImage, byte alphaComponent = 100)
+        public static Bitmap CopyWithTransparency(this Image sourceImage, byte alphaComponent = 20)
         {
             Bitmap bmpNew = GetArgbCopy(sourceImage);
             BitmapData bmpData = bmpNew.LockBits(new Rectangle(0, 0, sourceImage.Width, sourceImage.Height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
