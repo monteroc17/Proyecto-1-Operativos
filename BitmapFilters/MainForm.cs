@@ -13,6 +13,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections;
+using System.Net;
+
 namespace BitmapFilters
 {
     public partial class MainForm : Form
@@ -194,6 +196,48 @@ namespace BitmapFilters
             lblTimeTaken.Text = "Proceso terminado.\nTiempo de ejecución: " + cont +"ms";
             temporizador.Stop();
         }
+        /// <summary>
+        /// Request a al web service
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="post"></param>
+        /// <param name="refer"></param>
+        /// <returns></returns>
+        public string HttpPost(string url, string post, string refer = "")
+        {
+            System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
+            //request.CookieContainer = cJar;
+            //request.UserAgent = UserAgent;
+            request.KeepAlive = false;
+            request.Method = "POST";
+            request.Referer = refer;
+            byte[] postBytes = Encoding.ASCII.GetBytes(post);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = postBytes.Length;
+
+            Stream requestStream = request.GetRequestStream();
+            requestStream.Write(postBytes, 0, postBytes.Length);
+            requestStream.Close();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader sr = new StreamReader(response.GetResponseStream());
+            return sr.ReadToEnd();
+        }
+
+        public static void POST(string url, JSON data, JSONRequestCompleteEvent callback)
+        {
+            WebClient wc = new WebClient();
+            string rdata = "";
+            foreach (string key in data.Keys)
+            {
+                rdata += key + "=" + data[key] + "&";
+            }
+            postCompleteEvent = callback;
+            wc.UploadStringCompleted += new UploadStringCompletedEventHandler(wc_UploadStringCompleted);
+            wc.Headers["Content-Type"] = "application/x-www-form-urlencoded";
+            wc.Encoding = Encoding.UTF8;
+            wc.UploadStringAsync(new Uri(url), "POST", rdata);
+        }
+
         public void saveImage(Bitmap bmp,string path,string format,int counta)
         {
             Console.WriteLine(bmp);

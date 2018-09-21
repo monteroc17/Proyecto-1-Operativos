@@ -7,10 +7,18 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Timers;
+using System.Net;
+using System.Net.Sockets;
 namespace BitmapFilters
 {
     class Clusters
-    {
+    { 
+
+        /// <summary>
+        /// Funcion que se encarga de partir una imagen en trozos
+        /// </summary>
+        /// <param name="sourceImage"></param>
+        /// <returns></returns>
         public static Bitmap[]trocearImagen(Image sourceImage)
         {
             int filas = 2;
@@ -61,13 +69,14 @@ namespace BitmapFilters
             }
             return trozos;
         }
+        /// <summary>
+        /// Funcion que se encarga de unir dos imagenes
+        /// </summary>
+        /// <param name="imagen1"></param>
+        /// <param name="imagen2"></param>
+        /// <returns></returns>
         public static Bitmap UnirImagen(Bitmap imagen1,Bitmap imagen2)
         {
-            Console.WriteLine("Entro a unir");
-            Console.WriteLine("1 width" + imagen1.Width);
-            Console.WriteLine("1 width" + imagen1.Height);
-            Console.WriteLine("2 width" + imagen2.Width);
-            Console.WriteLine("2 width" + imagen2.Height);
             int width = imagen1.Width;
             int height = imagen2.Height * 2;
             Bitmap fullBmp = new Bitmap(width, height);
@@ -76,6 +85,47 @@ namespace BitmapFilters
             gr.DrawImage(imagen2, 0, imagen1.Height);
             Console.WriteLine("La unio con exito");
             return fullBmp;
+        }
+        /// <summary>
+        /// Request a al web service
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="post"></param>
+        /// <param name="refer"></param>
+        /// <returns></returns>
+        public static string HttpPost(string url, string post, string refer = "")
+        {
+            System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
+            //request.CookieContainer = cJar;
+            //request.UserAgent = UserAgent;
+            request.KeepAlive = false;
+            request.Method = "POST";
+            request.Referer = refer;
+            byte[] postBytes = Encoding.ASCII.GetBytes(post);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = postBytes.Length;
+            Stream requestStream = request.GetRequestStream();
+            requestStream.Write(postBytes, 0, postBytes.Length);
+            requestStream.Close();
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            StreamReader sr = new StreamReader(response.GetResponseStream());
+            return sr.ReadToEnd();
+        }
+        public static string Post()
+        {
+             private static readonly HttpClient client = new HttpClient();
+             var values = new Dictionary<string, string>
+                        {
+                           { "thing1", "hello" },
+                           { "thing2", "world" }
+                        };
+
+            var content = new FormUrlEncodedContent(values);
+
+            var response = await client.PostAsync("http://www.example.com/recepticle.aspx", content);
+
+            var responseString = await response.Content.ReadAsStringAsync();
+                return responseString;
         }
     }
 
