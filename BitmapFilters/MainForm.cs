@@ -212,13 +212,13 @@ namespace BitmapFilters
                     {
                         if (cmbMethods.SelectedItem.ToString().Equals("Secuencial"))
                         {
-                            //bmp = SequentialFilters.Contrast(bmp,);
-                           // saveImage(bmp, path, filename.format, counta);
-                           // counta++;
+                            bmp = SequentialFilters.Contrast(bmp,valueBar1.Value);
+                            saveImage(bmp, path, filename.format, counta);
+                            counta++;
                         }
                         else if (cmbMethods.SelectedItem.ToString().Equals("Paralelo"))
                         {
-                            bmp = ParallelFilters.Contrast(bmp, valueBar.Value);
+                            bmp = ParallelFilters.Contrast(bmp, valueBar1.Value);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
@@ -362,13 +362,13 @@ namespace BitmapFilters
         }
         private void turnBarOn(object sender, EventArgs e)
         {
-            valueBar.Visible = true;
-            lblBarValue.Visible = true;
+            valueBar1.Visible = true;
+            lblBarValueData.Visible = true;
         }
 
         private void valueBar_Scroll(object sender, EventArgs e)
         {
-            lblBarValue.Text = valueBar.Value.ToString();
+            lblBarValueData.Text = valueBar1.Value.ToString();
         }
         
     }
