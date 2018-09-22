@@ -11,7 +11,10 @@ using System.IO;
 using System.Collections;
 using System.Net;
 using System.Diagnostics;
+using System.Drawing.Imaging;
 
+using System.Threading;
+using System.Threading.Tasks;
 namespace BitmapFilters
 {
     public partial class MainForm : Form
@@ -130,11 +133,40 @@ namespace BitmapFilters
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
                             Bitmap[] lista = Clusters.trocearImagen(bmp);
-                            for (int x = 0; x < lista.Length; x++)
+                            MemoryStream memoryStream = new MemoryStream();
+                            lista[0].Save(memoryStream, devuelveFormato(filename.format));
+                            memoryStream.Position = 0;
+                            byte[] byteBuffer = memoryStream.ToArray();
+                            memoryStream.Close();
+                            string base64String = Convert.ToBase64String(byteBuffer);
+
+
+                            MemoryStream memoryStream1 = new MemoryStream();
+                            lista[1].Save(memoryStream1, devuelveFormato(filename.format));
+                            memoryStream1.Position = 0;
+                            byte[] byteBuffer1 = memoryStream1.ToArray();
+                            memoryStream1.Close();
+                            string base64String1 = Convert.ToBase64String(byteBuffer);
+                            string imagen1 = "";
+                            string imagen2 = "";
+                            /*
+                            Parallel.Invoke(() =>
+                            {
+                                imagen1= Clusters.HttpPostWebClient("", "", base64String);
+                                //Aun no se sabe que recibe
+                            },  // close first Action
+
+                             () =>
+                             {
+                                 imagen2=Clusters.HttpPostWebClient("", "", base64String1);
+                             }); //close parallel.*/
+                            /*for (int x = 0; x < lista.Length; x++)
                             {
                                 saveImage(lista[x], path, filename.format, counta);
                                 counta++;
-                            }
+                            }*/
+                            string respusta = Clusters.HttpPostWebClientPrueba("http://172.24.65.31:8080/todosProductos", "prueba","sss");
+                            Console.WriteLine(respusta);
                         }
                         if (cmbMethods.SelectedItem.ToString() != "Clusters")
                         {
@@ -325,8 +357,24 @@ namespace BitmapFilters
             lblTiempoTitle.Text = "Proceso terminado.\nTiempo de ejecución: " + timer.ElapsedMilliseconds +"ms";
             btnStart.Enabled = true;
         }
+        public ImageFormat devuelveFormato(string formato)
+        {
+            if(formato== "*.png")
+            {
+                return ImageFormat.Png;
+            }else if(formato== "*.jpg")
+            {
+                return ImageFormat.Jpeg;
+            }
+            else if(formato== "*.bmp")
+            {
+                return ImageFormat.Bmp;
+            }
+            return ImageFormat.Exif;
+        }
         public void saveImage(Bitmap bmp,string path,string format,int counta)
         {
+            
             Console.WriteLine(bmp);
             Image im = (Image)bmp;
             string carpeta = "\\outputimages\\";
