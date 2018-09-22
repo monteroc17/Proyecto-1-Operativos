@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Timers;
 using System.Net;
 using System.Net.Sockets;
+using System.Collections.Specialized;
 namespace BitmapFilters
 {
     class Clusters
@@ -110,6 +111,27 @@ namespace BitmapFilters
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader sr = new StreamReader(response.GetResponseStream());
             return sr.ReadToEnd();
+        }
+        public static string HttpPostWebClientContraste(string url, string cantidadC,string tipoF,string img)
+        {
+            var client = new WebClient();
+            var values = new NameValueCollection();
+            values["cantidadContraste"] =cantidadC;
+            values["tipoFiltro"] = tipoF;
+            values["image"] = img;
+            var response = client.UploadValues(url, values);
+            var responseString = Encoding.Default.GetString(response);
+            return responseString;
+        }
+        public static string HttpPostWebClient(string url,string tipoF, string img)
+        {
+            var client = new WebClient();
+            var values = new NameValueCollection();
+            values["tipoFiltro"] = tipoF;
+            values["image"] = img;
+            var response = client.UploadValues(url, values);
+            var responseString = Encoding.Default.GetString(response);
+            return responseString;
         }
     }
 
