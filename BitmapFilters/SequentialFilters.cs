@@ -15,6 +15,9 @@ using System.Timers;
 
 namespace BitmapFilters
 {
+    /// <summary>
+    /// Esta clase contiene todos los filtros secuenciales.
+    /// </summary>
     public static class SequentialFilters
     {
         private static Bitmap GetArgbCopy(Image sourceImage)
@@ -46,7 +49,12 @@ namespace BitmapFilters
             bmp32BppSource.Dispose();
             return bmp32BppDest;
         }
-
+        /// <summary>
+        /// Filtro de transparencia
+        /// </summary>
+        /// <param name="sourceImage">Imagen original</param>
+        /// <param name="alphaComponent">Nivel de transparencia</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap Transparency(this Image sourceImage, byte alphaComponent = 100)
         {
             Bitmap bmpNew = GetArgbCopy(sourceImage);
@@ -86,7 +94,11 @@ namespace BitmapFilters
 
             return ApplyColorMatrix(sourceImage, colorMatrix);
         }
-
+        /// <summary>
+        /// Filtro de negativos
+        /// </summary>
+        /// <param name="sourceImage">Imagen original</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap Negative(this Image sourceImage)
         {
             Bitmap bmpNew = GetArgbCopy(sourceImage);
@@ -134,7 +146,11 @@ namespace BitmapFilters
 
             return ApplyColorMatrix(sourceImage, colorMatrix);
         }
-
+        /// <summary>
+        /// Escala de Grises
+        /// </summary>
+        /// <param name="sourceImage">Imagen original</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap Grayscale(this Image sourceImage)
         {
             Bitmap bmpNew = GetArgbCopy(sourceImage);
@@ -185,7 +201,11 @@ namespace BitmapFilters
 
             return ApplyColorMatrix(sourceImage, colorMatrix);
         }
-
+        /// <summary>
+        /// Sepia
+        /// </summary>
+        /// <param name="sourceImage">Imagen original</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap Sepia(this Image sourceImage)
         {
             Bitmap bmpNew = GetArgbCopy(sourceImage);
@@ -236,11 +256,17 @@ namespace BitmapFilters
 
             return ApplyColorMatrix(sourceImage, colorMatrix);
         }
-        public static Bitmap Contrast(Bitmap Image, float Value)
+        /// <summary>
+        /// Contraste
+        /// </summary>
+        /// <param name="Image">Imagen original</param>
+        /// <param name="Value">Intensidad</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
+        public static Bitmap Contrast(Bitmap image, float Value)
         {
             Value = (100.0f + Value) / 100.0f;
             Value *= Value;
-            Bitmap NewBitmap = (Bitmap)Image.Clone();
+            Bitmap NewBitmap = (Bitmap)image.Clone();
             BitmapData data = NewBitmap.LockBits(
                 new Rectangle(0, 0, NewBitmap.Width, NewBitmap.Height),
                 ImageLockMode.ReadWrite,
@@ -350,7 +376,11 @@ namespace BitmapFilters
 
             return resultBitmap;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="image">Imagen original</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap FindEdges(Bitmap image)
         {
             ConvMatrix matr = new ConvMatrix();
@@ -365,6 +395,11 @@ namespace BitmapFilters
             return SafeImageConvolution(image, matr);
 
         }
+        /// <summary>
+        /// Emboss
+        /// </summary>
+        /// <param name="image">Imagen original</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap Emboss(Bitmap image)
         {
             ConvMatrix matr = new ConvMatrix();
@@ -379,7 +414,11 @@ namespace BitmapFilters
             return SafeImageConvolution(image, matr);
 
         }
-
+        /// <summary>
+        /// Desenfoque Gausiano
+        /// </summary>
+        /// <param name="image">Imagen original</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap GausianBlur(Bitmap image)
         {
             ConvMatrix matr = new ConvMatrix();
@@ -394,6 +433,11 @@ namespace BitmapFilters
             return SafeImageConvolution(image, matr);
 
         }
+        /// <summary>
+        /// Motion Blur
+        /// </summary>
+        /// <param name="image">Imagen original</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap MotionBlur(Bitmap image)
         {
             ConvMatrix matr = new ConvMatrix();
@@ -412,6 +456,12 @@ namespace BitmapFilters
             return SafeImageConvolution(image, matr);
 
         }
+        /// <summary>
+        /// Función para convulción de imagen requerida por algunos filtros
+        /// </summary>
+        /// <param name="image">Imagen original</param>
+        /// <param name="fmat">Matriz indicando el tipo de filtro</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap SafeImageConvolution(Bitmap image, ConvMatrix fmat)
         {
             //Avoid division by 0 
@@ -460,7 +510,14 @@ namespace BitmapFilters
             }
             return newImage;
         }
-
+        /// <summary>
+        /// Solarizado
+        /// </summary>
+        /// <param name="sourceBitmap">Imagen original</param>
+        /// <param name="blueValue">Intensidad de azul</param>
+        /// <param name="greenValue">Intensidad de verde</param>
+        /// <param name="redValue">Intensidad de rojo</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap Solarise(this Bitmap sourceBitmap, byte blueValue,
                                         byte greenValue, byte redValue)
         {
@@ -507,7 +564,15 @@ namespace BitmapFilters
         }
 
 
-
+        /// <summary>
+        /// Dilatación
+        /// </summary>
+        /// <param name="sourceBitmap">Imagen original</param>
+        /// <param name="matrixSize">tamaño de la matriz</param>
+        /// <param name="applyBlue">Intensidad de azul</param>
+        /// <param name="applyGreen">Intensidad de verde</param>
+        /// <param name="applyRed">Intensidad de rojo</param>
+        /// <returns>Imagen con el filtro aplicado</returns>
         public static Bitmap Dilate(this Bitmap sourceBitmap,
                                                 int matrixSize,
                                                 bool applyBlue = true,
