@@ -135,7 +135,6 @@ namespace BitmapFilters
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
                             Bitmap[] lista = Clusters.trocearImagen(bmp);
-
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1],devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -148,7 +147,6 @@ namespace BitmapFilters
                              {
                                  imagen2=Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
                              });
-                            //t.Start();
                             while(true)
                             {
                                 if (imagen1 != "" && imagen2 != "")
