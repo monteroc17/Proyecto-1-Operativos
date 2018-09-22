@@ -133,16 +133,7 @@ namespace BitmapFilters
             var responseString = Encoding.Default.GetString(response);
             return responseString;
         }
-        public static string HttpPostWebClientPrueba(string url, string nombre,string img)
-        {
-            var client = new WebClient();
-            var values = new NameValueCollection();
-            values["nombre"] = nombre;
-            values["url"] = img;
-            var response = client.UploadValues(url, values);
-            var responseString = Encoding.Default.GetString(response);
-            return responseString;
-        }
+        
     }
 
 }
