@@ -122,7 +122,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1],devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -168,7 +168,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -215,7 +215,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -262,7 +262,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -309,7 +309,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -356,7 +356,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -404,7 +404,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -450,7 +450,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -496,7 +496,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -543,7 +543,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
@@ -589,7 +589,7 @@ namespace BitmapFilters
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
-                            Bitmap[] lista = Clusters.trocearImagen(bmp);
+                            Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";

@@ -18,9 +18,9 @@ namespace BitmapFilters
         /// <summary>
         /// Funcion que se encarga de partir una imagen en trozos
         /// </summary>
-        /// <param name="sourceImage"></param>
-        /// <returns></returns>
-        public static Bitmap[]trocearImagen(Image sourceImage)
+        /// <param name="sourceImage">Imagen original</param>
+        /// <returns>Los trozos de la imagen original</returns>
+        public static Bitmap[]TrocearImagen(Image sourceImage)
         {
             int filas = 2;
             int columnas = 1;
@@ -75,7 +75,7 @@ namespace BitmapFilters
         /// </summary>
         /// <param name="imagen1"></param>
         /// <param name="imagen2"></param>
-        /// <returns></returns>
+        /// <returns>Imagen unida</returns>
         public static Bitmap UnirImagen(Bitmap imagen1,Bitmap imagen2)
         {
             int width = imagen1.Width;
