@@ -19,8 +19,11 @@ namespace BitmapFilters
 {
     public partial class MainForm : Form
     {
+        Thread t;//Hilo para saber cuando se devolvieron las dos imagenes
+       
         public MainForm()
         {
+            t = new Thread(unirImagenes);
             InitializeComponent();
         }
         private void OnCheckChangedEventHandler(object sender, EventArgs e)
@@ -94,7 +97,6 @@ namespace BitmapFilters
                     img.format = ext;
                     files.Add(img);
                 }
-                
             }
             
             int counta = 0;
@@ -133,44 +135,34 @@ namespace BitmapFilters
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
                             Bitmap[] lista = Clusters.trocearImagen(bmp);
-                            MemoryStream memoryStream = new MemoryStream();
-                            lista[0].Save(memoryStream, devuelveFormato(filename.format));
-                            memoryStream.Position = 0;
-                            byte[] byteBuffer = memoryStream.ToArray();
-                            memoryStream.Close();
-                            string base64String = Convert.ToBase64String(byteBuffer);
-
-
-                            MemoryStream memoryStream1 = new MemoryStream();
-                            lista[1].Save(memoryStream1, devuelveFormato(filename.format));
-                            memoryStream1.Position = 0;
-                            byte[] byteBuffer1 = memoryStream1.ToArray();
-                            memoryStream1.Close();
-                            string base64String1 = Convert.ToBase64String(byteBuffer);
+                            string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
+                            string base64String1 = ImageToBase64(lista[1],devuelveFormato(filename.format));
                             string imagen1 = "";
                             string imagen2 = "";
-                            /*
                             Parallel.Invoke(() =>
                             {
-                                imagen1= Clusters.HttpPostWebClient("", "", base64String);
-                                //Aun no se sabe que recibe
+                                imagen1= Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter","grayscale",base64String);
                             },  // close first Action
-
                              () =>
                              {
-                                 imagen2=Clusters.HttpPostWebClient("", "", base64String1);
-                             }); //close parallel.*/
-                            /*for (int x = 0; x < lista.Length; x++)
+                                 imagen2=Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                             });
+                            while(true)
                             {
-                                saveImage(lista[x], path, filename.format, counta);
-                                counta++;
-                            }*/
-                            string respusta = Clusters.HttpPostWebClientPrueba("http://172.24.65.31:8080/todosProductos", "prueba","sss");
-                            Console.WriteLine(respusta);
-                        }
-                        if (cmbMethods.SelectedItem.ToString() != "Clusters")
-                        {
-                            saveImage(bmp, path, filename.format, counta);
+                                if (imagen1 != "" && imagen2 != "")
+                                {
+                                    Console.WriteLine("Entro");
+                                    break;
+                                }
+                            }
+                            imagen1 = imagen1.Substring(1, imagen1.Length - 2);
+                            imagen2 = imagen2.Substring(1, imagen2.Length - 2);
+                            Image imagenresult1 = Base64ToImage(imagen1);
+                            Image imagenresult2 = Base64ToImage(imagen2);
+                            Bitmap result1 = (Bitmap)imagenresult1;
+                            Bitmap result2 = (Bitmap)imagenresult2;
+                            Bitmap imagenUnida=Clusters.UnirImagen(result1, result2);
+                            saveImage(imagenUnida,path,filename.format,counta);
                             counta++;
                         }
                     }
@@ -357,6 +349,11 @@ namespace BitmapFilters
             lblTiempoTitle.Text = "Proceso terminado.\nTiempo de ejecución: " + timer.ElapsedMilliseconds +"ms";
             btnStart.Enabled = true;
         }
+        /// <summary>
+        /// Funcion que se encarga de devolver el formato en tipo ImageFormat
+        /// </summary>
+        /// <param name="formato"></param>
+        /// <returns></returns>
         public ImageFormat devuelveFormato(string formato)
         {
             if(formato== "*.png")
@@ -371,6 +368,46 @@ namespace BitmapFilters
                 return ImageFormat.Bmp;
             }
             return ImageFormat.Exif;
+        }/// <summary>
+        /// Funcion para unir dos imagenes
+        /// </summary>
+        public void unirImagenes()
+        {
+            t.Abort();
+        }/// <summary>
+        /// Convierte de imagen a base 64
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public string ImageToBase64(Bitmap image,System.Drawing.Imaging.ImageFormat format)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                // Convert Image to byte[]
+                image.Save(ms, format);
+                byte[] imageBytes = ms.ToArray();
+
+                // Convert byte[] to Base64 String
+                string base64String = Convert.ToBase64String(imageBytes);
+                return base64String;
+            }
+        }/// <summary>
+        /// Convierte de base64 a imagen
+        /// </summary>
+        /// <param name="base64String"></param>
+        /// <returns></returns>
+        public Image Base64ToImage(string base64String)
+        {
+            // Convert Base64 String to byte[]
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+            MemoryStream ms = new MemoryStream(imageBytes, 0,
+              imageBytes.Length);
+
+            // Convert byte[] to Image
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            Image image = Image.FromStream(ms, true);
+            return image;
         }
         public void saveImage(Bitmap bmp,string path,string format,int counta)
         {
