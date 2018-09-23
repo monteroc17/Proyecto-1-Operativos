@@ -33,22 +33,7 @@ namespace BitmapFilters
             return bmpNew;
         }
 
-        private static Bitmap ApplyColorMatrix(Image sourceImage, ColorMatrix colorMatrix)
-        {
-            Bitmap bmp32BppSource = GetArgbCopy(sourceImage);
-            Bitmap bmp32BppDest = new Bitmap(bmp32BppSource.Width, bmp32BppSource.Height, PixelFormat.Format32bppArgb);
-
-            using (Graphics graphics = Graphics.FromImage(bmp32BppDest))
-            {
-                ImageAttributes bmpAttributes = new ImageAttributes();
-                bmpAttributes.SetColorMatrix(colorMatrix);
-                graphics.DrawImage(bmp32BppSource, new Rectangle(0, 0, bmp32BppSource.Width, bmp32BppSource.Height),
-                                 0, 0, bmp32BppSource.Width, bmp32BppSource.Height, GraphicsUnit.Pixel, bmpAttributes);
-
-            }
-            bmp32BppSource.Dispose();
-            return bmp32BppDest;
-        }
+        
         /// <summary>
         /// Filtro de transparencia
         /// </summary>
@@ -79,20 +64,6 @@ namespace BitmapFilters
             byteBuffer = null;
 
             return bmpNew;
-        }
-
-        public static Bitmap DrawWithTransparency(this Image sourceImage)
-        {
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][]
-                                                {
-                                                    new float[] {1, 0, 0, 0, 0},
-                                                    new float[] {0, 1, 0, 0, 0},
-                                                    new float[] {0, 0, 1, 0, 0},
-                                                    new float[] {0, 0, 0, 0.3f, 0},
-                                                    new float[] {0, 0, 0, 0, 1}
-                                                });
-
-            return ApplyColorMatrix(sourceImage, colorMatrix);
         }
         /// <summary>
         /// Filtro de negativos
@@ -131,20 +102,6 @@ namespace BitmapFilters
             byteBuffer = null;
 
             return bmpNew;
-        }
-
-        public static Bitmap DrawAsNegative(this Image sourceImage)
-        {
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][]
-                                                {
-                                                    new float[] {-1, 0, 0, 0, 0},
-                                                    new float[] {0, -1, 0, 0, 0},
-                                                    new float[] {0, 0, -1, 0, 0},
-                                                    new float[] {0, 0, 0, 1, 0},
-                                                    new float[] {1, 1, 1, 1, 1}
-                                                });
-
-            return ApplyColorMatrix(sourceImage, colorMatrix);
         }
         /// <summary>
         /// Escala de Grises
@@ -186,21 +143,6 @@ namespace BitmapFilters
 
             return bmpNew;
         }
-
-        public static Bitmap DrawAsGrayscale(this Image sourceImage)
-        {
-            System.Console.WriteLine("entro");
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][]
-                                                {
-                                                    new float[] {.3f, .3f, .3f, 0, 0},
-                                                    new float[] {.59f, .59f, .59f, 0, 0},
-                                                    new float[] {.11f, .11f, .11f, 0, 0},
-                                                    new float[] {0, 0, 0, 1, 0},
-                                                    new float[] {0, 0, 0, 0, 1}
-                                                });
-
-            return ApplyColorMatrix(sourceImage, colorMatrix);
-        }
         /// <summary>
         /// Sepia
         /// </summary>
@@ -241,20 +183,6 @@ namespace BitmapFilters
             byteBuffer = null;
 
             return bmpNew;
-        }
-
-        public static Bitmap DrawAsSepiaTone(this Image sourceImage)
-        {
-            ColorMatrix colorMatrix = new ColorMatrix(new float[][]
-                                                {
-                                                    new float[] {.393f, .349f, .272f, 0, 0},
-                                                    new float[] {.769f, .686f, .534f, 0, 0},
-                                                    new float[] {.189f, .168f, .131f, 0, 0},
-                                                    new float[] {0, 0, 0, 1, 0},
-                                                    new float[] {0, 0, 0, 0, 1}
-                                                });
-
-            return ApplyColorMatrix(sourceImage, colorMatrix);
         }
         /// <summary>
         /// Contraste

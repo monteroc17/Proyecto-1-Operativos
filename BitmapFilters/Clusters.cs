@@ -88,30 +88,12 @@ namespace BitmapFilters
             return fullBmp;
         }
         /// <summary>
-        /// Request a al web service
+        /// Request a al web service con el contraste
         /// </summary>
         /// <param name="url"></param>
         /// <param name="post"></param>
         /// <param name="refer"></param>
         /// <returns></returns>
-        public static string HttpPost(string url, string post, string refer = "")
-        {
-            System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(url);
-            //request.CookieContainer = cJar;
-            //request.UserAgent = UserAgent;
-            request.KeepAlive = false;
-            request.Method = "POST";
-            request.Referer = refer;
-            byte[] postBytes = Encoding.ASCII.GetBytes(post);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = postBytes.Length;
-            Stream requestStream = request.GetRequestStream();
-            requestStream.Write(postBytes, 0, postBytes.Length);
-            requestStream.Close();
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader sr = new StreamReader(response.GetResponseStream());
-            return sr.ReadToEnd();
-        }
         public static string HttpPostWebClientContraste(string url, string cantidadC,string tipoF,string img)
         {
             var client = new WebClient();
@@ -122,7 +104,13 @@ namespace BitmapFilters
             var response = client.UploadValues(url, values);
             var responseString = Encoding.Default.GetString(response);
             return responseString;
-        }
+        }/// <summary>
+        /// Request al webservice sin el contraste
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="tipoF"></param>
+        /// <param name="img"></param>
+        /// <returns></returns>
         public static string HttpPostWebClient(string url,string tipoF, string img)
         {
             var client = new WebClient();

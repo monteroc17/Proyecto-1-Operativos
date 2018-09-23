@@ -19,11 +19,8 @@ namespace BitmapFilters
 {
     public partial class MainForm : Form
     {
-        Thread t;//Hilo para saber cuando se devolvieron las dos imagenes
-       
         public MainForm()
         {
-            t = new Thread(unirImagenes);
             InitializeComponent();
         }
         private void OnCheckChangedEventHandler(object sender, EventArgs e)
@@ -77,11 +74,6 @@ namespace BitmapFilters
         int cont = 0;
         private void btnStart_Click(object sender, EventArgs e)
         {
-           /* if(cmbMetodo.SelectedIndex == -1)
-            {
-                MessageBox.Show("Debe seleccionar un método", "Error");
-                return;
-            }*/
             lblTiempoTitle.Text = "Ejecutando...";
             btnStart.Enabled = false;
             string path = Directory.GetCurrentDirectory();
@@ -101,7 +93,6 @@ namespace BitmapFilters
             
             int counta = 0;
             temporizador.Start();//starts the timer
-            Boolean bandera = true;
             Stopwatch timer = Stopwatch.StartNew();
             foreach (var filename in files)
             {
@@ -115,10 +106,12 @@ namespace BitmapFilters
                         if (cmbMethods.SelectedItem.ToString() == "Secuencial")
                         {
                             bmp = SequentialFilters.Grayscale(i);
+                            counta++;
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Paralelo")
                         {
                             bmp = ParallelFilters.Grayscale(i);
+                            counta++;
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
                         {
@@ -151,8 +144,9 @@ namespace BitmapFilters
                             Bitmap result2 = (Bitmap)imagenresult2;
                             bmp=Clusters.UnirImagen(result1, result2);
                             counta++;
+
                         }
-                        saveImage(bmp, path, filename.format, counta);
+                        saveImage(bmp, path, filename.format,counta);
                     }
                     else if (rdFindEdges.Checked == true)
                     {
@@ -175,17 +169,16 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "findEdges", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "findEdges", base64String1);
                              });
                             while (true)
                             {
                                 if (imagen1 != "" && imagen2 != "")
                                 {
-                                    Console.WriteLine("Entro");
                                     break;
                                 }
                             }
@@ -213,7 +206,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.GausianBlur(bmp);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -222,11 +215,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "motionBlur", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "motionBlur", base64String1);
                              });
                             while (true)
                             {
@@ -260,7 +253,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.Transparency(i);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -269,11 +262,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "transparency", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "transparency", base64String1);
                              });
                             while (true)
                             {
@@ -307,7 +300,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.Emboss(bmp);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -316,11 +309,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "emboss", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "emboss", base64String1);
                              });
                             while (true)
                             {
@@ -354,7 +347,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.Contrast(bmp, valueBar1.Value);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -365,11 +358,11 @@ namespace BitmapFilters
                             Parallel.Invoke(() =>
                             {
 
-                                imagen1 = Clusters.HttpPostWebClientContraste("http://25.6.85.182:80/WSImageFilter/ApplyFilter",valorBrillo, "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClientContraste("http://25.6.85.182:80/WSImageFilter/ApplyFilter",valorBrillo, "contrast", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClientContraste("http://25.6.85.182:80/WSImageFilter/ApplyFilter", valorBrillo, "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClientContraste("http://25.6.85.182:80/WSImageFilter/ApplyFilter", valorBrillo, "contrast", base64String1);
                              });
                             while (true)
                             {
@@ -402,7 +395,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.Negative(i);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -411,11 +404,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "negative", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "negative", base64String1);
                              });
                             while (true)
                             {
@@ -448,7 +441,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.Sepia(i);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -457,11 +450,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "sepia", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "sepia", base64String1);
                              });
                             while (true)
                             {
@@ -494,7 +487,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.MotionBlur(bmp);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -503,11 +496,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "motionBlur", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "motionBlur", base64String1);
                              });
                             while (true)
                             {
@@ -541,7 +534,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.Solarise(bmp, 150, 50, 250);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -550,11 +543,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "solarise", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "solarise", base64String1);
                              });
                             while (true)
                             {
@@ -587,7 +580,7 @@ namespace BitmapFilters
                             bmp = ParallelFilters.Dilate(bmp, 17, false, true, true);
                             counta++;
                         }
-                        if (cmbMethods.SelectedItem.ToString() == "Clusters")
+                        if (cmbMethods.SelectedItem.ToString().Equals("Clusters"))
                         {
                             Bitmap[] lista = Clusters.TrocearImagen(bmp);
                             string base64String = ImageToBase64(lista[0], devuelveFormato(filename.format));
@@ -596,11 +589,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "dilatation", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "dilatation", base64String1);
                              });
                             while (true)
                             {
@@ -651,13 +644,7 @@ namespace BitmapFilters
                 return ImageFormat.Bmp;
             }
             return ImageFormat.Exif;
-        }/// <summary>
-        /// Funcion para unir dos imagenes
-        /// </summary>
-        public void unirImagenes()
-        {
-            t.Abort();
-        }/// <summary>
+        }
         /// Convierte de imagen a base 64
         /// </summary>
         /// <param name="image">Imagen por convertir</param>
