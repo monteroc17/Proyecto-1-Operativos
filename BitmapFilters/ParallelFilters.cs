@@ -14,6 +14,8 @@ namespace BitmapFilters
     /// </summary>
     public static class ParallelFilters
     {
+        
+
         //clase para implementar Parallel.For en for con incremento no consecutivo
         public static class BetterEnumerable
         {
@@ -192,65 +194,87 @@ namespace BitmapFilters
 
             return bmpNew;
         }
-
         /// <summary>
         /// Contraste
         /// </summary>
         /// <param name="Image">Imagen original</param>
         /// <param name="Value">Intensidad</param>
         /// <returns>Imagen con el filtro aplicado</returns>
-        public static Bitmap Contrast(Bitmap Image, float Value)
+        public static Bitmap Contrast(this Bitmap sourceBitmap, int threshold)
         {
-            Value = (100.0f + Value) / 100.0f;
-            Value *= Value;
-            Bitmap NewBitmap = (Bitmap)Image.Clone();
-            BitmapData data = NewBitmap.LockBits(
-                new Rectangle(0, 0, NewBitmap.Width, NewBitmap.Height),
-                ImageLockMode.ReadWrite,
-                NewBitmap.PixelFormat);
-            int Height = NewBitmap.Height;
-            int Width = NewBitmap.Width;
+            BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
+                                sourceBitmap.Width, sourceBitmap.Height),
+                                ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
 
-            unsafe
+
+            byte[] pixelBuffer = new byte[sourceData.Stride * sourceData.Height];
+
+
+            Marshal.Copy(sourceData.Scan0, pixelBuffer, 0, pixelBuffer.Length);
+
+
+            sourceBitmap.UnlockBits(sourceData);
+
+
+            double contrastLevel = Math.Pow((100.0 + threshold) / 100.0, 2);
+
+
+            double blue = 0;
+            double green = 0;
+            double red = 0;
+
+
+            Parallel.ForEach(BetterEnumerable.SteppedRange(0, pixelBuffer.Length - 4, 4), k =>
             {
-                Parallel.For(0, Height, y =>
-               {
-                   byte* row = (byte*)data.Scan0 + (y * data.Stride);
-                   int columnOffset = 0;
-                   Parallel.For(0, Width, x =>
-                  {
-                      byte B = row[columnOffset];
-                      byte G = row[columnOffset + 1];
-                      byte R = row[columnOffset + 2];
+                blue = ((((pixelBuffer[k] / 255.0) - 0.5) *
+                            contrastLevel) + 0.5) * 255.0;
 
-                      float Red = R / 255.0f;
-                      float Green = G / 255.0f;
-                      float Blue = B / 255.0f;
-                      Red = (((Red - 0.5f) * Value) + 0.5f) * 255.0f;
-                      Green = (((Green - 0.5f) * Value) + 0.5f) * 255.0f;
-                      Blue = (((Blue - 0.5f) * Value) + 0.5f) * 255.0f;
 
-                      int iR = (int)Red;
-                      iR = iR > 255 ? 255 : iR;
-                      iR = iR < 0 ? 0 : iR;
-                      int iG = (int)Green;
-                      iG = iG > 255 ? 255 : iG;
-                      iG = iG < 0 ? 0 : iG;
-                      int iB = (int)Blue;
-                      iB = iB > 255 ? 255 : iB;
-                      iB = iB < 0 ? 0 : iB;
+                green = ((((pixelBuffer[k + 1] / 255.0) - 0.5) *
+                            contrastLevel) + 0.5) * 255.0;
 
-                      row[columnOffset] = (byte)iB;
-                      row[columnOffset + 1] = (byte)iG;
-                      row[columnOffset + 2] = (byte)iR;
 
-                      columnOffset += 4;
-                  });
-               });
-            }
+                red = ((((pixelBuffer[k + 2] / 255.0) - 0.5) *
+                            contrastLevel) + 0.5) * 255.0;
 
-            NewBitmap.UnlockBits(data);
-            return NewBitmap;
+
+                if (blue > 255)
+                { blue = 255; }
+                else if (blue < 0)
+                { blue = 0; }
+
+
+                if (green > 255)
+                { green = 255; }
+                else if (green < 0)
+                { green = 0; }
+
+
+                if (red > 255)
+                { red = 255; }
+                else if (red < 0)
+                { red = 0; }
+
+
+                pixelBuffer[k] = (byte)blue;
+                pixelBuffer[k + 1] = (byte)green;
+                pixelBuffer[k + 2] = (byte)red;
+            });
+
+
+            Bitmap resultBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
+
+
+            BitmapData resultData = resultBitmap.LockBits(new Rectangle(0, 0,
+                                        resultBitmap.Width, resultBitmap.Height),
+                                        ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
+
+
+            Marshal.Copy(pixelBuffer, 0, resultData.Scan0, pixelBuffer.Length);
+            resultBitmap.UnlockBits(resultData);
+
+
+            return resultBitmap;
         }
 
         /// <summary>
@@ -265,54 +289,35 @@ namespace BitmapFilters
             if (fmat.Factor == 0)
                 return null;
             Bitmap srcImage = (Bitmap)image.Clone();
-            //int x, y, filterx, filtery;
+            int x, y, filterx, filtery;
             int s = fmat.Size / 2;
             int r, g, b;
             Color tempPix;
             Bitmap newImage = new Bitmap(image.Width, image.Height);
-            for (int y = s; y < srcImage.Height - s; y++)
+            for (y = s; y < srcImage.Height - s; y++)
             {
-                for (int x = s; x < srcImage.Width - s; x++)
+                for (x = s; x < srcImage.Width - s; x++)
                 {
                     r = g = b = 0;
 
                     // Convolution 
-                    for (int filtery = 0; filtery < fmat.Size; filtery++)
+                    for (filtery = 0; filtery < fmat.Size; filtery++)
                     {
-                        for (int filterx = 0; filterx < fmat.Size; filterx++)
+                        for (filterx = 0; filterx < fmat.Size; filterx++)
                         {
 
                             tempPix = srcImage.GetPixel(x + filterx - s, y + filtery - s);
 
-                            Parallel.Invoke(
-                                () =>
-                                {
-                                    r += fmat.Matrix[filtery, filterx] * tempPix.R + 5;
-                                },
-                                () =>
-                                {
-                                    g += fmat.Matrix[filtery, filterx] * tempPix.G + 5;
-                                },
-                                () =>
-                                {
-                                    b += fmat.Matrix[filtery, filterx] * tempPix.B + 5;
-                                }
-                            );
-                            
-                            
-                            
+                            r += fmat.Matrix[filtery, filterx] * tempPix.R + 5;
+                            g += fmat.Matrix[filtery, filterx] * tempPix.G + 5;
+                            b += fmat.Matrix[filtery, filterx] * tempPix.B + 5;
                         }
                     }
 
                     r = Math.Min(Math.Max((r / fmat.Factor) + fmat.Offset, 0), 255);
                     g = Math.Min(Math.Max((g / fmat.Factor) + fmat.Offset, 0), 255);
                     b = Math.Min(Math.Max((b / fmat.Factor) + fmat.Offset, 0), 255);
-
-
-                    /*using (Graphics graphics = Graphics.FromImage(newImage))
-                    {
-                        graphics.DrawImage(image, 0, 0);
-                    }*/
+                   
 
                     newImage.SetPixel(x, y, Color.FromArgb(r, g, b));
 
@@ -497,9 +502,9 @@ namespace BitmapFilters
             byte red = 0;
 
             byte morphResetValue = 0;
-
-            Parallel.For(filterOffset, sourceBitmap.Height - filterOffset, offsetY =>
-           {
+            
+            for(int offsetY = filterOffset; offsetY < sourceBitmap.Height - filterOffset;offsetY++)
+            {
                for (int offsetX = filterOffset; offsetX <
                    sourceBitmap.Width - filterOffset; offsetX++)
                {
@@ -561,7 +566,7 @@ namespace BitmapFilters
                    resultBuffer[byteOffset + 2] = red;
                    resultBuffer[byteOffset + 3] = 255;
                }
-           });
+           }
 
             Bitmap resultBitmap = new Bitmap(sourceBitmap.Width,
                                              sourceBitmap.Height);

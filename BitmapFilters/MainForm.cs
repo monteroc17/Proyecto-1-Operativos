@@ -82,7 +82,7 @@ namespace BitmapFilters
             lblTiempoTitle.Text = "Ejecutando...";
             btnStart.Enabled = false;
             string path = Directory.GetCurrentDirectory();
-            String[] exts = { "*.png","*.bmp","*.jpg" };
+            String[] exts = { "*.png","*.bmp","*.jpg","*.tif" };
             List<Img> files = new List<Img>();
             foreach (string ext in exts)
             {
@@ -127,7 +127,6 @@ namespace BitmapFilters
                                 Bitmap respuesta = Clusters.UnirImagen(primeraImagen, segundaImagen);
                                 saveImage(respuesta, path, filename.format, counta);
                                 counta++;
-                                bandera = false;
                             }
                         }
                         if (cmbMethods.SelectedItem.ToString() == "Clusters")
@@ -305,41 +304,30 @@ namespace BitmapFilters
                         }
 
                     }
-                    else if (rdtexture.Checked == true)
+                    else if (rdSolarized.Checked == true)
                     {
-                        bmp = SequentialFilters.Transparency(bmp);
-                        saveImage(bmp, path, filename.format, counta);
-                        counta++;
-                    }
-                    else if (rdCompPerdida.Checked == true)
-                    {
-                        Compression c = new Compression();
-                        c.SaveJpg(bmp, filename.format, 2);
-                    }
-                    else if (rdSolarise.Checked == true)
-                    {
-                        if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
+                        if (cmbMethods.SelectedItem.ToString().Equals("Secuencial"))
                         {
                             bmp = SequentialFilters.Solarise(bmp, 150, 50, 250);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
-                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        else if (cmbMethods.SelectedItem.ToString().Equals("Paralelo"))
                         {
                             bmp = ParallelFilters.Solarise(bmp, 150, 50, 250);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
                     }
-                    else if (rdDilatacion.Checked == true)
+                    else if (rdDilate.Checked == true)
                     {
-                        if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
+                        if (cmbMethods.SelectedItem.ToString().Equals("Secuencial"))
                         {
                             bmp = SequentialFilters.Dilate(bmp, 17, false, true, true);
                             saveImage(bmp, path, filename.format, counta);
                             counta++;
                         }
-                        else if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        else if (cmbMethods.SelectedItem.ToString().Equals("Paralelo"))
                         {
                             bmp = ParallelFilters.Dilate(bmp, 17, false, true, true);
                             saveImage(bmp, path, filename.format, counta);
