@@ -70,7 +70,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Brightness.cs" />
     <Compile Include="Clusters.cs" />
     <Compile Include="Compression.cs" />
     <Compile Include="ConvMatrix.cs" />
