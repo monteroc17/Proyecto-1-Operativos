@@ -85,7 +85,7 @@ namespace BitmapFilters
             lblTiempoTitle.Text = "Ejecutando...";
             btnStart.Enabled = false;
             string path = Directory.GetCurrentDirectory();
-            String[] exts = { "*.png","*.bmp","*.jpg" };
+            String[] exts = { "*.png","*.bmp","*.jpg","*.tif" };
             List<Img> files = new List<Img>();
             foreach (string ext in exts)
             {
@@ -529,24 +529,14 @@ namespace BitmapFilters
                         saveImage(bmp, path, filename.format, counta);
 
                     }
-                    else if (rdtexture.Checked == true)
+                    else if (rdSolarized.Checked == true)
                     {
-                       // bmp = SequentialFilters.Transparency(bmp);
-                       // counta++;
-                    }
-                    else if (rdCompPerdida.Checked == true)
-                    {
-                        Compression c = new Compression();
-                        c.SaveJpg(bmp, filename.format, 2);
-                    }
-                    else if (rdSolarise.Checked == true)
-                    {
-                        if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
+                        if (cmbMethods.SelectedItem.ToString().Equals("Secuencial"))
                         {
                             bmp = SequentialFilters.Solarise(bmp, 150, 50, 250);
                             counta++;
                         }
-                        if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        else if (cmbMethods.SelectedItem.ToString().Equals("Paralelo"))
                         {
                             bmp = ParallelFilters.Solarise(bmp, 150, 50, 250);
                             counta++;
@@ -585,14 +575,14 @@ namespace BitmapFilters
                         }
                         saveImage(bmp, path, filename.format, counta);
                     }
-                    else if (rdDilatacion.Checked == true)
+                    else if (rdDilate.Checked == true)
                     {
-                        if (cmbMetodo.SelectedItem.ToString().Equals("Secuencial"))
+                        if (cmbMethods.SelectedItem.ToString().Equals("Secuencial"))
                         {
                             bmp = SequentialFilters.Dilate(bmp, 17, false, true, true);
                             counta++;
                         }
-                        if (cmbMetodo.SelectedItem.ToString().Equals("Paralelo"))
+                        else if (cmbMethods.SelectedItem.ToString().Equals("Paralelo"))
                         {
                             bmp = ParallelFilters.Dilate(bmp, 17, false, true, true);
                             counta++;
