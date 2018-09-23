@@ -636,7 +636,7 @@ namespace BitmapFilters
         /// Funcion que se encarga de devolver el formato en tipo ImageFormat
         /// </summary>
         /// <param name="formato"></param>
-        /// <returns></returns>
+        /// <returns>el formato de la imagen</returns>
         public ImageFormat devuelveFormato(string formato)
         {
             if(formato== "*.png")
@@ -660,9 +660,9 @@ namespace BitmapFilters
         }/// <summary>
         /// Convierte de imagen a base 64
         /// </summary>
-        /// <param name="image"></param>
-        /// <param name="format"></param>
-        /// <returns></returns>
+        /// <param name="image">Imagen por convertir</param>
+        /// <param name="format">formato de la imagen</param>
+        /// <returns>una imagen en formato base64</returns>
         public string ImageToBase64(Bitmap image,System.Drawing.Imaging.ImageFormat format)
         {
             using (MemoryStream ms = new MemoryStream())
@@ -678,8 +678,8 @@ namespace BitmapFilters
         }/// <summary>
         /// Convierte de base64 a imagen
         /// </summary>
-        /// <param name="base64String"></param>
-        /// <returns></returns>
+        /// <param name="base64String">Nombre del objeto en base64</param>
+        /// <returns>La imagen equivalente</returns>
         public Image Base64ToImage(string base64String)
         {
             // Convert Base64 String to byte[]
@@ -692,6 +692,13 @@ namespace BitmapFilters
             Image image = Image.FromStream(ms, true);
             return image;
         }
+        /// <summary>
+        /// Guarda una imagen en la PC
+        /// </summary>
+        /// <param name="bmp">Imagen por guardar</param>
+        /// <param name="path">ubicación donde guardar</param>
+        /// <param name="format">formato de la imagen</param>
+        /// <param name="counta">contador para saber cual imagen es</param>
         public void saveImage(Bitmap bmp,string path,string format,int counta)
         {
             
