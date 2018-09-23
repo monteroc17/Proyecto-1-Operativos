@@ -5,8 +5,8 @@ using System.Drawing.Imaging;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-
 namespace BitmapFilters
 {
     /// <summary>
@@ -275,7 +275,6 @@ namespace BitmapFilters
                 for (int x = s; x < srcImage.Width - s; x++)
                 {
                     r = g = b = 0;
-
                     // Convolution 
                     for (int filtery = 0; filtery < fmat.Size; filtery++)
                     {
@@ -307,19 +306,24 @@ namespace BitmapFilters
                     r = Math.Min(Math.Max((r / fmat.Factor) + fmat.Offset, 0), 255);
                     g = Math.Min(Math.Max((g / fmat.Factor) + fmat.Offset, 0), 255);
                     b = Math.Min(Math.Max((b / fmat.Factor) + fmat.Offset, 0), 255);
-
-
-                    /*using (Graphics graphics = Graphics.FromImage(newImage))
-                    {
-                        graphics.DrawImage(image, 0, 0);
-                    }*/
-
                     newImage.SetPixel(x, y, Color.FromArgb(r, g, b));
 
                 }
 
             }
             return newImage;
+        }
+        public static bool estaOcupadoPixel(Bitmap srcImage,int x,int y)
+        {
+            try
+            {
+                srcImage.GetPixel(x,y);
+            }
+            catch (Exception e)
+            {
+
+            }
+            return false;
         }
         /// <summary>
         /// 
@@ -475,29 +479,20 @@ namespace BitmapFilters
                        sourceBitmap.Width, sourceBitmap.Height),
                        ImageLockMode.ReadOnly,
                        PixelFormat.Format32bppArgb);
-
             byte[] pixelBuffer = new byte[sourceData.Stride *
                                           sourceData.Height];
-
             byte[] resultBuffer = new byte[sourceData.Stride *
                                            sourceData.Height];
-
             Marshal.Copy(sourceData.Scan0, pixelBuffer, 0,
                                        pixelBuffer.Length);
-
             sourceBitmap.UnlockBits(sourceData);
-
             int filterOffset = (matrixSize - 1) / 2;
             int calcOffset = 0;
-
             int byteOffset = 0;
-
             byte blue = 0;
             byte green = 0;
             byte red = 0;
-
             byte morphResetValue = 0;
-
             Parallel.For(filterOffset, sourceBitmap.Height - filterOffset, offsetY =>
            {
                for (int offsetX = filterOffset; offsetX <
@@ -506,12 +501,9 @@ namespace BitmapFilters
                    byteOffset = offsetY *
                                 sourceData.Stride +
                                 offsetX * 4;
-
                    blue = morphResetValue;
                    green = morphResetValue;
                    red = morphResetValue;
-
-
                    for (int filterY = -filterOffset;
                        filterY <= filterOffset; filterY++)
                    {
@@ -538,9 +530,6 @@ namespace BitmapFilters
                            }
                        }
                    }
-
-
-
                    if (applyBlue == false)
                    {
                        blue = pixelBuffer[byteOffset];
@@ -562,21 +551,16 @@ namespace BitmapFilters
                    resultBuffer[byteOffset + 3] = 255;
                }
            });
-
             Bitmap resultBitmap = new Bitmap(sourceBitmap.Width,
                                              sourceBitmap.Height);
-
             BitmapData resultData =
                        resultBitmap.LockBits(new Rectangle(0, 0,
                        resultBitmap.Width, resultBitmap.Height),
                        ImageLockMode.WriteOnly,
                        PixelFormat.Format32bppArgb);
-
             Marshal.Copy(resultBuffer, 0, resultData.Scan0,
                                        resultBuffer.Length);
-
             resultBitmap.UnlockBits(resultData);
-
             return resultBitmap;
         }
     }

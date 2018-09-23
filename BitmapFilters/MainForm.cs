@@ -175,17 +175,16 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "findEdges", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "findEdges", base64String1);
                              });
                             while (true)
                             {
                                 if (imagen1 != "" && imagen2 != "")
                                 {
-                                    Console.WriteLine("Entro");
                                     break;
                                 }
                             }
@@ -222,11 +221,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "motionBlur", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "motionBlur", base64String1);
                              });
                             while (true)
                             {
@@ -269,11 +268,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "transparency", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "transparency", base64String1);
                              });
                             while (true)
                             {
@@ -316,11 +315,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "emboss", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "emboss", base64String1);
                              });
                             while (true)
                             {
@@ -365,11 +364,11 @@ namespace BitmapFilters
                             Parallel.Invoke(() =>
                             {
 
-                                imagen1 = Clusters.HttpPostWebClientContraste("http://25.6.85.182:80/WSImageFilter/ApplyFilter",valorBrillo, "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClientContraste("http://25.6.85.182:80/WSImageFilter/ApplyFilter",valorBrillo, "contrast", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClientContraste("http://25.6.85.182:80/WSImageFilter/ApplyFilter", valorBrillo, "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClientContraste("http://25.6.85.182:80/WSImageFilter/ApplyFilter", valorBrillo, "contrast", base64String1);
                              });
                             while (true)
                             {
@@ -411,11 +410,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "negative", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "negative", base64String1);
                              });
                             while (true)
                             {
@@ -457,11 +456,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "sepia", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "sepia", base64String1);
                              });
                             while (true)
                             {
@@ -503,11 +502,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "motionBlur", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "motionBlur", base64String1);
                              });
                             while (true)
                             {
@@ -560,11 +559,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "solarise", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "solarise", base64String1);
                              });
                             while (true)
                             {
@@ -606,11 +605,11 @@ namespace BitmapFilters
                             string imagen2 = "";
                             Parallel.Invoke(() =>
                             {
-                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String);
+                                imagen1 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "dilatation", base64String);
                             },  // close first Action
                              () =>
                              {
-                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "grayscale", base64String1);
+                                 imagen2 = Clusters.HttpPostWebClient("http://25.6.85.182:80/WSImageFilter/ApplyFilter", "dilatation", base64String1);
                              });
                             while (true)
                             {
