@@ -354,7 +354,7 @@ namespace BitmapFilters
                             string base64String1 = ImageToBase64(lista[1], devuelveFormato(filename.format));
                             string imagen1 = "";
                             string imagen2 = "";
-                            string valorBrillo = valueBar1.Value.ToString();
+                            string cantidadContraste = valueBar1.Value.ToString();
                             Parallel.Invoke(() =>
                             {
 
