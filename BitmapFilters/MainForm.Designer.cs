@@ -47,8 +47,6 @@ namespace BitmapFilters
             this.lblTimeTaken = new System.Windows.Forms.Label();
             this.lblTiempoTitle = new System.Windows.Forms.Label();
             this.temporizador = new System.Timers.Timer();
-            this.cmbCores = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbMethods = new System.Windows.Forms.ComboBox();
@@ -64,7 +62,9 @@ namespace BitmapFilters
             // 
             this.grbInput.Controls.Add(this.rdSolarized);
             this.grbInput.Controls.Add(this.rdDilate);
+            this.grbInput.Controls.Add(this.label2);
             this.grbInput.Controls.Add(this.rdAjusteBrillo);
+            this.grbInput.Controls.Add(this.cmbMethods);
             this.grbInput.Controls.Add(this.rdGausianBlur);
             this.grbInput.Controls.Add(this.rdSepia);
             this.grbInput.Controls.Add(this.rdMotionBlur);
@@ -74,9 +74,9 @@ namespace BitmapFilters
             this.grbInput.Controls.Add(this.rdNegative);
             this.grbInput.Controls.Add(this.rdTransparency);
             this.grbInput.Location = new System.Drawing.Point(21, 18);
-            this.grbInput.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grbInput.Margin = new System.Windows.Forms.Padding(5);
             this.grbInput.Name = "grbInput";
-            this.grbInput.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grbInput.Padding = new System.Windows.Forms.Padding(5);
             this.grbInput.Size = new System.Drawing.Size(363, 446);
             this.grbInput.TabIndex = 0;
             this.grbInput.TabStop = false;
@@ -139,7 +139,7 @@ namespace BitmapFilters
             // 
             this.rdSepia.AutoSize = true;
             this.rdSepia.Location = new System.Drawing.Point(0, 135);
-            this.rdSepia.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdSepia.Margin = new System.Windows.Forms.Padding(5);
             this.rdSepia.Name = "rdSepia";
             this.rdSepia.Size = new System.Drawing.Size(65, 21);
             this.rdSepia.TabIndex = 6;
@@ -151,7 +151,7 @@ namespace BitmapFilters
             // 
             this.rdMotionBlur.AutoSize = true;
             this.rdMotionBlur.Location = new System.Drawing.Point(247, 140);
-            this.rdMotionBlur.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdMotionBlur.Margin = new System.Windows.Forms.Padding(5);
             this.rdMotionBlur.Name = "rdMotionBlur";
             this.rdMotionBlur.Size = new System.Drawing.Size(96, 21);
             this.rdMotionBlur.TabIndex = 8;
@@ -164,7 +164,7 @@ namespace BitmapFilters
             this.rdGrayscale.AutoSize = true;
             this.rdGrayscale.Checked = true;
             this.rdGrayscale.Location = new System.Drawing.Point(0, 28);
-            this.rdGrayscale.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdGrayscale.Margin = new System.Windows.Forms.Padding(5);
             this.rdGrayscale.Name = "rdGrayscale";
             this.rdGrayscale.Size = new System.Drawing.Size(116, 21);
             this.rdGrayscale.TabIndex = 3;
@@ -178,7 +178,7 @@ namespace BitmapFilters
             // 
             this.rdEmboss.AutoSize = true;
             this.rdEmboss.Location = new System.Drawing.Point(248, 72);
-            this.rdEmboss.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdEmboss.Margin = new System.Windows.Forms.Padding(5);
             this.rdEmboss.Name = "rdEmboss";
             this.rdEmboss.Size = new System.Drawing.Size(79, 21);
             this.rdEmboss.TabIndex = 9;
@@ -190,7 +190,7 @@ namespace BitmapFilters
             // 
             this.rdFindEdges.AutoSize = true;
             this.rdFindEdges.Location = new System.Drawing.Point(248, 39);
-            this.rdFindEdges.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdFindEdges.Margin = new System.Windows.Forms.Padding(5);
             this.rdFindEdges.Name = "rdFindEdges";
             this.rdFindEdges.Size = new System.Drawing.Size(100, 21);
             this.rdFindEdges.TabIndex = 7;
@@ -202,7 +202,7 @@ namespace BitmapFilters
             // 
             this.rdNegative.AutoSize = true;
             this.rdNegative.Location = new System.Drawing.Point(0, 100);
-            this.rdNegative.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdNegative.Margin = new System.Windows.Forms.Padding(5);
             this.rdNegative.Name = "rdNegative";
             this.rdNegative.Size = new System.Drawing.Size(85, 21);
             this.rdNegative.TabIndex = 5;
@@ -214,7 +214,7 @@ namespace BitmapFilters
             // 
             this.rdTransparency.AutoSize = true;
             this.rdTransparency.Location = new System.Drawing.Point(0, 64);
-            this.rdTransparency.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.rdTransparency.Margin = new System.Windows.Forms.Padding(5);
             this.rdTransparency.Name = "rdTransparency";
             this.rdTransparency.Size = new System.Drawing.Size(121, 21);
             this.rdTransparency.TabIndex = 4;
@@ -243,9 +243,9 @@ namespace BitmapFilters
             this.grbOutput.Controls.Add(this.lblTimeTaken);
             this.grbOutput.Controls.Add(this.lblTiempoTitle);
             this.grbOutput.Location = new System.Drawing.Point(394, 18);
-            this.grbOutput.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grbOutput.Margin = new System.Windows.Forms.Padding(5);
             this.grbOutput.Name = "grbOutput";
-            this.grbOutput.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.grbOutput.Padding = new System.Windows.Forms.Padding(5);
             this.grbOutput.Size = new System.Drawing.Size(473, 229);
             this.grbOutput.TabIndex = 1;
             this.grbOutput.TabStop = false;
@@ -277,24 +277,6 @@ namespace BitmapFilters
             this.temporizador.Interval = 1D;
             this.temporizador.SynchronizingObject = this;
             // 
-            // cmbCores
-            // 
-            this.cmbCores.FormattingEnabled = true;
-            this.cmbCores.Location = new System.Drawing.Point(319, 441);
-            this.cmbCores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cmbCores.Name = "cmbCores";
-            this.cmbCores.Size = new System.Drawing.Size(101, 24);
-            this.cmbCores.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(232, 434);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 34);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Núcleos \r\nDisponibles";
-            // 
             // btnStart
             // 
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -310,7 +292,7 @@ namespace BitmapFilters
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 444);
+            this.label2.Location = new System.Drawing.Point(-3, 412);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 17);
             this.label2.TabIndex = 24;
@@ -320,10 +302,10 @@ namespace BitmapFilters
             // cmbMethods
             // 
             this.cmbMethods.FormattingEnabled = true;
-            this.cmbMethods.Location = new System.Drawing.Point(95, 444);
+            this.cmbMethods.Location = new System.Drawing.Point(55, 409);
             this.cmbMethods.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmbMethods.Name = "cmbMethods";
-            this.cmbMethods.Size = new System.Drawing.Size(77, 24);
+            this.cmbMethods.Size = new System.Drawing.Size(147, 24);
             this.cmbMethods.TabIndex = 7;
             this.cmbMethods.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -359,16 +341,12 @@ namespace BitmapFilters
             this.ClientSize = new System.Drawing.Size(881, 546);
             this.Controls.Add(this.lblBarValueData);
             this.Controls.Add(this.valueBar1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.cmbMethods);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.cmbCores);
             this.Controls.Add(this.grbOutput);
             this.Controls.Add(this.grbInput);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -395,8 +373,6 @@ namespace BitmapFilters
         private System.Windows.Forms.RadioButton rdNegative;
         private System.Windows.Forms.RadioButton rdAjusteBrillo;
         private System.Windows.Forms.RadioButton rdGausianBlur;
-        private System.Windows.Forms.ComboBox cmbCores;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTimeTaken;
         private System.Windows.Forms.Label lblTiempoTitle;
         private System.Windows.Forms.Button btnStart;
